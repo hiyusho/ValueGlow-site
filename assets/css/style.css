@@ -482,4 +482,23 @@ a {
     background: #f0f6fd;
     font-size: 1.55rem;
   }
+  .about-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.stat {
+  background: #f7f9fc;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat h3 {
+  font-size: 1.4rem;
+  color: #1d4ed8;
+  margin-bottom: 6px;
+}
 }
