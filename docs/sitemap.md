@@ -1,36 +1,28 @@
 # Value Glow Website Sitemap
 
 ## Top
-/
-トップページ
-
-## Company
-/company
-会社概要
+- `/`
+- トップページ
 
 ## Services
-/services
-
-### Innovation
-/services/fusion-glow
-
-### Software Quality
-/services/manage-glow13
-
-### AI Consulting
-/services/ai-consulting
-
-### Factory Improvement
-/services/factory-visualization
-
-### Education
-/services/training
+- `/services/`
+- `/services/fusion-glow/`
+- `/services/manage-glow13/`
+- `/services/ai-consulting/`
+- `/services/factory-visualization/`
+- `/services/training/`
 
 ## Team
-/team
+- `/team/`
+
+## Company
+- `/company/`
 
 ## Spouse Support
-/spouse-support
+- `/spouse-support/`
 
 ## Contact
-/contact
+- `/contact/`
+
+## Privacy
+- `/privacy/`
