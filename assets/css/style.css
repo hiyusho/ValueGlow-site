@@ -471,4 +471,15 @@ a {
   .hero-actions {
     flex-direction: column;
   }
+  .service-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+    background: #f0f6fd;
+    font-size: 1.55rem;
+  }
 }
