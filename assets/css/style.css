@@ -380,7 +380,7 @@ a {
 }
 
 .contact-list li::before {
-  content: "笨�";
+  content: "●";
   color: var(--accent);
   font-weight: 800;
   margin-right: 8px;
