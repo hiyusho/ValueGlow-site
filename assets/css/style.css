@@ -501,4 +501,41 @@ a {
   color: #1d4ed8;
   margin-bottom: 6px;
 }
+  .problems {
+  padding: 80px 0;
+  background: #f8fafc;
+}
+
+.problem-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  transition: 0.3s;
+}
+
+.problem-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.problem-card .icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.center {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.arrow {
+  font-size: 24px;
+  color: var(--primary);
+}
+
+.lead-strong {
+  font-weight: 700;
+  font-size: 18px;
+}
 }
