@@ -1,1 +1,0 @@
-console.log("Value Glow site loaded");
