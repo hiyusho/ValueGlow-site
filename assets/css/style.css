@@ -386,9 +386,21 @@ a {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-.problem-card .icon {
-  font-size: 1.6rem;
-  margin: 0 0 10px;
+.problem-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.problem-title .icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.problem-title h3 {
+  margin: 0;
 }
 
 .problem-card h3 {
