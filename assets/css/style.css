@@ -722,21 +722,9 @@ a {
 }
 
 }
-  .floating-logo {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 999;
-  opacity: 0.9;
-  transition: 0.3s;
-}
+  
+/* ← これを一番下あたりに追加 */
 
-.floating-logo img {
-  width: 160px;
-  height: auto;
-  border-radius: ８px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-}
 .floating-logo {
   position: fixed;
   right: 16px;
@@ -744,8 +732,14 @@ a {
   z-index: 999;
   opacity: 0.9;
 }
-  
-/* ホバーで少し強調 */
+
+.floating-logo img {
+  width: 160px;
+  height: auto;
+  border-radius: 8px; /* ←ここも修正（後述） */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
 .floating-logo:hover {
   transform: scale(1.05);
   opacity: 1;
