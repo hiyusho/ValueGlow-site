@@ -720,6 +720,8 @@ a {
   color: var(--secondary);
   font-size: 0.95rem;
 }
+
+}
   .floating-logo {
   position: fixed;
   right: 20px;
@@ -747,5 +749,4 @@ a {
 .floating-logo:hover {
   transform: scale(1.05);
   opacity: 1;
-}
 }
