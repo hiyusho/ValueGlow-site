@@ -730,12 +730,19 @@ a {
 }
 
 .floating-logo img {
-  width: 80px;
+  width: 160px;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-radius: ８px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
-
+.floating-logo {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 999;
+  opacity: 0.9;
+}
+  
 /* ホバーで少し強調 */
 .floating-logo:hover {
   transform: scale(1.05);
