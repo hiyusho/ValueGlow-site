@@ -69,6 +69,29 @@ a {
   margin: 0 0 28px;
 }
 
+.service-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.service-title .icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef5fb;
+  border-radius: 10px;
+  font-size: 1.3rem;
+}
+
+.service-title h3 {
+  margin: 0;
+}
+
 /* Header */
 
 .header {
