@@ -122,6 +122,26 @@ a {
   font-size: 0.8rem;
   line-height: 1.4;
 }
+
+.logo-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-main img {
+  width: 110px !important;
+  max-width: 110px !important;
+  height: auto !important;
+}
+
+.logo-main span {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
 .nav {
   display: flex;
   align-items: center;
