@@ -720,4 +720,25 @@ a {
   color: var(--secondary);
   font-size: 0.95rem;
 }
+  .floating-logo {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+  opacity: 0.9;
+  transition: 0.3s;
+}
+
+.floating-logo img {
+  width: 80px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ホバーで少し強調 */
+.floating-logo:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
 }
