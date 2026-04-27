@@ -3,61 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>株式会社バリューグロー | 技術とAIで企業の変革を支援</title>
-  <meta name="description" content="株式会社バリューグローは、新規事業創出、生成AI活用、工場見える化、ソフトウェア品質向上を支援するコンサルティング会社です。" />
+  <title>お問い合わせ | 株式会社バリューグロー</title>
+  <meta name="description" content="株式会社バリューグローへのお問い合わせページです。新規事業創出、AI活用、工場改善、ソフトウェア品質向上などについてお気軽にご相談ください。" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
-<section id="contact" class="section section-alt">
-  <div class="container">
-    <div class="card contact-box">
-      <span class="eyebrow">CONTACT</span>
-      <h2 class="section-title">まずはお気軽にご相談ください</h2>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        株式会社バリューグロー
+        <small>技術・AI・イノベーションで企業の未来を創る</small>
+      </a>
 
-      <p class="section-lead">
-        新規事業、AI活用、現場改善など、課題が明確でなくても大丈夫です。<br>
-        内容を整理しながら最適な支援をご提案します。
-      </p>
+      <nav class="nav" aria-label="メインナビゲーション">
+        <a href="index.html">トップ</a>
+        <a href="services.html">サービス</a>
+        <a href="about.html">バリューグローとは</a>
+        <a href="team.html">専門家チーム</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
 
-      <p style="margin-bottom:20px; font-weight:700; color:#1f6fb2;">
-        ✔ 初回相談無料　✔ 無理な営業は行いません　✔ 30秒で送信できます
-      </p>
-
-      <form action="https://formspree.io/f/xwvajool" method="POST" class="contact-form">
-
-        <div class="form-group">
-          <label>お名前（必須）</label>
-          <input type="text" name="name" required>
-        </div>
-
-        <div class="form-group">
-          <label>メールアドレス（必須）</label>
-          <input type="email" name="email" required>
-        </div>
-
-        <div class="form-group">
-          <label>会社名（任意）</label>
-          <input type="text" name="company">
-        </div>
-
-        <div class="form-group">
-          <label>電話番号（任意）</label>
-          <input type="tel" name="phone">
-        </div>
-
-        <div class="form-group">
-          <label>ご相談内容（必須）</label>
-          <textarea name="message" rows="5" placeholder="例：AI活用について相談したい／新規事業について検討したい" required></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">
-          無料相談を送信する
-        </button>
-
-      </form>
+      <div class="header-actions">
+        <a class="btn btn-secondary" href="services.html">サービスを見る</a>
+        <a class="btn btn-primary" href="contact.html">無料相談する</a>
+      </div>
     </div>
-  </div>
-</section>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">CONTACT</span>
+        <h1 class="hero-title">まずはお気軽に<br />ご相談ください</h1>
+        <p class="hero-text">
+          新規事業創出、生成AI活用、工場改善、ソフトウェア品質向上など、
+          課題が明確でなくても大丈夫です。内容を整理しながら最適な支援をご提案します。
+        </p>
+
+        <div class="hero-points">
+          <div class="point-card">
+            <strong>初回相談無料</strong>
+            <span>まずは課題の整理からご相談いただけます</span>
+          </div>
+          <div class="point-card">
+            <strong>無理な営業なし</strong>
+            <span>ご相談内容に応じて必要な支援をご提案します</span>
+          </div>
+          <div class="point-card">
+            <strong>30秒で送信</strong>
+            <span>必要最小限の入力項目で送信できます</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="card contact-box">
+          <span class="eyebrow">FORM</span>
+          <h2 class="section-title">無料相談フォーム</h2>
+          <p class="section-lead">
+            以下のフォームに必要事項をご記入ください。確認後、担当者よりご連絡いたします。
+          </p>
+
+          <form action="https://formspree.io/f/xwvajool" method="POST" class="contact-form">
+            <div class="form-group">
+              <label for="name">お名前（必須）</label>
+              <input id="name" type="text" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">メールアドレス（必須）</label>
+              <input id="email" type="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="company">会社名（任意）</label>
+              <input id="company" type="text" name="company" />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">電話番号（任意）</label>
+              <input id="phone" type="tel" name="phone" />
+            </div>
+
+            <div class="form-group">
+              <label for="topic">ご相談テーマ（任意）</label>
+              <select id="topic" name="topic">
+                <option value="">選択してください</option>
+                <option value="イノベーション創出支援">イノベーション創出支援</option>
+                <option value="AI活用コンサルティング">AI活用コンサルティング</option>
+                <option value="工場見える化・改善">工場見える化・改善</option>
+                <option value="ソフトウェア品質作り込み支援">ソフトウェア品質作り込み支援</option>
+                <option value="講演・研修">講演・研修</option>
+                <option value="大学帯同者サポートプログラム">大学帯同者サポートプログラム</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">ご相談内容（必須）</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="例：AI活用について相談したい／新規事業テーマの作り方を相談したい／工場の作業見える化について知りたい"
+                required
+              ></textarea>
+            </div>
+
+            <input type="hidden" name="_subject" value="バリューグロー公式サイトからのお問い合わせ" />
+
+            <button type="submit" class="btn btn-primary form-submit">
+              無料相談を送信する
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">CONSULTATION EXAMPLES</span>
+        <h2 class="section-title">よくあるご相談内容</h2>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>新規事業を考えたい</h3>
+            <p>将来の事業テーマを見つけたい、既存事業の延長ではない新しい領域を探索したい。</p>
+          </article>
+
+          <article class="card">
+            <h3>AI活用を始めたい</h3>
+            <p>生成AIを導入したいが、何から始めればよいか分からない。社内教育も含めて相談したい。</p>
+          </article>
+
+          <article class="card">
+            <h3>現場や品質を改善したい</h3>
+            <p>工場の作業を見える化したい、ソフトウェア品質問題を仕組みで改善したい。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>株式会社バリューグロー</h3>
+        <p>技術とAIで企業の新規事業創出と現場改善を支援します。</p>
+        <p class="copyright">© Value Glow Inc. All Rights Reserved.</p>
+      </div>
+
+      <div>
+        <h4>サイトメニュー</h4>
+        <div class="footer-links">
+          <a href="index.html">トップ</a>
+          <a href="services.html">サービス</a>
+          <a href="about.html">バリューグローとは</a>
+          <a href="team.html">専門家チーム</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>その他</h4>
+        <div class="footer-links">
+          <a href="contact.html">お問い合わせ</a>
+          <a href="#">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
