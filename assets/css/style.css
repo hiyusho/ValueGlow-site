@@ -678,4 +678,46 @@ a {
   .service-card-image img {
     height: 180px;
   }
+  .problem-card {
+  position: relative;
+  border-left: 5px solid var(--secondary);
+}
+
+.problem-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.problem-title .icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #eef5fb;
+  font-size: 1.35rem;
+}
+
+.problem-title h3 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.problem-card p {
+  margin: 0 0 16px;
+}
+
+.problem-link {
+  display: inline-flex;
+  margin-top: 6px;
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 0.95rem;
+}
 }
