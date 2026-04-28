@@ -1,0 +1,39 @@
+# ディレクトリ一覧表示を禁止
+Options -Indexes
+
+# HTTPSへリダイレクト
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# 基本セキュリティヘッダー
+<IfModule mod_headers.c>
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# 不審なクエリを簡易ブロック
+<IfModule mod_rewrite.c>
+RewriteCond %{QUERY_STRING} (union|select|insert|drop|delete|update|script|javascript|alert|onerror|onload) [NC]
+RewriteRule .* - [F,L]
+</IfModule>
+
+# 重要ファイルへのアクセス禁止
+<FilesMatch "^(\.htaccess|\.htpasswd|README\.md|package\.json|package-lock\.json)$">
+  Require all denied
+</FilesMatch>
+
+# キャッシュ設定
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/webp "access plus 1 month"
+ExpiresByType text/css "access plus 7 days"
+ExpiresByType application/javascript "access plus 7 days"
+ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
