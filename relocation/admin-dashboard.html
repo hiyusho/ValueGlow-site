@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理ダッシュボード | 大学赴任者パートナー帯同プログラム</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-color: #379B63;
+      --main-dark: #2F7D52;
+      --main-light: #E8F5EE;
+      --accent-color: #1F5C3F;
+      --bg: #f6faf7;
+      --text: #25352b;
+      --muted: #66736a;
+      --border: #d9e8df;
+      --danger: #b42318;
+      --warning: #a15c00;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--main-color), var(--accent-color));
+      color: white;
+      padding: 20px 28px;
+      box-shadow: 0 4px 18px rgba(31, 92, 63, 0.18);
+    }
+
+    .header-row {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: .02em;
+    }
+
+    .sub {
+      margin: 6px 0 0;
+      color: rgba(255,255,255,.9);
+      font-size: 14px;
+    }
+
+    .logout-btn {
+      border: 1px solid rgba(255,255,255,.6);
+      background: rgba(255,255,255,.15);
+      color: white;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .logout-btn:hover { background: rgba(255,255,255,.25); }
+
+    .wrap {
+      max-width: 1280px;
+      margin: 24px auto;
+      padding: 0 20px 40px;
+    }
+
+    .notice {
+      background: #fff;
+      border-left: 5px solid var(--main-color);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 14px rgba(31, 92, 63, .08);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .notice.danger {
+      border-left-color: var(--danger);
+      color: var(--danger);
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1.3fr .8fr .8fr auto auto;
+      gap: 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(31, 92, 63, .08);
+      margin-bottom: 18px;
+    }
+
+    input, select, button {
+      font: inherit;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #fff;
+    }
+
+    input:focus, select:focus {
+      outline: 2px solid rgba(55, 155, 99, .25);
+      border-color: var(--main-color);
+    }
+
+    button {
+      background: var(--main-color);
+      border-color: var(--main-color);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button.secondary {
+      background: #fff;
+      color: var(--main-color);
+    }
+
+    button:hover {
+      background: var(--main-dark);
+      border-color: var(--main-dark);
+    }
+
+    button.secondary:hover {
+      background: var(--main-light);
+      color: var(--main-dark);
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(31, 92, 63, .08);
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .value {
+      margin-top: 6px;
+      color: var(--accent-color);
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .table-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(31, 92, 63, .08);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead {
+      background: var(--main-light);
+      color: var(--accent-color);
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    td.long {
+      white-space: normal;
+      min-width: 180px;
+    }
+
+    tbody tr:hover { background: #fbfdfb; }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--main-light);
+      color: var(--accent-color);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .role-admin {
+      background: #e8f5ee;
+      color: var(--accent-color);
+    }
+
+    .role-user {
+      background: #f3f4f6;
+      color: #444;
+    }
+
+    .empty {
+      padding: 32px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .loading {
+      padding: 28px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 1020px) {
+      .toolbar { grid-template-columns: 1fr; }
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .table-box { overflow-x: auto; }
+      .header-row { align-items: flex-start; }
+    }
+
+    @media (max-width: 560px) {
+      .summary { grid-template-columns: 1fr; }
+      .header-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-row">
+      <div>
+        <h1>帯同プログラム管理ダッシュボード</h1>
+        <p class="sub">Firestore の users コレクションから登録者リストを表示します</p>
+      </div>
+      <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> ログアウト</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="notice" id="loginStatus">
+      ログイン状態を確認しています。
+    </div>
+
+    <div class="toolbar">
+      <input id="searchInput" type="search" placeholder="氏名・メール・大学・希望内容で検索">
+      <select id="univFilter">
+        <option value="">大学：すべて</option>
+      </select>
+      <select id="jobFilter">
+        <option value="">就職支援：すべて</option>
+        <option value="希望する">希望する</option>
+        <option value="検討中">検討中</option>
+        <option value="希望しない">希望しない</option>
+      </select>
+      <button class="secondary" id="reloadBtn"><i class="fas fa-sync-alt"></i> 再読み込み</button>
+      <button id="exportBtn"><i class="fas fa-file-csv"></i> CSV出力</button>
+    </div>
+
+    <div class="summary">
+      <div class="card">
+        <div class="label">登録者数</div>
+        <div class="value" id="totalCount">0</div>
+      </div>
+      <div class="card">
+        <div class="label">就職支援希望</div>
+        <div class="value" id="jobCount">0</div>
+      </div>
+      <div class="card">
+        <div class="label">管理者</div>
+        <div class="value" id="adminCount">0</div>
+      </div>
+      <div class="card">
+        <div class="label">表示中</div>
+        <div class="value" id="shownCount">0</div>
+      </div>
+    </div>
+
+    <div class="table-box">
+      <table>
+        <thead>
+          <tr>
+            <th>登録日時</th>
+            <th>大学</th>
+            <th>氏名</th>
+            <th>メール</th>
+            <th>権限</th>
+            <th>相談希望</th>
+            <th>就職支援</th>
+            <th>希望職種</th>
+            <th>最終ログイン</th>
+            <th>UID</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody"></tbody>
+      </table>
+      <div id="loadingMessage" class="loading">読み込み中...</div>
+      <div id="emptyMessage" class="empty" style="display:none;">表示できる登録者データがありません。</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import {
+      getAuth, onAuthStateChanged, signOut
+    } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+    import {
+      getFirestore, collection, doc, getDoc, getDocs, query, orderBy, Timestamp
+    } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyA6iFUhXOueccuoLJVU9ZSvXywHmj8zoR4",
+      authDomain: "university-relocation-support.firebaseapp.com",
+      projectId: "university-relocation-support",
+      storageBucket: "university-relocation-support.firebasestorage.app",
+      messagingSenderId: "849634495988",
+      appId: "1:849634495988:web:013663976b0c4d6b4f7da1",
+      measurementId: "G-RJP20TC7DV"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    let users = [];
+    let currentAdmin = null;
+
+    const loginStatus = document.getElementById('loginStatus');
+    const loadingMessage = document.getElementById('loadingMessage');
+    const emptyMessage = document.getElementById('emptyMessage');
+
+    const fieldCandidates = {
+      name: ['name', 'fullName', 'displayName', '氏名', 'userName'],
+      univ: ['univ', 'university', 'entry_univ', 'university_source', '大学', '所属大学'],
+      consultation: ['consultation', 'consultation_request', '相談希望', '相談'],
+      job_support: ['job_support', 'jobSupport', 'job_support_request', '就職支援', '就職支援希望'],
+      desired_job: ['desired_job', 'desiredJob', '希望職種', '希望業務'],
+      memo: ['memo', 'note', '備考', '相談内容', '希望内容']
+    };
+
+    function pick(data, candidates, fallback = '') {
+      for (const key of candidates) {
+        if (data && data[key] !== undefined && data[key] !== null && String(data[key]).trim() !== '') {
+          return String(data[key]).trim();
+        }
+      }
+      return fallback;
+    }
+
+    function formatDate(value) {
+      if (!value) return '';
+      try {
+        let date;
+        if (value instanceof Timestamp) {
+          date = value.toDate();
+        } else if (value && typeof value.toDate === 'function') {
+          date = value.toDate();
+        } else if (typeof value === 'string') {
+          date = new Date(value);
+        } else {
+          return String(value);
+        }
+
+        if (Number.isNaN(date.getTime())) return String(value);
+
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        const hh = String(date.getHours()).padStart(2, '0');
+        const mm = String(date.getMinutes()).padStart(2, '0');
+        return `${y}-${m}-${d} ${hh}:${mm}`;
+      } catch (e) {
+        return String(value);
+      }
+    }
+
+    function normalizeUser(docSnap) {
+      const data = docSnap.data() || {};
+      return {
+        uid: data.uid || docSnap.id,
+        registered_at: formatDate(data.createdAt || data.created_at || data.registeredAt || data.registered_at),
+        last_login: formatDate(data.lastLoginAt || data.last_login || data.updatedAt),
+        univ: pick(data, fieldCandidates.univ, '未設定'),
+        name: pick(data, fieldCandidates.name, data.email || ''),
+        email: data.email || '',
+        role: data.role || 'user',
+        consultation: pick(data, fieldCandidates.consultation, ''),
+        job_support: pick(data, fieldCandidates.job_support, ''),
+        desired_job: pick(data, fieldCandidates.desired_job, ''),
+        memo: pick(data, fieldCandidates.memo, '')
+      };
+    }
+
+    function escapeHTML(value) {
+      return String(value || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    async function checkAdminAndLoad(user) {
+      const userRef = doc(db, 'users', user.uid);
+      const snap = await getDoc(userRef);
+
+      if (!snap.exists()) {
+        loginStatus.className = 'notice danger';
+        loginStatus.textContent = '管理者情報が見つかりません。管理者権限を確認してください。';
+        return;
+      }
+
+      const data = snap.data() || {};
+      const role = data.role || 'user';
+
+      if (!(role === 'admin' || role === 'superadmin')) {
+        loginStatus.className = 'notice danger';
+        loginStatus.textContent = 'このページを表示する権限がありません。管理者アカウントでログインしてください。';
+        setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+        return;
+      }
+
+      currentAdmin = { uid: user.uid, email: user.email, role };
+      loginStatus.className = 'notice';
+      loginStatus.textContent = `管理者としてログイン中：${user.email || ''}（${role}）`;
+      await loadUsers();
+    }
+
+    async function loadUsers() {
+      loadingMessage.style.display = 'block';
+      emptyMessage.style.display = 'none';
+
+      try {
+        let snaps;
+        try {
+          snaps = await getDocs(query(collection(db, 'users'), orderBy('createdAt', 'desc')));
+        } catch (e) {
+          snaps = await getDocs(collection(db, 'users'));
+        }
+
+        users = snaps.docs.map(normalizeUser);
+        render();
+      } catch (error) {
+        console.error('users read error:', error);
+        loginStatus.className = 'notice danger';
+        loginStatus.textContent = '登録者リストを読み込めません。Firestore Security Rulesで管理者が users コレクションを読める設定になっているか確認してください。';
+      } finally {
+        loadingMessage.style.display = 'none';
+      }
+    }
+
+    function updateUnivFilter() {
+      const select = document.getElementById('univFilter');
+      const current = select.value;
+      const univs = [...new Set(users.map(u => u.univ).filter(Boolean))].sort();
+
+      select.innerHTML = '<option value="">大学：すべて</option>' +
+        univs.map(u => `<option value="${escapeHTML(u)}">${escapeHTML(u)}</option>`).join('');
+
+      if (univs.includes(current)) select.value = current;
+    }
+
+    function getFilteredUsers() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const univ = document.getElementById('univFilter').value;
+      const job = document.getElementById('jobFilter').value;
+
+      return users.filter(user => {
+        const fullText = Object.values(user).join(' ').toLowerCase();
+        const matchQuery = !q || fullText.includes(q);
+        const matchUniv = !univ || user.univ === univ;
+        const matchJob = !job || user.job_support === job;
+        return matchQuery && matchUniv && matchJob;
+      });
+    }
+
+    function render() {
+      updateUnivFilter();
+
+      const filtered = getFilteredUsers();
+      const tbody = document.getElementById('userTableBody');
+
+      tbody.innerHTML = filtered.map(user => {
+        const roleClass = (user.role === 'admin' || user.role === 'superadmin') ? 'role-admin' : 'role-user';
+        return `
+          <tr>
+            <td>${escapeHTML(user.registered_at)}</td>
+            <td><span class="tag">${escapeHTML(user.univ)}</span></td>
+            <td>${escapeHTML(user.name)}</td>
+            <td>${escapeHTML(user.email)}</td>
+            <td><span class="tag ${roleClass}">${escapeHTML(user.role)}</span></td>
+            <td>${escapeHTML(user.consultation)}</td>
+            <td>${escapeHTML(user.job_support)}</td>
+            <td class="long">${escapeHTML(user.desired_job)}</td>
+            <td>${escapeHTML(user.last_login)}</td>
+            <td>${escapeHTML(user.uid)}</td>
+          </tr>
+        `;
+      }).join('');
+
+      emptyMessage.style.display = filtered.length ? 'none' : 'block';
+
+      document.getElementById('totalCount').textContent = users.length;
+      document.getElementById('jobCount').textContent = users.filter(u => u.job_support === '希望する').length;
+      document.getElementById('adminCount').textContent = users.filter(u => u.role === 'admin' || u.role === 'superadmin').length;
+      document.getElementById('shownCount').textContent = filtered.length;
+    }
+
+    function exportCSV() {
+      const filtered = getFilteredUsers();
+      const headers = ['登録日時', '大学', '氏名', 'メール', '権限', '相談希望', '就職支援', '希望職種', '最終ログイン', 'UID'];
+      const rows = filtered.map(u => [
+        u.registered_at, u.univ, u.name, u.email, u.role, u.consultation, u.job_support, u.desired_job, u.last_login, u.uid
+      ]);
+
+      const csv = [headers, ...rows]
+        .map(row => row.map(cell => `"${String(cell || '').replaceAll('"', '""')}"`).join(','))
+        .join('\n');
+
+      const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'relocation_users.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById('searchInput').addEventListener('input', render);
+    document.getElementById('univFilter').addEventListener('change', render);
+    document.getElementById('jobFilter').addEventListener('change', render);
+    document.getElementById('reloadBtn').addEventListener('click', loadUsers);
+    document.getElementById('exportBtn').addEventListener('click', exportCSV);
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await signOut(auth);
+      window.location.href = 'log-in.html';
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = 'log-in.html';
+        return;
+      }
+      await checkAdminAndLoad(user);
+    });
+  </script>
+</body>
+</html>
