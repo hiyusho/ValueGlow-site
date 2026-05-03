@@ -1,133 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4W2BJSP5ZH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4W2BJSP5ZH');
-</script>
-<!-- ===== Script 1 / HEAD内：univ・UTM取得と保存（既存の source 保存script と差し替え） ===== -->
-<script>
-(function () {
-  const params = new URLSearchParams(window.location.search);
-
-  const pick = (...values) => {
-    for (const value of values) {
-      if (value !== null && value !== undefined && String(value).trim() !== '') {
-        return String(value).trim();
-      }
-    }
-    return '';
-  };
-
-  /* 新方式を優先し、旧 source も後方互換で受ける */
-  const univ = pick(
-    params.get('univ'),
-    params.get('utm_source'),
-    params.get('source'),
-    localStorage.getItem('entry_univ')
-  );
-
-  const utmSource = pick(
-    params.get('utm_source'),
-    params.get('univ'),
-    params.get('source'),
-    localStorage.getItem('entry_utm_source')
-  );
-
-  const utmMedium = pick(
-    params.get('utm_medium'),
-    localStorage.getItem('entry_utm_medium')
-  );
-
-  const utmCampaign = pick(
-    params.get('utm_campaign'),
-    localStorage.getItem('entry_utm_campaign')
-  );
-
-  const utmContent = pick(
-    params.get('utm_content'),
-    localStorage.getItem('entry_utm_content')
-  );
-
-  /* 今回の流入情報を保存 */
-  if (univ) localStorage.setItem('entry_univ', univ);
-  if (utmSource) localStorage.setItem('entry_utm_source', utmSource);
-  if (utmMedium) localStorage.setItem('entry_utm_medium', utmMedium);
-  if (utmCampaign) localStorage.setItem('entry_utm_campaign', utmCampaign);
-  if (utmContent) localStorage.setItem('entry_utm_content', utmContent);
-
-  /* 初回流入情報は別保存 */
-  if (!localStorage.getItem('entry_first_page')) {
-    localStorage.setItem('entry_first_page', window.location.href);
-    localStorage.setItem('entry_first_timestamp', new Date().toISOString());
-
-    if (univ) localStorage.setItem('entry_first_univ', univ);
-    if (utmSource) localStorage.setItem('entry_first_utm_source', utmSource);
-    if (utmMedium) localStorage.setItem('entry_first_utm_medium', utmMedium);
-    if (utmCampaign) localStorage.setItem('entry_first_utm_campaign', utmCampaign);
-    if (utmContent) localStorage.setItem('entry_first_utm_content', utmContent);
-  }
-
-  /* 直近アクセス情報 */
-  localStorage.setItem('entry_latest_page', window.location.href);
-  localStorage.setItem('entry_latest_timestamp', new Date().toISOString());
-
-  /* 旧コードとの互換用 */
-  if (univ) localStorage.setItem('university_source', univ);
-  if (utmSource) localStorage.setItem('entry_source', utmSource);
-
-  /* テーマ切替などで使いたい場合に備えて data-univ も付与 */
-  if (univ) {
-    document.documentElement.setAttribute('data-univ', univ);
-  }
-
-  console.log('entry_univ:', localStorage.getItem('entry_univ'));
-  console.log('entry_utm_source:', localStorage.getItem('entry_utm_source'));
-})();
-</script>
-
-<!-- ===== Script 2 / HEAD内：ログイン成功イベント（既存の trackLoginSuccess script と差し替え） ===== -->
-<script>
-function trackLoginSuccess() {
-  const univ = localStorage.getItem('entry_univ') || 'unknown';
-  const utmSource = localStorage.getItem('entry_utm_source') || 'unknown';
-  const utmMedium = localStorage.getItem('entry_utm_medium') || 'unknown';
-  const utmCampaign = localStorage.getItem('entry_utm_campaign') || 'unknown';
-  const utmContent = localStorage.getItem('entry_utm_content') || 'unknown';
-
-  const firstPage = localStorage.getItem('entry_first_page') || '';
-  const firstTimestamp = localStorage.getItem('entry_first_timestamp') || '';
-
-  gtag('event', 'login', {
-    method: 'site_login',
-    univ: univ,
-    university_source: utmSource,
-    utm_source: utmSource,
-    utm_medium: utmMedium,
-    utm_campaign: utmCampaign,
-    utm_content: utmContent,
-    entry_first_page: firstPage,
-    entry_first_timestamp: firstTimestamp
-  });
-
-  console.log('login event sent:', {
-    univ,
-    utmSource,
-    utmMedium,
-    utmCampaign,
-    utmContent
-  });
-}
-</script>
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4W2BJSP5ZH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4W2BJSP5ZH');
+    </script>
     <title>大学赴任者パートナー帯同プログラム </title>
         <!-- SEO Meta Tags -->
     <meta name="description" content="名古屋圏域の大学赴任者とその家族のための総合支援プログラム。住居情報、キャリア支援、スキルアップ、医療・教育情報など、安心して新生活をスタートできるサポートを提供します。">
@@ -153,12 +36,13 @@ function trackLoginSuccess() {
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-    :root {
-    --main-color: #379B63;
-    --main-dark: #2F7D52;
-    --main-light: #E8F5EE;
-    --accent-color: #1F5C3F;
-    }
+        :root {
+            --main-color: #379B63;
+            --main-dark: #2F7D52;
+            --main-light: #E8F5EE;
+            --accent-color: #1F5C3F;
+        }
+
         /* コンテナの幅制限 */
         .container {
             max-width: 1400px;
@@ -166,7 +50,7 @@ function trackLoginSuccess() {
             padding: 0 1rem;
             box-sizing: border-box;
         }
-    
+
         /* ヘッダーの調整 */
         header {
             max-width: 1400px;
@@ -181,6 +65,18 @@ function trackLoginSuccess() {
         }
 
         /* 動画コンテナのスタイル調整 */
+        .video-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .video-container video {
+            width: 80% !important;
+            max-width: 800px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
 
         /* レスポンシブ対応の改善 */
         @media (max-width: 1200px) {
@@ -214,240 +110,117 @@ function trackLoginSuccess() {
                 max-width: 100%;
             }
 
+            .video-container video {
+                width: 100% !important;
+            }
         }
-    /* ===== カラー変更 ===== */
 
-.site-title,
-.section-title {
-    color: var(--main-color);
-}
+        /* ===== ブランドグリーン統一 ===== */
+        .site-title,
+        .section-title,
+        .hero-title,
+        .sidebar-title,
+        .widget h3,
+        .main-content h2,
+        .main-content h3,
+        .pillar h4,
+        .service-item h4,
+        .service-item h4 a,
+        .target-card h4,
+        .program-intro h3,
+        .support-targets h3,
+        .services h3,
+        .steps h3,
+        .step h4,
+        .step-container h4 {
+            color: var(--main-color) !important;
+        }
 
-.cta-button,
-.register-btn {
-    background-color: var(--main-color);
-    border-color: var(--main-color);
-    color: white;
-}
+        .cta-button,
+        .register-btn {
+            background-color: var(--main-color) !important;
+            border-color: var(--main-color) !important;
+            color: #fff !important;
+        }
 
-.cta-button:hover {
-    background-color: var(--main-dark);
-}
+        .cta-button:hover,
+        .register-btn:hover {
+            background-color: var(--main-dark) !important;
+        }
 
-.login-btn {
-    border: 2px solid var(--main-color);
-    color: var(--main-color);
-}
+        .login-btn {
+            border: 2px solid var(--main-color) !important;
+            color: var(--main-color) !important;
+        }
 
-.login-btn:hover {
-    background-color: var(--main-color);
-    color: white;
-}
+        .login-btn:hover {
+            background-color: var(--main-color) !important;
+            color: #fff !important;
+        }
 
-.nav-item a:hover {
-    color: var(--main-color);
-}
+        .service-item i,
+        .pillar i,
+        .target-card i,
+        .step i,
+        .nav-item a i,
+        .info-links i,
+        .action-btn i,
+        .step-arrow {
+            color: var(--main-color) !important;
+        }
 
-.service-item i,
-.pillar i,
-.target-card i {
-    color: var(--main-color);
-}
-/* ===== グリーン統一の追加上書き ===== */
+        .step-number {
+            background-color: var(--main-color) !important;
+            color: #fff !important;
+        }
 
-.hero-title,
-.sidebar-title,
-.widget h3,
-.main-content h2,
-.main-content h3 {
-    color: var(--main-color) !important;
-}
+        .section-title,
+        .widget h3,
+        .sidebar-title {
+            border-color: var(--main-color) !important;
+        }
 
-.nav-item a i,
-.info-links i,
-.action-btn i {
-    color: var(--main-color) !important;
-}
+        .section-title::after,
+        .section h2::after,
+        .section h3::after {
+            background-color: var(--main-color) !important;
+            border-color: var(--main-color) !important;
+        }
 
-.sidebar,
-.right-sidebar .widget,
-.hero-section,
-.section,
-.quick-actions {
-    border-color: var(--main-color-light) !important;
-}
+        .sidebar,
+        .right-sidebar .widget,
+        .hero-section,
+        .section,
+        .quick-actions,
+        .support-targets,
+        .services,
+        .steps,
+        .program-intro {
+            border-color: var(--main-light) !important;
+        }
 
-.widget h3,
-.sidebar-title {
-    border-bottom: 2px solid var(--main-color) !important;
-}
+        .news-widget,
+        .info-widget,
+        .sidebar,
+        .quick-actions {
+            box-shadow: 0 4px 12px rgba(55, 155, 99, 0.12) !important;
+        }
 
-.nav-item a:hover,
-.nav-subitem a:hover,
-.info-links a:hover,
-.news-list a:hover {
-    color: var(--main-color) !important;
-}
+        .nav-item a:hover,
+        .nav-subitem a:hover,
+        .info-links a:hover,
+        .news-list a:hover,
+        .service-item a,
+        .service-item a:visited,
+        .main-content a,
+        .main-content a:visited {
+            color: var(--main-color) !important;
+        }
 
-.news-widget h3,
-.info-widget h3 {
-    color: var(--main-color) !important;
-}
-
-.news-widget,
-.info-widget,
-.sidebar,
-.quick-actions {
-    box-shadow: 0 4px 12px rgba(55, 155, 99, 0.12) !important;
-}
-hr,
-.sidebar-title,
-.widget h3 {
-    border-color: var(--main-color) !important;
-}
-/* ===== 残っているオレンジ・青の上書き ===== */
-
-/* カードやサービス項目の見出し */
-.pillar h4,
-.service-item h4,
-.service-item h4 a,
-.target-card h4,
-.program-intro h3,
-.support-targets h3,
-.services h3,
-.steps h3 {
-    color: var(--main-color) !important;
-}
-
-/* セクション見出しの下線 */
-.section-title::after,
-.section h2::after,
-.section h3::after {
-    background-color: var(--main-color) !important;
-    border-color: var(--main-color) !important;
-}
-
-/* 水平線っぽく見えている区切り */
-.support-targets,
-.services,
-.steps,
-.program-intro {
-    border-color: var(--main-color-light) !important;
-}
-
-/* 詳細リンクや矢印リンクの青を緑へ */
-.service-item a,
-.service-item a:visited,
-.main-content a,
-.main-content a:visited {
-    color: var(--main-color) !important;
-}
-
-/* ホバー時も緑系に */
-.service-item a:hover,
-.main-content a:hover {
-    color: var(--main-dark) !important;
-}
-
-/* カード内アイコン */
-.service-item i,
-.pillar i,
-.target-card i,
-.step i {
-    color: var(--main-color) !important;
-}
-
-/* ステップ番号 */
-.step-number {
-    background-color: var(--main-color) !important;
-    color: white !important;
-}
-
-/* 矢印 */
-.step-arrow {
-    color: var(--main-color) !important;
-}
-/* ===== ステップ部分のオレンジを修正 ===== */
-
-.step h4 {
-    color: var(--main-color) !important;
-}
-
-/* 念のため全体もカバー */
-.step-container h4 {
-    color: var(--main-color) !important;
-}
-/* ===== セクション下のオレンジ線を上書き ===== */
-
-/* パターン①：borderで作られている場合 */
-.section-title {
-    border-bottom: 2px solid var(--main-color) !important;
-}
-
-/* パターン②：after疑似要素で作られている場合 */
-.section-title::after {
-    background-color: var(--main-color) !important;
-}
-
-/* 念のため広めにカバー */
-.section h2::after {
-    background-color: var(--main-color) !important;
-}
-
-.contact-step-box {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 12px;
-}
-
-.contact-mail-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.contact-mail-form input,
-.contact-mail-form textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #cfe3d7;
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: inherit;
-    box-sizing: border-box;
-}
-
-.contact-mail-form textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.mail-submit-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    cursor: pointer;
-}
-
-.inline-register-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 18px;
-    border-radius: 8px;
-    background: var(--main-light);
-    color: var(--main-color) !important;
-    font-weight: 700;
-    text-decoration: none;
-    border: 1px solid var(--main-color);
-}
-
-.inline-register-link:hover,
-.top-return-btn:hover {
-    opacity: 0.9;
-}
+        .service-item a:hover,
+        .main-content a:hover {
+            color: var(--main-dark) !important;
+        }
 
     </style>
 
@@ -458,7 +231,7 @@ hr,
       "@type": "Organization",
       "name": "大学赴任者パートナー帯同プログラム",
       "url": "https://hiyusho.github.io/university-relocation-support/",
-      "logo": "https://hiyusho.github.io/university-relocation-support/logo/valueglow_logo.png",
+      "logo": "https://hiyusho.github.io/university-relocation-support/logo.png",
       "description": "名古屋圏域の大学赴任者とその家族のための総合支援プログラム",
       "areaServed": {
         "@type": "Place",
@@ -490,12 +263,8 @@ hr,
     <!-- ヘッダー -->
     <header class="header">
         <div class="logo-container">
-            <img src="logo/valueglow_logo.png" alt="大学ロゴ" class="university-logo" id="universityLogo">
+            <img src="logo/logo.png" alt="大学ロゴ" class="university-logo" id="universityLogo">
             <h1 class="site-title">パートナー帯同ポータルサイト</h1>
-            <p class="site-note">
-                本ページは株式会社バリューグローが運営する支援ページです。<br>
-                各大学との連携内容に応じて情報を提供しています。
-            </p>
         </div>
     </header>
 
@@ -519,8 +288,26 @@ hr,
                 <li class="nav-item" data-tooltip="就職活動のサポート、求人情報、キャリアカウンセリングをご案内します">
                     <a href="job-search.html"><i class="fas fa-briefcase"></i> 仕事を見つけたい</a>
                 </li>
+                <li class="nav-item" data-tooltip="スキルアップ・リスキリング講座、資格取得支援の情報を提供します">
+                    <a href="skill-up.html"><i class="fas fa-graduation-cap"></i> スキルアップしたい</a>
+                </li>
                 <li class="nav-item" data-tooltip="先輩家族の体験談、成功事例をご紹介します">
                     <a href="https://network2010.org/series" target="_blank" rel="noopener noreferrer"><i class="fas fa-users"></i> ロールモデル紹介 <i class="fas fa-external-link-alt" style="font-size: 10px; margin-left: 5px;"></i></a>
+                </li>
+                <li class="nav-item" data-tooltip="パートナー帯同に関する制度、手続き、サポート内容の詳細情報です">
+                    <a href="family-support.html"><i class="fas fa-home"></i> パートナー帯同について知りたい</a>
+                </li>
+                <li class="nav-item" data-tooltip="ビザ、住居、保険など、必要な手続き情報をまとめています">
+                    <a href="#important-info"><i class="fas fa-info-circle"></i> 見ておきたい情報</a>
+                </li>
+                <li class="nav-item" data-tooltip="地域企業とのマッチング、ネットワーキングイベントをご案内します">
+                    <a href="#networking"><i class="fas fa-handshake"></i> 現地企業とつながりたい</a>
+                </li>
+                <li class="nav-item" data-tooltip="医療機関、学校、保育施設などの情報を提供します">
+                    <a href="https://network2010.org/nagoya" target="_blank" rel="noopener noreferrer"><i class="fas fa-hospital"></i> 医療・教育を知りたい <i class="fas fa-external-link-alt" style="font-size: 10px; margin-left: 5px;"></i></a>
+                </li>
+                <li class="nav-item" data-tooltip="専門スタッフによる個別相談をご利用いただけます">
+                    <a href="#consultation"><i class="fas fa-comments"></i> 相談したい場合</a>
                 </li>
             </ul>
         </nav>
@@ -533,9 +320,22 @@ hr,
                     <h2 class="hero-title">大学赴任者パートナー帯同プログラム</h2>
                     <!-- ✅ 左揃えに変更 -->
                     <p style="font-size: 1.1em; line-height: 1.8; color: #555; margin: 20px 0; text-align: left; max-width: 800px;">
-                        名古屋地域に赴任を検討されている研究者とそのご家族のキャリア・生活を総合的にサポートします。<br>
+                        名古屋地域に赴任される研究者とそのご家族のキャリア・生活を総合的にサポートします。<br>
                         就職支援、スキルアップ、住居情報、医療・教育情報など、安心して新生活を始めるための情報が揃っています。
                     </p>
+                    <div class="video-container">
+                        <!-- ✅ 動画幅を80%に変更 -->
+                        <video 
+                            controls 
+                            preload="metadata"
+                            style="width: 80%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+                            <source 
+                                src="https://firebasestorage.googleapis.com/v0/b/university-relocation-support.firebasestorage.app/o/videos%2F%E6%84%9B%E7%9F%A5%E7%B4%B9%E4%BB%8B%E7%9F%AD%E7%B8%AE%E7%89%88%EF%BC%88%E8%8B%B1%E8%AA%9E%EF%BC%89.mp4?alt=media&token=8ca35915-5375-459b-8127-d8ac427fa4d5" 
+                                type="video/mp4">
+                            お使いのブラウザは動画タグをサポートしていません。
+                        </video>
+                        <p style="text-align: center; margin-top: 10px; font-size: 14px; color: #666;">愛知紹介短縮版（英語）</p>
+                    </div>
                 </div>
             </section>
 
@@ -544,7 +344,7 @@ hr,
                 <h2 class="section-title">About the Program</h2>
                 <div class="program-intro">
                     <h3>「名古屋デュアルキャリア支援」とは？</h3>
-                    <p>大学に赴任する研究者のパートナーのキャリアをサポートする、画期的な支援プログラムです。</p>
+                    <p>大学に赴任する研究者とそのパートナーの両方のキャリアを同時にサポートする、画期的な支援プログラムです。</p>
                     <div class="support-pillars">
                         <div class="pillar">
                             <i class="fas fa-user-tie"></i>
@@ -607,29 +407,29 @@ hr,
                     <div class="service-list">
                          <div class="service-item">
                             <i class="fas fa-user-check"></i>
-                            <h4>キャリアカウンセリング・就職相談</h4>
-                            <p>国家資格キャリアコンサルタントが無料でサポート<br><strong>2026年10月スタート予定</strong></p>
+                            <h4><a href="career-consulting.html" style="color: inherit; text-decoration: none;">キャリアカウンセリング・就職相談 <i class="fas fa-arrow-right" style="font-size: 0.8em; color: #379B63;"></i></a></h4>
+                            <p>国家資格キャリアコンサルタントが無料でサポート <a href="career-consulting.html" style="color: #379B63; font-weight: 600; text-decoration: none;">詳細・申し込み →</a></p>
                         </div>
 
                         <div class="service-item">
                             <i class="fas fa-handshake"></i>
                             <h4>地域企業とのジョブマッチングサポート</h4>
-                            <p>名古屋地域の優良企業との出会いをコーディネートします<br><strong>2026年10月スタート予定</strong></p>
+                            <p>名古屋地域の優良企業との出会いをコーディネートします</p>
                         </div>
                         <div class="service-item">
                             <i class="fas fa-book-open"></i>
                             <h4>スキルアップ・リスキリング講座の紹介</h4>
-                            <p>最新のスキル習得をサポートする講座をご案内します<br><strong>2026年10月スタート予定</strong></p>
+                            <p>最新のスキル習得をサポートする講座をご案内します</p>
                         </div>
-                        <div class="service-item" id="residence-guide">
+                        <div class="service-item">
                             <i class="fas fa-home"></i>
-                            <h4><a href="#residence-guide" style="color: inherit; text-decoration: none;">生活・育児・教育・医療など暮らし情報の提供</a></h4>
+                            <h4>生活・育児・教育・医療など暮らし情報の提供</h4>
                             <p>住まい、子育て、医療など生活に必要な情報を網羅的に提供</p>
                         </div>
                         <div class="service-item">
                             <i class="fas fa-calendar-check"></i>
                             <h4>パートナー・転入者同士の交流イベント</h4>
-                            <p><strong>2027年4月を目標に準備中</strong></p>
+                            <p>同じ立場の仲間と出会い、情報交換できる場を提供します</p>
                         </div>
                     </div>
                 </div>
@@ -641,36 +441,27 @@ hr,
                 <div class="steps">
                     <h3>ご利用の流れ</h3>
                     <div class="step-container">
-                        <div class="step step-contact">
+                        <div class="step">
                             <div class="step-number">1</div>
-                            <h4>フォームからお問い合わせ または 登録</h4>
-                            <div class="contact-step-box">
-                                <form action="mailto:relocation@valueglow.jp" method="post" enctype="text/plain" class="contact-mail-form">
-                                    <input type="text" value="relocation@valueglow.jp" aria-label="送信先" readonly>
-                                    <input type="email" name="from" placeholder="あなたのメールアドレス" aria-label="あなたのメールアドレス" required>
-                                    <input type="text" name="subject" value="帯同プログラム問い合わせ" aria-label="件名">
-                                    <textarea name="body" rows="5" placeholder="お問い合わせ内容をご記入ください" aria-label="お問い合わせ内容" required></textarea>
-                                    <button type="submit" class="cta-button mail-submit-btn"><i class="fas fa-paper-plane"></i> メールを作成して送信</button>
-                                </form>
-                                <a href="registration.html" class="inline-register-link"><i class="fas fa-user-plus"></i> 登録ページへ</a>
-                            </div>
+                            <h4>フォームからお問い合わせまたは登録</h4>
+                            <p>まずは簡単な登録フォームからご連絡ください</p>
                         </div>
                         <div class="step-arrow">→</div>
                         <div class="step">
                             <div class="step-number">2</div>
-                            <h4>オリエンテーション・面談</h4>
-                            <p><strong>2026年10月開始予定</strong></p>
+                            <h4>オリエンテーション面談(オンライン可)</h4>
+                            <p>専門スタッフが丁寧にヒアリングします</p>
                         </div>
                         <div class="step-arrow">→</div>
                         <div class="step">
                             <div class="step-number">3</div>
                             <h4>ニーズに応じた情報提供・サポート開始</h4>
-                            <p>あなたに最適なサポートをカスタマイズして提供<br><strong>2026年10月開始予定</strong></p>
+                            <p>あなたに最適なサポートをカスタマイズして提供</p>
                         </div>
                     </div>
                     <div class="cta-button-container">
-                        <a href="#top" class="cta-button top-return-btn">
-                            <i class="fas fa-arrow-up"></i> トップに戻る
+                        <a href="registration.html" class="cta-button">
+                            <i class="fas fa-user-plus"></i> 新規登録はこちら
                         </a>
                     </div>
                 </div>
@@ -727,71 +518,180 @@ hr,
         <div class="footer-content">
             <p>&copy; 2025 大学赴任者パートナー帯同プログラム All Rights Reserved.</p>
             <p>※ 本プログラムは参加大学と地域企業の協力により運営されています</p>
-            <p style="margin-top: 15px; font-size: 13px;">名古屋地域情報提供:<a href="https://network2010.org/" target="_blank" rel="noopener noreferrer" style="color: #FF9F54; text-decoration: none;">Network2010 <i class="fas fa-external-link-alt" style="font-size: 10px;"></i></a></p>
+            <p style="margin-top: 15px; font-size: 13px;">名古屋地域情報提供:<a href="https://network2010.org/" target="_blank" rel="noopener noreferrer" style="color: #379B63; text-decoration: none;">Network2010 <i class="fas fa-external-link-alt" style="font-size: 10px;"></i></a></p>
         </div>
     </footer>
+<script src="js/main.js"></script>
 
+<!-- ===== 流入記録保存：visitsコレクション作成・visitId保存・後続ページ引継ぎ ===== -->
+<script type="module">
+  import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+  } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-<!-- ===== Script 3 / BODY末尾：univ・UTMを後続ページへ引き継ぐ（既存の footer script と差し替え） ===== -->
-<script>
-(function () {
-  const read = (key) => localStorage.getItem(key) || '';
-
-  const paramsToCarry = {
-    univ: read('entry_univ'),
-    utm_source: read('entry_utm_source'),
-    utm_medium: read('entry_utm_medium'),
-    utm_campaign: read('entry_utm_campaign'),
-    utm_content: read('entry_utm_content')
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6iFUhXOueccuoLJVU9ZSvXywHmj8zoR4",
+    authDomain: "university-relocation-support.firebaseapp.com",
+    projectId: "university-relocation-support",
+    storageBucket: "university-relocation-support.firebasestorage.app",
+    messagingSenderId: "849634495988",
+    appId: "1:849634495988:web:013663976b0c4d6b4f7da1",
+    measurementId: "G-RJP20TC7DV"
   };
 
-  const shouldCarry = (href) => {
-    if (!href) return false;
-    if (
-      href.startsWith('#') ||
-      href.startsWith('mailto:') ||
-      href.startsWith('tel:') ||
-      href.startsWith('javascript:')
-    ) {
-      return false;
+  const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  (async function () {
+    const STORAGE_PREFIX = 'vg_relocation_';
+    const PARAM_KEYS = ['univ', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    const params = new URLSearchParams(window.location.search);
+
+    const getParam = (key) => {
+      const value = params.get(key);
+      return value && value.trim() ? value.trim() : '';
+    };
+
+    const nowIso = new Date().toISOString();
+    const current = {
+      univ: getParam('univ'),
+      utm_source: getParam('utm_source'),
+      utm_medium: getParam('utm_medium'),
+      utm_campaign: getParam('utm_campaign'),
+      utm_content: getParam('utm_content')
+    };
+
+    const hasTrackingParams = PARAM_KEYS.some((key) => current[key]);
+
+    [
+      'entry_source',
+      'entry_source_first_page',
+      'entry_source_timestamp',
+      'university_source',
+      'entry_univ',
+      'entry_utm_source',
+      'entry_utm_medium',
+      'entry_utm_campaign',
+      'entry_utm_content'
+    ].forEach((key) => localStorage.removeItem(key));
+
+    if (hasTrackingParams) {
+      PARAM_KEYS.forEach((key) => {
+        if (current[key]) localStorage.setItem(STORAGE_PREFIX + key, current[key]);
+      });
+
+      localStorage.setItem(STORAGE_PREFIX + 'latest_page', window.location.href);
+      localStorage.setItem(STORAGE_PREFIX + 'latest_timestamp', nowIso);
+
+      if (!localStorage.getItem(STORAGE_PREFIX + 'first_page')) {
+        localStorage.setItem(STORAGE_PREFIX + 'first_page', window.location.href);
+        localStorage.setItem(STORAGE_PREFIX + 'first_timestamp', nowIso);
+
+        PARAM_KEYS.forEach((key) => {
+          if (current[key]) {
+            localStorage.setItem(STORAGE_PREFIX + 'first_' + key, current[key]);
+          }
+        });
+      }
+
+      try {
+        const visitDoc = await addDoc(collection(db, 'visits'), {
+          univ: current.univ || '',
+          utm_source: current.utm_source || '',
+          utm_medium: current.utm_medium || '',
+          utm_campaign: current.utm_campaign || '',
+          utm_content: current.utm_content || '',
+          landingPage: window.location.href,
+          pagePath: window.location.pathname,
+          referrer: document.referrer || '',
+          userAgent: navigator.userAgent || '',
+          visitedAt: serverTimestamp(),
+          visitedAtClient: nowIso,
+          linkedUserId: '',
+          linkedAt: null
+        });
+
+        localStorage.setItem(STORAGE_PREFIX + 'visit_id', visitDoc.id);
+        localStorage.setItem(STORAGE_PREFIX + 'latest_visit_id', visitDoc.id);
+
+        if (!localStorage.getItem(STORAGE_PREFIX + 'first_visit_id')) {
+          localStorage.setItem(STORAGE_PREFIX + 'first_visit_id', visitDoc.id);
+        }
+
+        console.log('visit saved:', visitDoc.id);
+      } catch (error) {
+        console.error('visit save error:', error);
+      }
     }
 
-    const url = new URL(href, window.location.origin);
+    const read = (key) => localStorage.getItem(STORAGE_PREFIX + key) || '';
 
-    /* 同一サイト内の主要HTMLだけに付与 */
-    return (
-      url.origin === window.location.origin &&
-      /(?:^|\/)(index|registration|log-in|dashboard|family-support)\.html$/i.test(url.pathname)
-    );
-  };
+    const carriedParams = {
+      univ: read('univ'),
+      utm_source: read('utm_source'),
+      utm_medium: read('utm_medium'),
+      utm_campaign: read('utm_campaign'),
+      utm_content: read('utm_content'),
+      visit_id: read('latest_visit_id') || read('visit_id')
+    };
 
-  document.querySelectorAll('a[href]').forEach((link) => {
-    const rawHref = link.getAttribute('href');
-    if (!shouldCarry(rawHref)) return;
+    const activeUniv = carriedParams.univ || 'direct';
+    document.documentElement.setAttribute('data-univ', activeUniv);
 
-    const url = new URL(rawHref, window.location.origin);
+    if (typeof gtag === 'function') {
+      gtag('event', 'relocation_entry', {
+        univ: activeUniv,
+        utm_source: carriedParams.utm_source || 'direct',
+        utm_medium: carriedParams.utm_medium || 'none',
+        utm_campaign: carriedParams.utm_campaign || 'none',
+        utm_content: carriedParams.utm_content || 'none',
+        visit_id: carriedParams.visit_id || '',
+        entry_first_page: read('first_page') || window.location.href,
+        entry_first_timestamp: read('first_timestamp') || '',
+        page_path: window.location.pathname
+      });
+    }
 
-    Object.entries(paramsToCarry).forEach(([key, value]) => {
-      if (value && !url.searchParams.get(key)) {
-        url.searchParams.set(key, value);
+    const shouldCarry = (href) => {
+      if (!href) return false;
+      if (
+        href.startsWith('#') ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        href.startsWith('javascript:')
+      ) {
+        return false;
       }
+
+      const url = new URL(href, window.location.href);
+      return (
+        url.origin === window.location.origin &&
+        /\.html$/i.test(url.pathname)
+      );
+    };
+
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const rawHref = link.getAttribute('href');
+      if (!shouldCarry(rawHref)) return;
+
+      const url = new URL(rawHref, window.location.href);
+
+      Object.entries(carriedParams).forEach(([key, value]) => {
+        if (value && !url.searchParams.get(key)) {
+          url.searchParams.set(key, value);
+        }
+      });
+
+      link.setAttribute('href', url.pathname + url.search + url.hash);
     });
 
-    link.setAttribute('href', url.href.replace(window.location.origin + '/', ''));
-  });
-
-  console.log('carried params:', paramsToCarry);
-})();
+    console.log('carried params with visit_id:', carriedParams);
+  })();
 </script>
-
-<script>
-
-
-</script>
-<script src="js/university-config.js"></script>
-<script src="js/apply-university-theme.js"></script>
-<script src="js/carry-params.js"></script>
-<script src="js/main.js"></script>
 
 </body>
 </html>
