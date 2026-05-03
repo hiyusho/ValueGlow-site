@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>名古屋市で暮らす - 大学赴任者家族帯同支援プログラム</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nagoya-city.css">
+  <link rel="stylesheet" href="css/shared-site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-region="nagoya" data-default-univ="nagoya_u">
+  <header class="site-header header">
+    <div class="site-header-inner">
+      <div class="site-header-left logo-container">
+        <img src="logo.png" alt="大学ロゴ" class="university-logo header-logo" id="universityLogo">
+        <h1 class="site-title">家族帯同ポータルサイト</h1>
+      </div>
+      <nav class="site-actions header-nav">
+        <a href="index.html" class="back-button btn-back-home">
+          <i class="fas fa-arrow-left"></i> トップに戻る
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="nagoya-hero region-hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1 class="hero-title" id="heroTitle">名古屋市で暮らす</h1>
+        <p class="hero-subtitle" id="heroSubtitle">読み込み中...</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="nagoya-main">
+    <div class="content-container">
+      <div class="data-policy-box">
+        <h3 id="dataPolicyTitle">情報の確認について</h3>
+        <p id="dataPolicyBody"></p>
+        <p class="last-updated" id="lastUpdated"></p>
+      </div>
+
+      <section class="section-basic-info">
+        <h2 class="section-title">名古屋市の基本情報</h2>
+        <div class="basic-info-grid" id="basicInfoGrid"></div>
+      </section>
+
+      <section class="section-attractions">
+        <h2 class="section-title">名古屋市の5つの魅力</h2>
+        <div class="attractions-grid" id="attractionsGrid"></div>
+      </section>
+
+      <section class="section-districts">
+        <h2 class="section-title">おすすめエリアガイド</h2>
+        <p class="section-intro">研究者・家族帯同におすすめのエリアを紹介します</p>
+        <div class="districts-grid" id="districtsGrid"></div>
+        <div class="other-districts">
+          <h3>その他の区</h3>
+          <div class="district-tags" id="otherDistrictTags"></div>
+        </div>
+      </section>
+
+      <section class="section-housing-guide">
+        <h2 class="section-title">住居の探し方ガイド</h2>
+        <div class="steps-container" id="housingSteps"></div>
+        <div class="housing-resources">
+          <h3><i class="fas fa-link"></i> 主要不動産サイト</h3>
+          <div class="resource-links" id="resourceLinks"></div>
+        </div>
+      </section>
+
+      <section class="section-facilities">
+        <h2 class="section-title">生活に必要な施設情報</h2>
+        <div class="facilities-grid" id="facilitiesGrid"></div>
+      </section>
+
+      <section class="section-testimonials">
+        <h2 class="section-title">実際に住んでいる方の声</h2>
+        <div class="testimonials-grid" id="testimonialsGrid"></div>
+      </section>
+
+      <section class="section-faq">
+        <h2 class="section-title">よくある質問</h2>
+        <div class="faq-container" id="faqContainer"></div>
+      </section>
+
+      <section class="section-links">
+        <h2 class="section-title">関連リンク</h2>
+        <div class="links-grid" id="relatedLinks"></div>
+      </section>
+
+      <section class="section-cta">
+        <div class="cta-box">
+          <h2><i class="fas fa-envelope"></i> <span id="ctaTitle">住まいに関する相談</span></h2>
+          <p id="ctaStatus" style="font-size: 1.1rem; font-weight: 600; margin: 20px 0;"></p>
+          <p id="ctaDescription"></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 大学赴任者家族帯同支援プログラム All Rights Reserved.</p>
+      <p>※ 本プログラムは参加大学と地域企業の協力により運営されています</p>
+    </div>
+  </footer>
+
+  <script src="js/university-config.js"></script>
+  <script src="js/university-theme.js"></script>
+  <script src="js/carry-params.js"></script>
+  <script src="js/nagoya-city-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
