@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録 | 大学赴任者家族帯同支援プログラム</title>
+    <meta name="description" content="大学赴任者家族帯同支援プログラムの新規登録ページ。無料でアカウントを作成して、キャリア支援サービスをご利用いただけます。">
+    <meta name="keywords" content="新規登録,アカウント作成,無料,キャリア支援,名古屋大学">
+    <meta name="author" content="大学赴任者家族帯同支援プログラム">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="新規登録 | 大学赴任者家族帯同支援プログラム">
+    <meta property="og:description" content="無料でアカウントを作成して、キャリア支援サービスをご利用いただけます。">
+    <meta property="og:url" content="https://hiyusho.github.io/university-relocation-support/registration.html">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://hiyusho.github.io/university-relocation-support/registration.html">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+  --main-color: #379B63;
+  --main-dark: #2F7D52;
+  --main-light: #E8F5EE;
+  --accent-color: #1F5C3F;
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 
+                         'Hiragino Sans', Meiryo, sans-serif;
+            background: linear-gradient(135deg, var(--main-color) 0%, var(--main-dark) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .registration-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 550px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .registration-header {
+            background: linear-gradient(135deg, var(--main-color) 0%, var(--main-dark) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .registration-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .registration-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .registration-header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .registration-body {
+            padding: 40px 30px;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        
+        .step {
+            width: 40px;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active {
+            background: var(--main-color);
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .form-group label .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+        
+        .form-group label .optional {
+            color: #999;
+            font-weight: 400;
+            font-size: 0.85rem;
+            margin-left: 5px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(55, 155, 99, 0.12);
+        }
+        
+        .form-control.error {
+            border-color: #e74c3c;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .password-toggle:hover {
+            color: #667eea;
+        }
+        
+        .password-strength {
+            margin-top: 8px;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .password-strength.show {
+            display: block;
+        }
+        
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+        }
+        
+        .password-strength-bar.weak {
+            width: 33%;
+            background: #e74c3c;
+        }
+        
+        .password-strength-bar.medium {
+            width: 66%;
+            background: #f39c12;
+        }
+        
+        .password-strength-bar.strong {
+            width: 100%;
+            background: #27ae60;
+        }
+        
+        .password-hint {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+        
+        .error-message {
+            display: none;
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            color: #c62828;
+            font-size: 0.9rem;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .error-message i {
+            margin-right: 8px;
+        }
+        
+        .success-message {
+            display: none;
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            color: #2e7d32;
+            font-size: 0.9rem;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-message i {
+            margin-right: 8px;
+        }
+        
+        .field-error {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .field-error.show {
+            display: block;
+        }
+        
+        select.form-control {
+            padding-left: 45px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group {
+            margin: 25px 0;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            margin-top: 3px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .checkbox-label span {
+            flex: 1;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .checkbox-label a {
+            color: var(--main-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .checkbox-label a:hover {
+            color: var(--main-dark);
+            text-decoration: underline;
+        }
+        
+        .btn-register {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--main-color) 0%, var(--main-dark) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-register:hover {
+        box-shadow: 0 10px 30px rgba(55, 155, 99, 0.35);
+        }
+        
+        .btn-register:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-register i {
+            margin-right: 8px;
+        }
+        
+        .security-notice {
+            background: var(--main-light);
+            border-left: 4px solid var(--main-color);
+            color: var(--main-dark);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .security-notice i {
+            color: var(--main-color);
+        }
+
+        .btn-login {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--main-color);
+            border: 2px solid var(--main-color);
+        }
+
+        .btn-login:hover {
+            background: var(--main-color);
+            color: white;
+        }
+        
+        .login-link {
+            text-align: center;
+            padding: 25px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .login-link p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .back-home a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-home a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .registration-container {
+                border-radius: 15px;
+            }
+            
+            .registration-header {
+                padding: 30px 20px;
+            }
+            
+            .registration-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .registration-body {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 550px; width: 100%;">
+        <div class="registration-container">
+            <div class="registration-header">
+                <i class="fas fa-user-plus"></i>
+                <h1 id="registrationTitle">新規登録</h1>
+                <p id="registrationSubTitle">無料でアカウントを作成</p>
+            </div>
+            
+            <div class="registration-body">
+                <div class="step-indicator">
+                    <div class="step active"></div>
+                    <div class="step"></div>
+                    <div class="step"></div>
+                </div>
+                
+                <div class="error-message" id="errorMessage">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="errorText"></span>
+                </div>
+                
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="successText"></span>
+                </div>
+                
+                <form id="registrationForm">
+                    <!-- セクション1: アカウント情報 -->
+                    <div class="form-section">
+                        <div class="section-title">
+                            <i class="fas fa-user-circle"></i> アカウント情報
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">
+                                メールアドレス
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    class="form-control" 
+                                    placeholder="example@email.com"
+                                    required
+                                    autocomplete="email"
+                                >
+                            </div>
+                            <div class="field-error" id="emailError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">
+                                パスワード
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    class="form-control" 
+                                    placeholder="8文字以上の英数字"
+                                    required
+                                    autocomplete="new-password"
+                                >
+                                <button type="button" class="password-toggle" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength" id="passwordStrength">
+                                <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                            </div>
+                            <div class="password-hint">
+                                8文字以上、英大文字・小文字・数字を含むことを推奨
+                            </div>
+                            <div class="field-error" id="passwordError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="passwordConfirm">
+                                パスワード（確認）
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input 
+                                    type="password" 
+                                    id="passwordConfirm" 
+                                    name="passwordConfirm" 
+                                    class="form-control" 
+                                    placeholder="もう一度入力してください"
+                                    required
+                                    autocomplete="new-password"
+                                >
+                                <button type="button" class="password-toggle" id="togglePasswordConfirm">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="field-error" id="passwordConfirmError"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- セクション2: 基本情報 -->
+                    <div class="form-section">
+                        <div class="section-title">
+                            <i class="fas fa-id-card"></i> 基本情報
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name">
+                                お名前
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    class="form-control" 
+                                    placeholder="山田 太郎"
+                                    required
+                                    autocomplete="name"
+                                >
+                            </div>
+                            <div class="field-error" id="nameError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="universityDisplay">
+                            赴任先大学
+                            </label>
+                            <div class="input-wrapper">
+                            <i class="fas fa-university"></i>
+                            <input
+                                type="text"
+                                id="universityDisplay"
+                                class="form-control"
+                                value=""
+                                readonly
+                            >
+                            <input
+                                type="hidden"
+                                id="university"
+                                name="university"
+                                value=""
+                            >
+                        </div>
+                    </div>
+                        
+                        <div class="form-group">
+                            <label for="relationship">
+                                赴任者との関係
+                                <span class="required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-users"></i>
+                                <select id="relationship" name="relationship" class="form-control" required>
+                                    <option value="">選択してください</option>
+                                    <option value="spouse">配偶者</option>
+                                    <option value="family">家族</option>
+                                    <option value="self">本人</option>
+                                </select>
+                            </div>
+                            <div class="field-error" id="relationshipError"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 利用規約 -->
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                            <span>
+                                <a href="#" target="_blank">利用規約</a>および<a href="#" target="_blank">プライバシーポリシー</a>に同意します
+                                <span class="required">*</span>
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-register" id="submitBtn">
+                        <i class="fas fa-user-plus"></i>
+                        無料で登録する
+                    </button>
+                    
+                    <div class="security-notice">
+                        <i class="fas fa-shield-alt"></i>
+                        個人情報は厳重に管理され、第三者に提供されることはありません
+                    </div>
+                </form>
+            </div>
+            
+            <div class="login-link">
+                <p>すでにアカウントをお持ちの方</p>
+                <a href="log-in.html" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> ログイン
+                </a>
+            </div>
+        </div>
+        
+        <div class="back-home">
+            <a href="index.html">
+                <i class="fas fa-home"></i>
+                トップページに戻る
+            </a>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Firebase SDKのインポート
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore, doc, setDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        
+        // Firebase設定
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6iFUhXOueccuoLJVU9ZSvXywHmj8zoR4",
+            authDomain: "university-relocation-support.firebaseapp.com",
+            projectId: "university-relocation-support",
+            storageBucket: "university-relocation-support.firebasestorage.app",
+            messagingSenderId: "849634495988",
+            appId: "1:849634495988:web:013663976b0c4d6b4f7da1",
+            measurementId: "G-RJP20TC7DV"
+        };
+        
+        // Firebaseの初期化
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        // パスワード表示/非表示の切り替え
+        function setupPasswordToggle(toggleId, inputId) {
+            const toggle = document.getElementById(toggleId);
+            const input = document.getElementById(inputId);
+            
+            if (toggle && input) {
+                toggle.addEventListener('click', function() {
+                    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                    input.setAttribute('type', type);
+                    
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-eye');
+                    icon.classList.toggle('fa-eye-slash');
+                });
+            }
+        }
+        
+        setupPasswordToggle('togglePassword', 'password');
+        setupPasswordToggle('togglePasswordConfirm', 'passwordConfirm');
+        
+        // パスワード強度チェック
+        const passwordInput = document.getElementById('password');
+        const strengthBar = document.getElementById('passwordStrengthBar');
+        const strengthContainer = document.getElementById('passwordStrength');
+        
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            
+            if (password.length === 0) {
+                strengthContainer.classList.remove('show');
+                return;
+            }
+            
+            strengthContainer.classList.add('show');
+            
+            let strength = 0;
+            
+            // 長さチェック
+            if (password.length >= 8) strength++;
+            if (password.length >= 12) strength++;
+            
+            // 文字種チェック
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+            
+            // 強度表示
+            strengthBar.className = 'password-strength-bar';
+            if (strength <= 2) {
+                strengthBar.classList.add('weak');
+            } else if (strength <= 4) {
+                strengthBar.classList.add('medium');
+            } else {
+                strengthBar.classList.add('strong');
+            }
+        });
+        
+        // フォーム送信処理
+        const registrationForm = document.getElementById('registrationForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        const successMessage = document.getElementById('successMessage');
+        const successText = document.getElementById('successText');
+        
+        registrationForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // エラーメッセージをクリア
+            errorMessage.classList.remove('show');
+            successMessage.classList.remove('show');
+            document.querySelectorAll('.field-error').forEach(el => el.classList.remove('show'));
+            document.querySelectorAll('.form-control').forEach(el => el.classList.remove('error'));
+            
+            // フォームデータ取得
+            const formData = {
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                passwordConfirm: document.getElementById('passwordConfirm').value,
+                name: document.getElementById('name').value,
+                university: document.getElementById('university').value,
+                relationship: document.getElementById('relationship').value,
+                agreeTerms: document.getElementById('agreeTerms').checked
+            };
+            
+            // バリデーション
+            let hasError = false;
+            
+            // メールアドレス
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                showFieldError('email', '正しいメールアドレスを入力してください');
+                hasError = true;
+            }
+            
+            // パスワード
+            if (formData.password.length < 8) {
+                showFieldError('password', 'パスワードは8文字以上で入力してください');
+                hasError = true;
+            }
+            
+            // パスワード確認
+            if (formData.password !== formData.passwordConfirm) {
+                showFieldError('passwordConfirm', 'パスワードが一致しません');
+                hasError = true;
+            }
+            
+            // 利用規約
+            if (!formData.agreeTerms) {
+                showError('利用規約とプライバシーポリシーに同意してください');
+                hasError = true;
+            }
+            
+            if (hasError) {
+                return;
+            }
+            
+            // ローディング状態
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 登録中...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Firebase Authenticationで新規ユーザー作成
+                const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+                const user = userCredential.user;
+                
+                // Firestoreにユーザー情報を保存
+                await setDoc(doc(db, 'users', user.uid), {
+                    uid: user.uid,
+                    email: formData.email,
+                    name: formData.name,
+                    universityKey: formData.university,
+                    universityName: document.getElementById('universityDisplay').value,
+                    relationship: formData.relationship,
+                    createdAt: serverTimestamp(),
+                    emailVerified: false,
+                    role: 'user'
+                });
+                localStorage.setItem('user_id', user.uid);
+                localStorage.setItem('user_email', formData.email);
+                localStorage.setItem('user_name', formData.name);
+                localStorage.setItem('user_university_key', formData.university);
+                localStorage.setItem('user_university_name', document.getElementById('universityDisplay').value);
+                // メール確認送信
+                await sendEmailVerification(user);
+                
+                // 成功メッセージ表示
+                showSuccess('登録が完了しました！確認メールを送信しました。');
+                
+                // 2秒後にダッシュボードへリダイレクト
+                setTimeout(() => {
+                    const currentParams = new URLSearchParams(window.location.search);
+
+                    const univKey =
+                        currentParams.get('univ') ||
+                        localStorage.getItem('entry_univ') ||
+                    'default';
+
+                    currentParams.set('univ', univKey);
+
+                    window.location.href = 'dashboard.html?' + currentParams.toString();
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Registration error:', error);
+                
+                // エラーメッセージを日本語化
+                let errorMsg = 'アカウント登録中にエラーが発生しました。';
+                
+                if (error.code === 'auth/email-already-in-use') {
+                    errorMsg = 'このメールアドレスは既に使用されています。';
+                } else if (error.code === 'auth/weak-password') {
+                    errorMsg = 'パスワードが弱すぎます。より強力なパスワードを設定してください。';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMsg = '無効なメールアドレスです。';
+                } else if (error.code === 'auth/operation-not-allowed') {
+                    errorMsg = 'メール/パスワード認証が有効になっていません。';
+                }
+                
+                showError(errorMsg);
+                
+                // ボタンを元に戻す
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.add('show');
+            
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 5000);
+        }
+        
+        function showSuccess(message) {
+            successText.textContent = message;
+            successMessage.classList.add('show');
+        }
+        
+        function showFieldError(fieldId, message) {
+            const errorEl = document.getElementById(fieldId + 'Error');
+            const inputEl = document.getElementById(fieldId);
+            
+            if (errorEl && inputEl) {
+                errorEl.textContent = message;
+                errorEl.classList.add('show');
+                inputEl.classList.add('error');
+            }
+        }
+        
+        // グローバルスコープに公開（デバッグ用）
+        window.firebaseAuth = auth;
+        window.firebaseDb = db;
+    </script>
+    
+    <!-- JSON-LD構造化データ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "新規登録 | 大学赴任者家族帯同支援プログラム",
+        "description": "大学赴任者家族帯同支援プログラムの新規登録ページ",
+        "url": "https://hiyusho.github.io/university-relocation-support/registration.html"
+    }
+    </script>
+    <script src="js/university-config.js"></script>
+<script src="js/apply-university-theme.js"></script>
+<script src="js/carry-params.js"></script>
+
+<script>
+(function () {
+  const univKey =
+    new URLSearchParams(window.location.search).get('univ') ||
+    localStorage.getItem('entry_univ') ||
+    'default';
+
+  const config =
+    window.UNIVERSITY_CONFIG?.[univKey] ||
+    UNIVERSITY_CONFIG?.[univKey] ||
+    UNIVERSITY_CONFIG.default;
+
+  const title = document.getElementById('registrationTitle');
+  const subTitle = document.getElementById('registrationSubTitle');
+
+  if (title && config && config.name) {
+    title.textContent = config.name + ' 新規登録';
+  }
+
+  if (subTitle && config && config.name) {
+    subTitle.textContent = config.name + ' パートナー帯同ポータルサイトの利用登録';
+  }
+  const universityDisplay = document.getElementById('universityDisplay');
+const universityHidden = document.getElementById('university');
+
+if (universityDisplay && universityHidden && config && config.name) {
+  universityDisplay.value = config.name;
+  universityHidden.value = univKey;
+}
+})();
+</script>
+</body>
+</html>
