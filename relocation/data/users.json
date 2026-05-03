@@ -1,0 +1,22 @@
+[
+  {
+    "registered_at": "2026-05-01 10:30",
+    "univ": "名古屋大学",
+    "name": "サンプル 太郎",
+    "email": "sample1@example.com",
+    "consultation": "希望する",
+    "job_support": "希望する",
+    "desired_job": "事務・企画",
+    "memo": "初期表示用サンプル"
+  },
+  {
+    "registered_at": "2026-05-02 14:10",
+    "univ": "椙山女学園大学",
+    "name": "サンプル 花子",
+    "email": "sample2@example.com",
+    "consultation": "検討中",
+    "job_support": "検討中",
+    "desired_job": "教育・広報",
+    "memo": "初期表示用サンプル"
+  }
+]
