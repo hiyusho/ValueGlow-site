@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>味噌カツだけじゃない、多様な食文化 - 食文化ストーリー</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/story.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --main-color: #379B63;
+      --main-dark: #2F7D52;
+      --main-light: #E8F5EE;
+      --accent-color: #1F5C3F;
+      --primary-color: var(--main-color);
+      --primary-dark: var(--main-dark);
+      --primary-light: var(--main-light);
+    }
+
+    .site-title,
+    .section-title,
+    .data-item h4 {
+      color: var(--main-color) !important;
+    }
+
+    .story-hero,
+    .story-cta {
+      background: linear-gradient(135deg, var(--main-color), var(--main-dark)) !important;
+    }
+
+    .btn-back,
+    .nav-link-primary,
+    .btn-primary {
+      background: var(--main-color) !important;
+      color: #fff !important;
+    }
+
+    .btn-back:hover,
+    .nav-link-primary:hover,
+    .btn-primary:hover {
+      background: var(--main-dark) !important;
+    }
+
+    .section-title::after,
+    .data-item {
+      border-color: var(--main-color) !important;
+    }
+
+    .quote-box,
+    .story-note-box {
+      border-left: 5px solid var(--main-color) !important;
+      background: var(--main-light) !important;
+      color: #333;
+    }
+
+    .header-logo {
+      width: auto !important;
+      height: 52px !important;
+      max-width: 180px !important;
+      object-fit: contain !important;
+      display: block;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+      .header-logo {
+        height: 40px !important;
+        max-width: 140px !important;
+      }
+
+      .site-title {
+        font-size: 1.1rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <div class="header-left">
+        <img src="logo.png" alt="大学ロゴ" class="header-logo">
+        <h1 class="site-title">家族帯同ポータルサイト</h1>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="index.html#features" class="nav-link">サービス</a>
+        <a href="index.html#consultation" class="nav-link">無料相談</a>
+        <a href="registration.html" class="nav-link nav-link-primary">新規登録</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="back-button-container">
+    <a href="nagoya-city.html" class="btn-back">
+      <i class="fas fa-arrow-left"></i> 名古屋市ページに戻る
+    </a>
+  </div>
+
+  <div id="speech-controls" class="speech-controls">
+    <button id="play-btn" class="control-btn" aria-label="読み上げ開始">
+      <i class="fas fa-play"></i>
+      <span>読み上げ開始</span>
+    </button>
+    <button id="pause-btn" class="control-btn" aria-label="一時停止" style="display: none;">
+      <i class="fas fa-pause"></i>
+      <span>一時停止</span>
+    </button>
+    <button id="resume-btn" class="control-btn" aria-label="再開" style="display: none;">
+      <i class="fas fa-play"></i>
+      <span>再開</span>
+    </button>
+    <button id="stop-btn" class="control-btn" aria-label="停止" style="display: none;">
+      <i class="fas fa-stop"></i>
+      <span>停止</span>
+    </button>
+    <div class="speed-control">
+      <label for="speech-rate">速度:</label>
+      <input type="range" id="speech-rate" min="0.5" max="2" step="0.1" value="1">
+      <span id="rate-value">1.0x</span>
+    </div>
+  </div>
+
+  <section class="story-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-category">食文化と日常の楽しみ</div>
+      <h1 class="hero-title">味噌カツだけじゃない、多様な食文化</h1>
+      <p class="hero-subtitle">食を通じて、地域の暮らしを知るストーリー</p>
+    </div>
+  </section>
+
+  <main class="story-main">
+    <div class="story-container">
+      <article class="story-content">
+
+        <section class="story-section">
+          <h2 class="section-title">このストーリーについて</h2>
+          <div class="story-text">
+            <p class="story-paragraph story-note-box" style="padding: 18px 20px;">
+              このストーリーは、名古屋での食文化や日常の楽しみをイメージしやすくするためのモデルケースです。
+              店舗情報、価格、営業時間、掲載実績、店舗数などは時期により変わります。
+              変化しやすい情報は下部のデータ欄で管理し、必要に応じて更新できる構成にしています。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">プロローグ</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph lead-paragraph">
+              「名古屋の食文化は、どんな暮らしにつながっているのだろう」
+            </p>
+            <p class="story-paragraph">
+              新しい土地で暮らし始めるとき、食事は生活へのなじみやすさに大きく関わります。
+              毎日の買い物、家族での外食、休日の楽しみ、地域の人との会話。
+              食文化を知ることは、その街での暮らしを知ることでもあります。
+            </p>
+            <p class="story-paragraph">
+              名古屋には、よく知られた名古屋めしだけでなく、喫茶店文化、商店街、市場、和食・洋食・中華・エスニックなど、多様な食の楽しみ方があります。
+              このストーリーでは、ある家族が名古屋の食に少しずつ親しんでいく様子を紹介します。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">第一章：名古屋めしとの距離感</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph">
+              名古屋に来る前、家族は「名古屋の食べ物は味が濃いのではないか」という印象を持っていました。
+              しかし実際に暮らしてみると、名古屋めしは日常の食事というより、家族で楽しむ地域らしい選択肢の一つだと感じるようになります。
+            </p>
+            <p class="story-paragraph">
+              味噌カツ、きしめん、手羽先、ひつまぶしなどは、来客時や休日の外食で楽しめる地域の食文化です。
+              一方で、普段の食卓や外食では、和食、洋食、中華、カフェ、ベーカリーなど、さまざまな選択肢があります。
+            </p>
+            <p class="story-paragraph quote-box">
+              「名古屋めしだけを毎日食べるのではなく、地域らしい食の楽しみとして選べることが分かると、印象が大きく変わりました」
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">第二章：喫茶店とモーニングのある日常</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph">
+              名古屋の食文化を語るうえで、喫茶店やモーニング文化は外せません。
+              朝の時間に喫茶店でゆっくり過ごすことは、単なる外食ではなく、地域の日常に触れる体験でもあります。
+            </p>
+            <p class="story-paragraph">
+              家族で朝食を外でとる、近所の喫茶店で地域の雰囲気を知る、休日の予定を話し合う。
+              こうした時間は、新しい土地で暮らし始めた家族にとって、街に慣れていくきっかけになります。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">第三章：市場・商店街で暮らしを知る</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph">
+              市場や商店街を歩くと、地域の暮らしが見えてきます。
+              鮮魚、青果、惣菜、菓子、食べ歩きの店など、日々の食事を支える場所には、その地域ならではの活気があります。
+            </p>
+            <p class="story-paragraph">
+              こうした場所は、単に安く買い物をするためだけではありません。
+              どの時間帯に人が集まるのか、どんな食材が並ぶのか、どんな会話が交わされているのかを知ることで、街への親近感が高まります。
+            </p>
+            <p class="story-paragraph quote-box">
+              「市場や商店街に行くと、観光では見えにくい普段の名古屋が見えてきます」
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">第四章：食の選択肢が、暮らしの安心につながる</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph">
+              新しい土地での生活では、「食べるものに困らない」ことが大切です。
+              家族で気軽に入れる店があること、子どもが楽しめる店があること、落ち着いて食事できる場所があること。
+              こうした選択肢は、日々の安心感につながります。
+            </p>
+            <p class="story-paragraph">
+              名古屋の食文化は、名古屋めしの個性だけでなく、日常的な食の選択肢の広さにも支えられています。
+              その幅を知ることで、赴任後の生活イメージはより具体的になります。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section">
+          <h2 class="section-title">データについて</h2>
+          <div class="story-text">
+            <p class="story-paragraph">
+              店舗数、価格、営業時間、掲載店、食費の目安などは、時期や条件により変わります。
+              本ページでは生活イメージを中心に紹介し、変化しやすい数値情報は下部のデータ欄で管理します。
+              データ欄には、出典・取得時期・更新日を表示し、JSONファイルを更新することで内容を差し替えられるようにしています。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section data-supplement">
+          <h2 class="section-title">データで見る名古屋の食文化</h2>
+
+          <p id="foodDataUpdated" class="data-source" style="margin-bottom: 8px;">
+            情報更新日：確認中
+          </p>
+
+          <p id="foodDataNote" class="story-paragraph" style="font-size: 0.95rem; color: #666;">
+            数値情報は取得時点の参考情報です。最新情報は各情報源をご確認ください。
+          </p>
+
+          <div class="data-grid" id="foodDataGrid">
+            <div class="data-item">
+              <h4>読み込み中</h4>
+              <p class="data-note">データを読み込んでいます。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="related-stories">
+          <h2 class="section-title">関連するストーリー</h2>
+          <div class="story-cards">
+            <a href="cost-living-story.html" class="story-card">
+              <div class="card-icon">💰</div>
+              <h3>生活コストの安さ</h3>
+              <p>住居選択と生活コストを考える</p>
+            </a>
+            <a href="urban-nature-story.html" class="story-card">
+              <div class="card-icon">🌳</div>
+              <h3>都市機能とのどかさの両立</h3>
+              <p>都市の便利さと自然の近さを考える</p>
+            </a>
+            <a href="transport-access-story.html" class="story-card">
+              <div class="card-icon">🚄</div>
+              <h3>交通アクセスの良さ</h3>
+              <p>移動しやすさを暮らしの視点で考える</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="story-cta">
+          <h2>名古屋での新生活をサポートします</h2>
+          <p>住まい・生活・地域情報を、確認ポイントとあわせて整理します。</p>
+          <div class="cta-buttons">
+            <a href="nagoya-city.html" class="btn btn-primary">名古屋市の詳細を見る</a>
+            <a href="contact-support.html" class="btn btn-secondary">事務局へ質問する</a>
+          </div>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 大学赴任者家族帯同支援プログラム All Rights Reserved.</p>
+      <nav class="footer-nav">
+        <a href="privacy-policy.html">プライバシーポリシー</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/university-config.js"></script>
+  <script src="js/apply-university-theme.js"></script>
+  <script src="js/carry-params.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/speech-reader.js"></script>
+  <script src="js/story-food-culture-data.js"></script>
+
+  <script>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+
+    const univKey =
+      params.get('univ') ||
+      localStorage.getItem('entry_univ') ||
+      'default';
+
+    const config =
+      (window.UNIVERSITY_CONFIG && window.UNIVERSITY_CONFIG[univKey]) ||
+      (typeof UNIVERSITY_CONFIG !== 'undefined' && UNIVERSITY_CONFIG[univKey]) ||
+      (typeof UNIVERSITY_CONFIG !== 'undefined' && UNIVERSITY_CONFIG.default);
+
+    if (!config) return;
+
+    document.documentElement.style.setProperty('--main-color', config.mainColor);
+    document.documentElement.style.setProperty('--main-dark', config.mainDark);
+    document.documentElement.style.setProperty('--main-light', config.mainLight);
+    document.documentElement.style.setProperty('--accent-color', config.accentColor);
+
+    document.documentElement.style.setProperty('--primary-color', config.mainColor);
+    document.documentElement.style.setProperty('--primary-dark', config.mainDark);
+    document.documentElement.style.setProperty('--primary-light', config.mainLight);
+
+    const title = document.querySelector('.site-title');
+    if (title && config.name) {
+      title.textContent = config.name + ' パートナー帯同ポータルサイト';
+    }
+
+    const logo = document.querySelector('.header-logo');
+    if (logo && config.logo) {
+      logo.src = config.logo;
+      logo.alt = config.name + ' ロゴ';
+    }
+  })();
+  </script>
+</body>
+</html>

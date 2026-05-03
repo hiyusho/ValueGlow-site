@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15分で変わる、二つの顔 - 都市機能とのどかさの両立ストーリー</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+  :root {
+    --main-color: #379B63;
+    --main-dark: #2F7D52;
+    --main-light: #E8F5EE;
+    --accent-color: #1F5C3F;
+
+    --primary-color: var(--main-color);
+    --primary-dark: var(--main-dark);
+    --primary-light: var(--main-light);
+  }
+
+  .site-title,
+  .section-title,
+  .data-item h4 {
+    color: var(--main-color) !important;
+  }
+
+  .story-hero,
+  .story-cta {
+    background: linear-gradient(135deg, var(--main-color), var(--main-dark)) !important;
+  }
+
+  .btn-back,
+  .nav-link-primary,
+  .btn-primary {
+    background: var(--main-color) !important;
+    color: #fff !important;
+  }
+
+  .btn-back:hover,
+  .nav-link-primary:hover,
+  .btn-primary:hover {
+    background: var(--main-dark) !important;
+  }
+
+  .section-title::after,
+  .data-item {
+    border-color: var(--main-color) !important;
+  }
+
+  .quote-box {
+    border-left-color: var(--main-color) !important;
+    background: var(--main-light) !important;
+  }
+  .header-logo {
+  width: auto !important;
+  height: 52px !important;
+  max-width: 180px !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+</style>
+  </head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <img src="logo.png" alt="大学ロゴ" class="header-logo">
+                <h1 class="site-title">家族帯同ポータルサイト</h1>
+            </div>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">ホーム</a>
+                <a href="index.html#features" class="nav-link">サービス</a>
+                <a href="index.html#consultation" class="nav-link">無料相談</a>
+                <a href="registration.html" class="nav-link nav-link-primary">新規登録</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 名古屋市ページに戻るボタン -->
+    <div class="back-button-container">
+        <a href="nagoya-city.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> 名古屋市ページに戻る
+        </a>
+    </div>
+
+    <!-- 音声読み上げコントロール -->
+    <div id="speech-controls" class="speech-controls">
+        <button id="play-btn" class="control-btn" aria-label="読み上げ開始">
+            <i class="fas fa-play"></i>
+            <span>読み上げ開始</span>
+        </button>
+        <button id="pause-btn" class="control-btn" aria-label="一時停止" style="display: none;">
+            <i class="fas fa-pause"></i>
+            <span>一時停止</span>
+        </button>
+        <button id="resume-btn" class="control-btn" aria-label="再開" style="display: none;">
+            <i class="fas fa-play"></i>
+            <span>再開</span>
+        </button>
+        <button id="stop-btn" class="control-btn" aria-label="停止" style="display: none;">
+            <i class="fas fa-stop"></i>
+            <span>停止</span>
+        </button>
+        <div class="speed-control">
+            <label for="speech-rate">速度:</label>
+            <input type="range" id="speech-rate" min="0.5" max="2" step="0.1" value="1">
+            <span id="rate-value">1.0x</span>
+        </div>
+    </div>
+
+    <!-- ストーリーヒーロー -->
+    <section class="story-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-category">都市機能と自然の両立</div>
+            <h1 class="hero-title">15分で変わる、二つの顔</h1>
+            <p class="hero-subtitle">都会の便利さと、自然のやすらぎ。両方を手に入れた家族の物語</p>
+        </div>
+    </section>
+
+    <!-- メインコンテンツ -->
+    <main class="story-main">
+        <div class="story-container">
+            <article class="story-content">
+                <section class="story-section">
+  <h2 class="section-title">このストーリーについて</h2>
+  <div class="story-text">
+    <p class="story-paragraph"
+      data-speech="このストーリーは、名古屋での暮らしをイメージしやすくするためのモデルケースです。実際の移動時間や住環境は、条件によって異なります。">
+      このストーリーは、名古屋での暮らしをイメージしやすくするためのモデルケースです。
+      実際の移動時間、住環境、施設の利用状況は、居住地・交通手段・時期によって異なります。
+    </p>
+  </div>
+</section>
+
+<section class="story-section">
+  <h2 class="section-title">プロローグ</h2>
+  <div class="story-text">
+    <p class="story-paragraph lead-paragraph">
+      「名古屋での暮らしは、どんな毎日になるのだろう」
+    </p>
+    <p class="story-paragraph">
+      大学への赴任が決まったご家族にとって、新しい土地での暮らしは期待と不安が入り混じるものです。
+      通勤や通学、買い物、子育て、休日の過ごし方。生活の細かな場面を想像できるかどうかは、移住への安心感に大きく関わります。
+    </p>
+    <p class="story-paragraph">
+      名古屋の魅力の一つは、都市としての利便性と、落ち着いた住環境や自然に触れられる場所が比較的近くにあることです。
+      このストーリーでは、ある家族の一日を通じて、その暮らしのイメージを紹介します。
+    </p>
+  </div>
+</section>
+
+<section class="story-section">
+  <h2 class="section-title">第一章：便利さと落ち着きが近くにある暮らし</h2>
+  <div class="story-text">
+    <p class="story-paragraph">
+      平日の午前、家族は地下鉄やバスを使って大学や市内中心部へ向かいます。
+      名古屋市内には複数の鉄道路線やバス路線があり、大学、主要駅、商業エリアへ移動しやすい地域があります。
+    </p>
+    <p class="story-paragraph">
+      買い物や用事を済ませた後、少し足をのばせば、公園や動植物園、緑の多いエリアで過ごすこともできます。
+      都市の便利さだけでなく、子どもが外で遊べる場所や、家族で気分転換できる場所があることは、日々の暮らしに安心感を与えます。
+    </p>
+    <p class="story-paragraph quote-box">
+      「買い物や通勤の便利さだけでなく、休日に家族で出かけられる場所が身近にあることが、暮らしやすさにつながっていると感じます」
+    </p>
+  </div>
+</section>
+
+<section class="story-section">
+  <h2 class="section-title">第二章：家族にとっての住みやすさ</h2>
+  <div class="story-text">
+    <p class="story-paragraph">
+      住む場所を選ぶときに大切なのは、家賃や広さだけではありません。
+      大学への通いやすさ、子どもの学校や保育環境、買い物のしやすさ、医療機関へのアクセス、静かに暮らせる環境など、複数の条件を合わせて考える必要があります。
+    </p>
+    <p class="story-paragraph">
+      名古屋市内には、大学に近いエリア、落ち着いた住宅地、商業施設へのアクセスがよいエリアなど、さまざまな特徴を持つ地域があります。
+      そのため、家族構成や生活スタイルに合わせて、住む場所を検討しやすい点が特徴です。
+    </p>
+  </div>
+</section>
+
+<section class="story-section">
+  <h2 class="section-title">第三章：数字では見えにくい安心感</h2>
+  <div class="story-text">
+    <p class="story-paragraph">
+      暮らしやすさは、単純なランキングや数値だけでは判断できません。
+      実際には、「毎日の移動が負担になりにくいか」「子どもと出かける場所があるか」「困ったときに相談先や生活インフラがあるか」といった、日々の実感が大切です。
+    </p>
+    <p class="story-paragraph">
+      名古屋での暮らしを検討する際は、エリアごとの特徴を知り、自分たちの生活に合うかどうかを確認することが重要です。
+      本サイトでは、そのための判断材料と確認ポイントを整理しています。
+    </p>
+  </div>
+</section>
+
+<section class="story-section">
+  <h2 class="section-title">データについて</h2>
+  <div class="story-text">
+    <p class="story-paragraph">
+      家賃相場、交通所要時間、施設情報、子育て支援制度などは、時期や条件により変化します。
+      本ページでは生活イメージを中心に紹介し、最新の数値や制度情報は公式サイト・不動産情報サイト・自治体情報をご確認いただく前提としています。
+    </p>
+  </div>
+</section>
+
+                <!-- データ補足 -->
+<section class="story-section data-supplement">
+  <h2 class="section-title">データで見る名古屋の都市機能と自然環境</h2>
+
+  <p id="storyDataUpdated" class="data-source" style="margin-bottom: 8px;">
+    情報更新日：確認中
+  </p>
+
+  <p id="storyDataNote" class="story-paragraph" style="font-size: 0.95rem; color: #666;">
+    数値情報は取得時点の参考情報です。最新情報は各公式サイトをご確認ください。
+  </p>
+
+  <div class="data-grid" id="storyDataGrid">
+    <div class="data-item">
+      <h4>読み込み中</h4>
+      <p class="data-note">データを読み込んでいます。</p>
+    </div>
+  </div>
+</section>
+
+                <!-- 関連ストーリー -->
+                <section class="related-stories">
+                    <h2 class="section-title">関連するストーリー</h2>
+                    <div class="story-cards">
+                        <a href="cost-living-story.html" class="story-card">
+                            <div class="card-icon">💰</div>
+                            <h3>生活コストの安さ</h3>
+                            <p>東京と比べて月17万円の差</p>
+                        </a>
+                        <a href="transport-access-story.html" class="story-card">
+                            <div class="card-icon">🚄</div>
+                            <h3>交通アクセスの良さ</h3>
+                            <p>新幹線で東京・大阪へ約1.5時間</p>
+                        </a>
+                        <a href="childcare-education-story.html" class="story-card">
+                            <div class="card-icon">🎓</div>
+                            <h3>子育て・教育環境</h3>
+                            <p>待機児童ゼロ、充実した教育</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="story-cta">
+                    <h2>名古屋での新生活をサポートします</h2>
+                    <p>住居探しから生活立ち上げまで、専門スタッフが無料でサポート</p>
+                    <div class="cta-buttons">
+                        <a href="nagoya-city.html" class="btn btn-primary">名古屋市の詳細を見る</a>
+                        <a href="index.html#consultation" class="btn btn-secondary">無料相談を申し込む</a>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 大学赴任者家族帯同支援プログラム All Rights Reserved.</p>
+            <nav class="footer-nav">
+                <a href="privacy-policy.html">プライバシーポリシー</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="js/university-config.js"></script>
+<script src="js/apply-university-theme.js"></script>
+<script src="js/carry-params.js"></script>
+<script src="js/main.js"></script>
+<script src="js/speech-reader.js"></script>
+<script src="js/story-urban-nature-data.js"></script>
+
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+
+  const univKey =
+    params.get('univ') ||
+    localStorage.getItem('entry_univ') ||
+    'default';
+
+  const config =
+    (window.UNIVERSITY_CONFIG && window.UNIVERSITY_CONFIG[univKey]) ||
+    (typeof UNIVERSITY_CONFIG !== 'undefined' && UNIVERSITY_CONFIG[univKey]) ||
+    (typeof UNIVERSITY_CONFIG !== 'undefined' && UNIVERSITY_CONFIG.default);
+
+  if (!config) return;
+
+  document.documentElement.style.setProperty('--main-color', config.mainColor);
+  document.documentElement.style.setProperty('--main-dark', config.mainDark);
+  document.documentElement.style.setProperty('--main-light', config.mainLight);
+  document.documentElement.style.setProperty('--accent-color', config.accentColor);
+
+  document.documentElement.style.setProperty('--primary-color', config.mainColor);
+  document.documentElement.style.setProperty('--primary-dark', config.mainDark);
+  document.documentElement.style.setProperty('--primary-light', config.mainLight);
+
+  const title = document.querySelector('.site-title');
+  if (title && config.name) {
+    title.textContent = config.name + ' パートナー帯同ポータルサイト';
+  }
+
+  const logo = document.querySelector('.header-logo');
+  if (logo && config.logo) {
+    logo.src = config.logo;
+    logo.alt = config.name + ' ロゴ';
+  }
+})();
+</script>
+</body>
+</html>
+

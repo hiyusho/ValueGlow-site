@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>住居選択の幅と、ゆとりある暮らし - 生活コストストーリー</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/story.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-color: #379B63;
+      --main-dark: #2F7D52;
+      --main-light: #E8F5EE;
+      --accent-color: #1F5C3F;
+      --primary-color: var(--main-color);
+      --primary-dark: var(--main-dark);
+      --primary-light: var(--main-light);
+    }
+    .site-title, .section-title, .data-item h4 { color: var(--main-color) !important; }
+    .story-hero, .story-cta { background: linear-gradient(135deg, var(--main-color), var(--main-dark)) !important; }
+    .btn-back, .nav-link-primary, .btn-primary { background: var(--main-color) !important; color: #fff !important; }
+    .btn-back:hover, .nav-link-primary:hover, .btn-primary:hover { background: var(--main-dark) !important; }
+    .section-title::after, .data-item { border-color: var(--main-color) !important; }
+    .quote-box, .story-note-box { border-left: 5px solid var(--main-color) !important; background: var(--main-light) !important; color: #333; }
+    .header-logo { width: auto !important; height: 52px !important; max-width: 180px !important; object-fit: contain !important; display: block; }
+    .header-left { display: flex; align-items: center; gap: 16px; }
+    .header-container { display: flex; align-items: center; justify-content: space-between; }
+    @media (max-width: 768px) {
+      .header-logo { height: 40px !important; max-width: 140px !important; }
+      .site-title { font-size: 1.1rem !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <div class="header-left">
+        <img src="logo.png" alt="大学ロゴ" class="header-logo">
+        <h1 class="site-title">家族帯同ポータルサイト</h1>
+      </div>
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="index.html#features" class="nav-link">サービス</a>
+        <a href="index.html#consultation" class="nav-link">無料相談</a>
+        <a href="registration.html" class="nav-link nav-link-primary">新規登録</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="back-button-container">
+    <a href="nagoya-city.html" class="btn-back">
+      <i class="fas fa-arrow-left"></i> 名古屋市ページに戻る
+    </a>
+  </div>
+
+  <div id="speech-controls" class="speech-controls">
+    <button id="play-btn" class="control-btn" aria-label="読み上げ開始"><i class="fas fa-play"></i><span>読み上げ開始</span></button>
+    <button id="pause-btn" class="control-btn" aria-label="一時停止" style="display: none;"><i class="fas fa-pause"></i><span>一時停止</span></button>
+    <button id="resume-btn" class="control-btn" aria-label="再開" style="display: none;"><i class="fas fa-play"></i><span>再開</span></button>
+    <button id="stop-btn" class="control-btn" aria-label="停止" style="display: none;"><i class="fas fa-stop"></i><span>停止</span></button>
+    <div class="speed-control">
+      <label for="speech-rate">速度:</label>
+      <input type="range" id="speech-rate" min="0.5" max="2" step="0.1" value="1">
+      <span id="rate-value">1.0x</span>
+    </div>
+  </div>
+
+  <section class="story-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-category">住居選択と生活コスト</div>
+      <h1 class="hero-title">住居選択の幅が生む、ゆとりある暮らし</h1>
+      <p class="hero-subtitle">数字だけでは見えにくい、暮らしの選択肢を考えるストーリー</p>
+    </div>
+  </section>
+
+  <main class="story-main">
+    <div class="story-container">
+      <article class="story-content">
+
+        <section class="story-section">
+          <h2 class="section-title">このストーリーについて</h2>
+          <div class="story-text">
+            <p class="story-paragraph story-note-box" style="padding: 18px 20px;">
+              このストーリーは、名古屋での住まい選びや生活コストをイメージしやすくするためのモデルケースです。
+              家賃、物価、駐車場代、外食費などは、時期・エリア・物件条件・家族構成によって大きく変わります。
+              最新の数値情報は、下部のデータ欄および各情報源をご確認ください。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">プロローグ</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph lead-paragraph">「名古屋では、どんな住まい方ができるのだろう」</p>
+            <p class="story-paragraph">
+              大学への赴任に伴って新しい土地へ移るとき、多くのご家族が気にするのは、住まいの広さ、通勤・通学のしやすさ、生活費、子どもの環境です。
+              特に都市部から移る場合、「同じ予算でどの程度の住環境を選べるのか」は、暮らしの安心感に大きく関わります。
+            </p>
+            <p class="story-paragraph">
+              名古屋での暮らしを考えるときの特徴の一つは、都市機能を使いやすい場所に住みながら、家族構成や生活スタイルに合わせた住まいを検討しやすいことです。
+              このストーリーでは、ある家族の住まい選びを通じて、生活コストと暮らしのゆとりについて考えます。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">第一章：住まいの条件を見直す</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph">
+              新しい住まいを探すとき、家族はまず「大学への通いやすさ」と「日常生活のしやすさ」を軸にエリアを見始めました。
+              通勤時間だけでなく、買い物、子どもの通学、医療機関へのアクセス、休日の過ごし方まで含めて考えると、住まい選びの条件は自然と具体的になります。
+            </p>
+            <p class="story-paragraph">
+              名古屋市内には、大学に近いエリア、地下鉄沿線で移動しやすいエリア、落ち着いた住宅地、商業施設にアクセスしやすいエリアなどがあります。
+              同じ名古屋市内でも、どの条件を重視するかによって、適したエリアは変わります。
+            </p>
+            <p class="story-paragraph quote-box">
+              「家賃だけで選ぶのではなく、毎日の移動や家族の生活リズムまで含めて考えると、住まいの候補が整理しやすくなりました」
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">第二章：生活コストが暮らし方を変える</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph">
+              生活コストは、単に「安いか高いか」だけで判断するものではありません。
+              同じ予算の中で、住まいの広さ、交通の便利さ、子どもの環境、家族で過ごす時間をどう確保できるかが重要です。
+            </p>
+            <p class="story-paragraph">
+              住居費や駐車場代、日々の買い物、外食、習い事などは、地域や選び方によって変わります。
+              そのため、具体的な金額は常に最新情報を確認する必要がありますが、名古屋では住まいと生活のバランスを取りやすい選択肢が見つかる可能性があります。
+            </p>
+            <p class="story-paragraph">
+              浮いた費用を教育費や家族の体験、将来の備えに回すことができれば、生活の満足度は数字以上に変わっていきます。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">第三章：数字ではなく、判断軸を持つ</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph">
+              家賃相場や物価の数字は、便利な判断材料です。ただし、数字だけで住む場所を決めてしまうと、生活のしやすさを見落とすことがあります。
+            </p>
+            <p class="story-paragraph">
+              住まい選びでは、「家賃」「広さ」「通勤・通学」「学校・保育」「買い物」「医療」「休日の過ごし方」を合わせて見ることが大切です。
+              本サイトでは、そうした判断軸を整理し、名古屋での暮らしを具体的にイメージできるようにしています。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section" data-speech-section>
+          <h2 class="section-title">第四章：ゆとりは、家族の選択肢を広げる</h2>
+          <div class="story-text" data-speech-text>
+            <p class="story-paragraph">
+              住まいに余裕ができると、家族の時間の使い方も変わります。
+              子どもが自分のスペースを持てる、在宅勤務や研究準備に使える場所を確保できる、週末に近場で出かける余裕が生まれる。
+              こうした変化は、家賃や物価の比較表だけでは見えにくいものです。
+            </p>
+            <p class="story-paragraph quote-box">
+              「生活コストを抑えることは、我慢することではなく、家族にとって大切なことにお金と時間を使えるようになることだと感じました」
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section">
+          <h2 class="section-title">データについて</h2>
+          <div class="story-text">
+            <p class="story-paragraph">
+              住居費、物価、駐車場代、外食費などは、時期や条件により変化します。
+              本ページでは生活イメージを中心に紹介し、変化しやすい数値情報は下部のデータ欄で管理します。
+              データ欄には、出典・取得時期・更新日を表示し、必要に応じてJSONファイルを更新できる構成にしています。
+            </p>
+          </div>
+        </section>
+
+        <section class="story-section data-supplement">
+          <h2 class="section-title">データで見る名古屋の生活コスト</h2>
+          <p id="costDataUpdated" class="data-source" style="margin-bottom: 8px;">情報更新日：確認中</p>
+          <p id="costDataNote" class="story-paragraph" style="font-size: 0.95rem; color: #666;">
+            数値情報は取得時点の参考情報です。最新情報は各情報源をご確認ください。
+          </p>
+          <div class="data-grid" id="costDataGrid">
+            <div class="data-item">
+              <h4>読み込み中</h4>
+              <p class="data-note">データを読み込んでいます。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="related-stories">
+          <h2 class="section-title">関連するストーリー</h2>
+          <div class="story-cards">
+            <a href="urban-nature-story.html" class="story-card">
+              <div class="card-icon">🌳</div><h3>都市機能とのどかさの両立</h3><p>都市の便利さと自然の近さを考える</p>
+            </a>
+            <a href="transport-access-story.html" class="story-card">
+              <div class="card-icon">🚄</div><h3>交通アクセスの良さ</h3><p>移動しやすさを暮らしの視点で考える</p>
+            </a>
+            <a href="childcare-education-story.html" class="story-card">
+              <div class="card-icon">🎓</div><h3>子育て・教育環境</h3><p>子育て世帯の安心材料を整理する</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="story-cta">
+          <h2>名古屋での新生活をサポートします</h2>
+          <p>住まい選びや生活立ち上げに必要な情報を、確認ポイントとあわせて整理します。</p>
+          <div class="cta-buttons">
+            <a href="nagoya-city.html" class="btn btn-primary">名古屋市の詳細を見る</a>
+            <a href="contact-support.html" class="btn btn-secondary">事務局へ質問する</a>
+          </div>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 大学赴任者家族帯同支援プログラム All Rights Reserved.</p>
+      <nav class="footer-nav"><a href="privacy-policy.html">プライバシーポリシー</a></nav>
+    </div>
+  </footer>
+
+  <script src="js/university-config.js"></script>
+  <script src="js/apply-university-theme.js"></script>
+  <script src="js/carry-params.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/speech-reader.js"></script>
+  <script src="js/story-cost-living-data.js"></script>
+  <script>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const univKey = params.get('univ') || localStorage.getItem('entry_univ') || 'default';
+
+    const config =
+      (window.UNIVERSITY_CONFIG && window.UNIVERSITY_CONFIG[univKey]) ||
+      (typeof UNIVERSITY_CONFIG !== 'undefined' && UNIVERSITY_CONFIG[univKey]) ||
+      (typeof UNIVERSITY_CONFIG !== 'undefined' && UNIVERSITY_CONFIG.default);
+
+    if (!config) return;
+
+    document.documentElement.style.setProperty('--main-color', config.mainColor);
+    document.documentElement.style.setProperty('--main-dark', config.mainDark);
+    document.documentElement.style.setProperty('--main-light', config.mainLight);
+    document.documentElement.style.setProperty('--accent-color', config.accentColor);
+    document.documentElement.style.setProperty('--primary-color', config.mainColor);
+    document.documentElement.style.setProperty('--primary-dark', config.mainDark);
+    document.documentElement.style.setProperty('--primary-light', config.mainLight);
+
+    const title = document.querySelector('.site-title');
+    if (title && config.name) title.textContent = config.name + ' パートナー帯同ポータルサイト';
+
+    const logo = document.querySelector('.header-logo');
+    if (logo && config.logo) {
+      logo.src = config.logo;
+      logo.alt = config.name + ' ロゴ';
+    }
+  })();
+  </script>
+</body>
+</html>
