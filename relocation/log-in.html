@@ -605,14 +605,14 @@
                     latest_page: localStorage.getItem('vg_relocation_latest_page') || '',
                     latest_timestamp: localStorage.getItem('vg_relocation_latest_timestamp') || '',
                     first_page: localStorage.getItem('vg_relocation_first_page') || '',
-                    first_timestamp: localStorage.getItem('vg_relocation_first_timestamp') || ''
+                    first_timestamp: localStorage.getItem('vg_relocation_first_timestamp') || '',
+                    lastLoginAt: serverTimestamp(),
+                    status: 'active',
+                    updatedAt: serverTimestamp()
                 };
 
-                await setDoc(userRef, {
-                    ...trackingData,
-                    updatedAt: serverTimestamp()
-                }, { merge: true });
-
+                await setDoc(userRef, trackingData, { merge: true });
+                
                 let role = 'user';
 
                 if (!snap.exists()) {
@@ -621,9 +621,11 @@
                         uid: user.uid,
                         email: user.email || email || '',
                         role: 'user',
-                        createdAt: serverTimestamp()
+                        createdAt: serverTimestamp(),
+                        status: 'active'
                     };
                     await setDoc(userRef, newDoc, { merge: true });
+                    
                     role = 'user';
                 } else {
                     const data = snap.data() || {};
