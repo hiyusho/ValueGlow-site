@@ -634,14 +634,17 @@
                 
                 // ログイン成功
                 showSuccess('ログインに成功しました！');
-                
+
+                // ★ここに追加（重要）
+                await attachVisitToUser(user.uid);
+
                 // role による遷移
                 setTimeout(() => {
-                    if (role === 'admin' || role === 'superadmin') {
-                        window.location.href = 'admin-dashboard.html';
-                    } else {
-                        window.location.href = 'dashboard.html';
-                    }
+                  if (role === 'admin' || role === 'superadmin') {
+                    window.location.href = 'admin-dashboard.html';
+                  } else {
+                    window.location.href = 'dashboard.html';
+                  }
                 }, 700);
                 
             } catch (error) {
