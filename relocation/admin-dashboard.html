@@ -94,7 +94,7 @@
 
     .toolbar {
       display: grid;
-      grid-template-columns: 1.3fr .8fr .8fr auto auto;
+      grid-template-columns: 1.2fr .75fr .75fr .75fr auto auto;
       gap: 12px;
       background: #fff;
       border: 1px solid var(--border);
@@ -142,7 +142,7 @@
 
     .summary {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 14px;
       margin-bottom: 18px;
     }
@@ -234,37 +234,16 @@
     }
 
 
-    /* 大学タグ：クリックでフィルタ可能 */
-    .univ-tag {
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
-    }
-
-    .univ-tag:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(31, 92, 63, .18);
-      opacity: .9;
-    }
-
-    .univ-nagoya_u,
-    .univ-nagoya {
+    .status-active {
       background: #e8f5ee;
       color: #1f5c3f;
       border-color: #b7dbc5;
     }
 
-    .univ-sugiyama {
-      background: #eef2ff;
-      color: #3446a1;
-      border-color: #c9d2ff;
-    }
-
-    .univ-unknown,
-    .univ-empty {
-      background: #f3f4f6;
-      color: #6b7280;
-      border-color: #e5e7eb;
+    .status-inactive {
+      background: #fff1f2;
+      color: #9f1239;
+      border-color: #fecdd3;
     }
 
     @media (max-width: 1020px) {
@@ -307,6 +286,11 @@
         <option value="検討中">検討中</option>
         <option value="希望しない">希望しない</option>
       </select>
+      <select id="statusFilter">
+        <option value="">状態：すべて</option>
+        <option value="active">active</option>
+        <option value="inactive">inactive</option>
+      </select>
       <button class="secondary" id="reloadBtn"><i class="fas fa-sync-alt"></i> 再読み込み</button>
       <button id="exportBtn"><i class="fas fa-file-csv"></i> CSV出力</button>
     </div>
@@ -325,6 +309,10 @@
         <div class="value" id="adminCount">0</div>
       </div>
       <div class="card">
+        <div class="label">inactive</div>
+        <div class="value" id="inactiveCount">0</div>
+      </div>
+      <div class="card">
         <div class="label">表示中</div>
         <div class="value" id="shownCount">0</div>
       </div>
@@ -336,13 +324,10 @@
           <tr>
             <th>登録日時</th>
             <th>大学</th>
-            <th>流入元</th>
-            <th>媒体</th>
-            <th>キャンペーン</th>
-            <th>案内元</th>
             <th>氏名</th>
             <th>メール</th>
             <th>権限</th>
+            <th>状態</th>
             <th>相談希望</th>
             <th>就職支援</th>
             <th>希望職種</th>
@@ -390,37 +375,11 @@
     const fieldCandidates = {
       name: ['name', 'fullName', 'displayName', '氏名', 'userName'],
       univ: ['univ', 'university', 'entry_univ', 'university_source', '大学', '所属大学'],
-      utm_source: ['utm_source', 'utmSource'],
-      utm_medium: ['utm_medium', 'utmMedium'],
-      utm_campaign: ['utm_campaign', 'utmCampaign'],
-      utm_content: ['utm_content', 'utmContent'],
       consultation: ['consultation', 'consultation_request', '相談希望', '相談'],
       job_support: ['job_support', 'jobSupport', 'job_support_request', '就職支援', '就職支援希望'],
       desired_job: ['desired_job', 'desiredJob', '希望職種', '希望業務'],
       memo: ['memo', 'note', '備考', '相談内容', '希望内容']
     };
-
-    const universityLabels = {
-      nagoya_u: '名古屋大学',
-      nagoya: '名古屋大学',
-      sugiyama: '椙山女学園大学'
-    };
-
-    function normalizeUniv(value) {
-      const raw = String(value || '').trim();
-      return raw || '未設定';
-    }
-
-    function getUnivLabel(value) {
-      const normalized = normalizeUniv(value);
-      return universityLabels[normalized] || normalized;
-    }
-
-    function getUnivClass(value) {
-      const normalized = normalizeUniv(value);
-      if (normalized === '未設定') return 'univ-empty';
-      return 'univ-' + normalized.toLowerCase().replace(/[^a-z0-9_-]/g, '_');
-    }
 
     function pick(data, candidates, fallback = '') {
       for (const key of candidates) {
@@ -464,14 +423,11 @@
         uid: data.uid || docSnap.id,
         registered_at: formatDate(data.createdAt || data.created_at || data.registeredAt || data.registered_at),
         last_login: formatDate(data.lastLoginAt || data.last_login || data.updatedAt),
-        univ: normalizeUniv(pick(data, fieldCandidates.univ, '未設定')),
-        utm_source: pick(data, fieldCandidates.utm_source, ''),
-        utm_medium: pick(data, fieldCandidates.utm_medium, ''),
-        utm_campaign: pick(data, fieldCandidates.utm_campaign, ''),
-        utm_content: pick(data, fieldCandidates.utm_content, ''),
+        univ: pick(data, fieldCandidates.univ, '未設定'),
         name: pick(data, fieldCandidates.name, data.email || ''),
         email: data.email || '',
         role: data.role || 'user',
+        status: data.status || 'active',
         consultation: pick(data, fieldCandidates.consultation, ''),
         job_support: pick(data, fieldCandidates.job_support, ''),
         desired_job: pick(data, fieldCandidates.desired_job, ''),
@@ -552,13 +508,15 @@
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
       const univ = document.getElementById('univFilter').value;
       const job = document.getElementById('jobFilter').value;
+      const status = document.getElementById('statusFilter').value;
 
       return users.filter(user => {
         const fullText = Object.values(user).join(' ').toLowerCase();
         const matchQuery = !q || fullText.includes(q);
         const matchUniv = !univ || user.univ === univ;
         const matchJob = !job || user.job_support === job;
-        return matchQuery && matchUniv && matchJob;
+        const matchStatus = !status || user.status === status;
+        return matchQuery && matchUniv && matchJob && matchStatus;
       });
     }
 
@@ -573,20 +531,11 @@
         return `
           <tr>
             <td>${escapeHTML(user.registered_at)}</td>
-            <td>
-              <span
-                class="tag univ-tag ${getUnivClass(user.univ)}"
-                data-univ="${escapeHTML(user.univ)}"
-                title="クリックするとこの大学で絞り込みます"
-              >${escapeHTML(getUnivLabel(user.univ))}</span>
-            </td>
-            <td>${escapeHTML(user.utm_source)}</td>
-            <td>${escapeHTML(user.utm_medium)}</td>
-            <td>${escapeHTML(user.utm_campaign)}</td>
-            <td>${escapeHTML(user.utm_content)}</td>
+            <td><span class="tag">${escapeHTML(user.univ)}</span></td>
             <td>${escapeHTML(user.name)}</td>
             <td>${escapeHTML(user.email)}</td>
             <td><span class="tag ${roleClass}">${escapeHTML(user.role)}</span></td>
+            <td><span class="tag status-${escapeHTML(user.status)}">${escapeHTML(user.status)}</span></td>
             <td>${escapeHTML(user.consultation)}</td>
             <td>${escapeHTML(user.job_support)}</td>
             <td class="long">${escapeHTML(user.desired_job)}</td>
@@ -601,27 +550,15 @@
       document.getElementById('totalCount').textContent = users.length;
       document.getElementById('jobCount').textContent = users.filter(u => u.job_support === '希望する').length;
       document.getElementById('adminCount').textContent = users.filter(u => u.role === 'admin' || u.role === 'superadmin').length;
+      document.getElementById('inactiveCount').textContent = users.filter(u => u.status === 'inactive').length;
       document.getElementById('shownCount').textContent = filtered.length;
     }
 
     function exportCSV() {
       const filtered = getFilteredUsers();
-      const headers = ['登録日時', '大学', '流入元', '媒体', 'キャンペーン', '案内元', '氏名', 'メール', '権限', '相談希望', '就職支援', '希望職種', '最終ログイン', 'UID'];
+      const headers = ['登録日時', '大学', '氏名', 'メール', '権限', '状態', '相談希望', '就職支援', '希望職種', '最終ログイン', 'UID'];
       const rows = filtered.map(u => [
-        u.registered_at,
-        getUnivLabel(u.univ),
-        u.utm_source,
-        u.utm_medium,
-        u.utm_campaign,
-        u.utm_content,
-        u.name,
-        u.email,
-        u.role,
-        u.consultation,
-        u.job_support,
-        u.desired_job,
-        u.last_login,
-        u.uid
+        u.registered_at, u.univ, u.name, u.email, u.role, u.consultation, u.job_support, u.desired_job, u.last_login, u.uid
       ]);
 
       const csv = [headers, ...rows]
@@ -640,22 +577,13 @@
     document.getElementById('searchInput').addEventListener('input', render);
     document.getElementById('univFilter').addEventListener('change', render);
     document.getElementById('jobFilter').addEventListener('change', render);
+    document.getElementById('statusFilter').addEventListener('change', render);
     document.getElementById('reloadBtn').addEventListener('click', loadUsers);
     document.getElementById('exportBtn').addEventListener('click', exportCSV);
 
-    document.getElementById('userTableBody').addEventListener('click', (event) => {
-      const tag = event.target.closest('.univ-tag');
-      if (!tag) return;
-
-      const selectedUniv = tag.dataset.univ || '';
-      const select = document.getElementById('univFilter');
-      select.value = selectedUniv;
-      render();
-    });
-
     document.getElementById('logoutBtn').addEventListener('click', async () => {
       await signOut(auth);
-      window.location.href = 'index.html';
+      window.location.href = 'log-in.html';
     });
 
     onAuthStateChanged(auth, async (user) => {
