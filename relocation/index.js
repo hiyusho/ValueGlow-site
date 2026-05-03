@@ -30,6 +30,8 @@ exports.cleanupInactiveUsersManual = functions.https.onRequest(async (req, res) 
       count++;
     }
   }
-
+  if (req.query.key !== "valueglow-secret") {
+  return res.status(403).send("Forbidden");
+  }
   res.send(`完了：${count}件のユーザーをinactive化しました`);
 });
