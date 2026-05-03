@@ -17,6 +17,11 @@ exports.cleanupInactiveUsersManual = functions.https.onRequest(async (req, res) 
   for (const doc of snapshot.docs) {
     const data = doc.data();
 
+    // 管理者は inactive 化しない
+    if (data.role === "admin" || data.role === "superadmin") {
+      continue;
+    }
+
     if (!data.lastLoginAt) continue;
 
     const lastLogin = data.lastLoginAt.toDate();
