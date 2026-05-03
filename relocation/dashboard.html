@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ | 大学赴任者パートナー帯同プログラム</title>
+    <meta name="description" content="大学赴任者パートナー帯同プログラムのマイページ。面談予約管理、企業紹介、応募書類管理などを一元管理できます。">
+    <meta name="keywords" content="マイページ,ダッシュボード,面談予約,企業紹介,応募書類,キャリア支援">
+    <meta name="author" content="大学赴任者パートナー帯同プログラム">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="マイページ | 大学赴任者パートナー帯同プログラム">
+    <meta property="og:description" content="あなた専用のマイページで、面談予約や応募状況を一元管理できます。">
+    <meta property="og:url" content="https://hiyusho.github.io/university-relocation-support/dashboard.html">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://hiyusho.github.io/university-relocation-support/dashboard.html">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --main-color: #379B63;
+            --main-dark: #2F7D52;
+            --main-light: #E8F5EE;
+            --accent-color: #1F5C3F;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN',
+                         'Hiragino Sans', Meiryo, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        /* ヘッダー */
+        .header {
+            background: linear-gradient(135deg, var(--main-color) 0%, var(--main-dark) 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i { font-size: 1.5rem; }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-btn:hover { background: rgba(255, 255, 255, 0.3); }
+
+        /* メインコンテナ */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+
+        /* サイドバー */
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .sidebar-menu { list-style: none; }
+        .sidebar-menu li { margin-bottom: 5px; }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            color: #666;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .sidebar-menu a:hover { background: #f8f9fa; color: #667eea; }
+
+        .sidebar-menu a.active {
+            background: linear-gradient(135deg, var(--main-color) 0%, var(--main-dark) 100%);
+            color: white;
+        }
+
+        .sidebar-menu i {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* コンテンツエリア */
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ウェルカムカード */
+        .welcome-card {
+            background: linear-gradient(135deg, var(--main-color) 0%, var(--main-dark) 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(55, 155, 99, 0.25);
+        }
+
+        .welcome-card h1 { font-size: 1.8rem; margin-bottom: 10px; }
+        .welcome-card p { font-size: 0.95rem; opacity: 0.9; }
+
+        /* カードグリッド */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .card-icon.schedule { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-icon.message { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .card-icon.company { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .card-icon.document { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .card-icon.stats { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+        .card-title { font-size: 1.1rem; font-weight: 700; color: #333; }
+
+        .card-count {
+            background: #e3f2fd;
+            color: #1976D2;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        /* 予定カード */
+        .schedule-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .schedule-item:last-child { margin-bottom: 0; }
+        .schedule-date { font-size: 0.85rem; color: #667eea; font-weight: 600; margin-bottom: 8px; }
+        .schedule-title { font-size: 1rem; font-weight: 600; color: #333; margin-bottom: 5px; }
+        .schedule-info { font-size: 0.9rem; color: #666; display: flex; align-items: center; gap: 5px; }
+        .schedule-info i { color: #999; }
+        .schedule-actions { margin-top: 12px; display: flex; gap: 10px; }
+
+        .btn-small {
+            padding: 6px 15px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5568d3; }
+        .btn-secondary { background: #e0e0e0; color: #666; }
+        .btn-secondary:hover { background: #d0d0d0; }
+
+        /* メッセージリスト */
+        .message-item {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .message-item:hover { background: #f8f9fa; }
+        .message-item:last-child { border-bottom: none; }
+        .message-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .message-sender { font-weight: 600; color: #333; font-size: 0.95rem; }
+        .message-time { font-size: 0.8rem; color: #999; }
+        .message-preview { font-size: 0.9rem; color: #666; line-height: 1.5; }
+        .message-unread { background: #e3f2fd; }
+        .unread-badge {
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: #f5576c;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* 企業リスト */
+        .company-item {
+            display: flex; align-items: center; gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+        .company-item:last-child { margin-bottom: 0; }
+        .company-status { width: 8px; height: 40px; border-radius: 4px; }
+        .status-passed { background: #4caf50; }
+        .status-pending { background: #ff9800; }
+        .status-new { background: #2196F3; }
+        .company-info { flex: 1; }
+        .company-name { font-weight: 600; color: #333; margin-bottom: 5px; }
+        .company-status-text { font-size: 0.85rem; color: #666; }
+        .company-action {
+            padding: 6px 15px;
+            background: #667eea;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .company-action:hover { background: #5568d3; }
+
+        /* 書類リスト */
+        .document-item {
+            display: flex; align-items: center; gap: 15px;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        .document-item:hover { border-color: #667eea; background: #f8f9fa; }
+        .document-item:last-child { margin-bottom: 0; }
+        .document-icon { font-size: 1.5rem; color: #667eea; }
+        .document-info { flex: 1; }
+        .document-name { font-weight: 600; color: #333; font-size: 0.95rem; margin-bottom: 3px; }
+        .document-meta { font-size: 0.8rem; color: #999; }
+        .document-actions { display: flex; gap: 10px; }
+        .btn-icon {
+            width: 32px; height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: #f0f0f0;
+            color: #666;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .btn-icon:hover { background: #667eea; color: white; }
+
+        /* 統計カード */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        .stat-label { font-size: 0.9rem; color: #666; }
+
+        /* 空の状態 */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+        .empty-state p { font-size: 0.95rem; margin-bottom: 15px; }
+
+        /* ボタン */
+        .btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        .btn-outline:hover { background: #667eea; color: white; }
+
+        .view-all { text-align: center; margin-top: 15px; }
+        .view-all a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .view-all a:hover { text-decoration: underline; }
+
+        /* レスポンシブ */
+        @media (max-width: 1024px) {
+            .main-container { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .sidebar-menu {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .welcome-card h1 { font-size: 1.5rem; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .user-info span { display: none; }
+        }
+        /* 大学テーマカラーの最終上書き */
+        .user-avatar {
+            color: var(--main-color) !important;
+        }
+
+        .sidebar-menu a:hover {
+            background: var(--main-light) !important;
+            color: var(--main-color) !important;
+        }
+
+        .card-icon.schedule,
+        .card-icon.message,
+        .card-icon.company,
+        .card-icon.document,
+        .card-icon.stats {
+        background: linear-gradient(135deg, var(--main-color) 0%, var(--main-dark) 100%) !important;
+    }
+
+    .btn-primary,
+    .company-action {
+        background: var(--main-color) !important;
+        color: white !important;
+    }
+
+    .btn-primary:hover,
+    .company-action:hover {
+  background: var(--main-dark) !important;
+    }
+
+    .btn-outline {
+        background: white !important;
+        color: var(--main-color) !important;
+        border-color: var(--main-color) !important;
+    }
+
+    .btn-outline:hover {
+        background: var(--main-color) !important;
+        color: white !important;
+    }
+
+    .view-all a,
+    .schedule-date,
+    .document-icon,
+    .stat-value {
+        color: var(--main-color) !important;
+    }
+
+    .btn-icon:hover {
+        background: var(--main-color) !important;
+        color: white !important;
+    }
+
+    .card-count {
+        background: var(--main-light) !important;
+        color: var(--main-dark) !important;
+    }
+
+    .document-item:hover {
+        border-color: var(--main-color) !important;
+    }
+    .menu-section-label {
+        margin: 18px 0 8px;
+        padding: 0 15px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #999;
+    }
+
+    .sidebar-menu a.disabled {
+        color: #aaa !important;
+        background: #f5f5f5 !important;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .sidebar-menu a.disabled i {
+        opacity: 0.45;
+    }
+    .card-header {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .card-count {
+        margin-left: 0 !important;
+        white-space: nowrap;
+    
+    }
+    .logout-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-modal {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    width: min(420px, 90%);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.logout-modal-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--main-light);
+    color: var(--main-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.logout-modal h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.logout-modal p {
+    color: #666;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.logout-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.logout-cancel-btn,
+.logout-confirm-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.logout-cancel-btn {
+    background: #f1f1f1;
+    color: #555;
+}
+
+.logout-confirm-btn {
+    background: var(--main-color);
+    color: white;
+}
+
+.logout-confirm-btn:hover {
+    background: var(--main-dark);
+}
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-home"></i>
+                    <span id="dashboardSiteTitle">家族帯同支援プログラム</span>
+                </a>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <div class="user-avatar">田</div>
+                    <span>田中様</span>
+                </div>
+                <a href="log-in.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ログアウト
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテナ -->
+    <div class="main-container">
+        <!-- サイドバー -->
+        <aside class="sidebar">
+            <div class="sidebar-title">メニュー</div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> ダッシュボード</a></li>
+                <li>
+                    <a href="contact-support.html">
+                    <i class="fas fa-paper-plane"></i>
+                        事務局へ質問する
+                    </a>
+                </li>
+                <li class="menu-section-label">2026年10月開始予定</li>
+                <li><a class="disabled"><i class="fas fa-calendar-alt"></i> 面談予約</a></li>
+                <li><a class="disabled"><i class="fas fa-building"></i> 企業紹介</a></li>
+                <li><a class="disabled"><i class="fas fa-file-alt"></i> 応募管理</a></li>
+                <li><a class="disabled"><i class="fas fa-chart-line"></i> 活動レポート</a></li>
+                <li><a class="disabled"><i class="fas fa-user"></i> プロフィール編集</a></li>
+
+                <li><a href="documents-list.html"><i class="fas fa-folder-open"></i> 応募書類</a></li>
+                <li><a href="manual.html" target="_blank"><i class="fas fa-book"></i> 使い方マニュアル</a></li>
+            </ul>
+        </aside>
+
+        <!-- コンテンツ -->
+        <main class="content">
+            <!-- ウェルカムカード -->
+            <div class="welcome-card">
+                <h1>こんにちは、田中様 👋</h1>
+                <p>現在はメールベースで個別サポートを行っています。担当者が登録内容を確認し、必要に応じてご連絡します。</p>
+                <p id="last-login-time">最終ログイン: 読み込み中...</p>
+            </div>
+
+            <!-- カードグリッド -->
+            <div class="card-grid">
+                <!-- 次回の予定 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon schedule">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="card-title">サポート状況</div>
+                    </div>
+
+                    <div id="next-meeting-container">
+                        <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #666;">
+                            <i class="fas fa-envelope-open-text" style="font-size: 2.5rem; margin-bottom: 15px; color: var(--main-color); opacity: 0.35;"></i>
+                            <p style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">
+                                担当者が登録内容を確認中です
+                            </p>
+                            <p style="font-size: 0.9rem; line-height: 1.7;">
+                                現在はメールベースで個別サポートを行っています。<br>
+                                必要に応じて、担当者よりメールでご案内します。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- メッセージ -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon message">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="card-title">事務局への質問</div>
+                        <span class="card-count">メール対応</span>
+                    </div>
+
+                    <div id="messages-container">
+                        <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #666;">
+                            <i class="fas fa-paper-plane" style="font-size: 2.5rem; margin-bottom: 15px; color: var(--main-color); opacity: 0.35;"></i>
+                            <p style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">
+                                生活・子育て・仕事などの質問を送れます
+                            </p>
+                            <p style="font-size: 0.9rem; line-height: 1.7;">
+                                事務局へのご相談は、質問フォームから送信してください。<br>
+                                担当者が内容を確認し、メールでご連絡します。
+                            </p>
+                            <a href="contact-support.html" class="btn btn-outline" style="margin-top: 10px;">
+                            <i class="fas fa-paper-plane"></i>
+                                質問を送る
+                            </a>
+                        </div>
+                    </div>
+                </div>                      
+            </div>
+
+            <!-- 第2行 -->
+            <div class="card-grid">
+                <!-- 紹介企業リスト -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon company">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    <div class="card-title">紹介企業リスト</div>
+                        <p style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">
+                            企業紹介機能は2026年10月開始予定です
+                        </p>
+                    </div>
+
+                    <div id="companies-container">
+                        <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #666;">
+                            <i class="fas fa-building" style="font-size: 2.5rem; margin-bottom: 15px; color: var(--main-color); opacity: 0.35;"></i>
+                            <p style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">
+                                企業紹介機能は2026年10月開始予定です
+                            </p>
+                            <p style="font-size: 0.9rem; line-height: 1.7;">
+                                それまでは、登録内容に応じて<br>
+                                メールベースで個別にご案内します。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+
+            <!-- 応募書類 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon document">
+      <i class="fas fa-file-alt"></i>
+                    </div>
+                <div class="card-title">応募書類サポート</div>
+                    <span class="card-count">2026年10月予定</span>
+                </div>
+
+                <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #666;">
+                    <i class="fas fa-file-signature" style="font-size: 2.5rem; margin-bottom: 15px; color: var(--main-color); opacity: 0.35;"></i>
+                    <p style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">
+                        応募書類サポートは2026年10月開始予定です
+                    </p>
+                    <p style="font-size: 0.9rem; line-height: 1.7;">
+                        履歴書・職務経歴書・応募書類の作成支援を準備しています。<br>
+                        開始までは、必要に応じてメールベースで個別にご案内します。
+                    </p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import {
+            getFirestore, doc, getDoc, setDoc, serverTimestamp,
+            collection, query, where, orderBy, limit as firestoreLimit, getDocs, deleteDoc
+        } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getStorage, ref as storageRef, deleteObject } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
+
+        // Firebase設定
+        const firebaseConfig = {
+            apiKey: "AIzaSyA6iFUhXOueccuoLJVU9ZSvXywHmj8zoR4",
+            authDomain: "university-relocation-support.firebaseapp.com",
+            projectId: "university-relocation-support",
+            storageBucket: "university-relocation-support.firebasestorage.app",
+            messagingSenderId: "849634495988",
+            appId: "1:849634495988:web:013663976b0c4d6b4f7da1",
+            measurementId: "G-RJP20TC7DV"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        // デバッグ用：グローバルスコープに公開
+        window.debugAuth = auth;
+        window.debugDb = db;
+        window.debugGetDoc = getDoc;
+        window.debugDoc = doc;
+        window.debugCollection = collection;
+        window.debugQuery = query;
+        window.debugWhere = where;
+        window.debugGetDocs = getDocs;
+        
+        console.log('[Dashboard v7] デバッグ変数をグローバルに公開しました');
+        console.log('[Dashboard v7] 使用方法: window.debugAuth.currentUser で認証情報を確認できます');
+
+        
+        // ================================
+        // ダッシュボード動的データロード
+        // ================================
+        
+        // 日時フォーマット関数
+        function formatDateTime(date) {
+            if (!date) return '不明';
+            try {
+                const d = date instanceof Date ? date : date.toDate();
+                const year = d.getFullYear();
+                const month = d.getMonth() + 1;
+                const day = d.getDate();
+                const hours = String(d.getHours()).padStart(2, '0');
+                const minutes = String(d.getMinutes()).padStart(2, '0');
+                return `${year}年${month}月${day}日 ${hours}:${minutes}`;
+            } catch (e) {
+                return '不明';
+            }
+        }
+        
+        function formatMeetingDateTime(timestamp) {
+            if (!timestamp) return '日時未定';
+            try {
+                const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                
+                const weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+                const weekday = weekdays[date.getDay()];
+                
+                return `${year}年${month}月${day}日（${weekday}）${hours}:${minutes}`;
+            } catch (e) {
+                return '日時エラー';
+            }
+        }
+        
+        function formatRelativeTime(timestamp) {
+            if (!timestamp) return '不明';
+            try {
+                const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+                const now = new Date();
+                const diff = now - date;
+                const minutes = Math.floor(diff / 60000);
+                const hours = Math.floor(diff / 3600000);
+                const days = Math.floor(diff / 86400000);
+                
+                if (minutes < 1) return 'たった今';
+                if (minutes < 60) return `${minutes}分前`;
+                if (hours < 24) return `${hours}時間前`;
+                if (days === 0) return '今日';
+                if (days === 1) return '昨日';
+                if (days < 7) return `${days}日前`;
+                
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                return `${month}/${day}`;
+            } catch (e) {
+                return '不明';
+            }
+        }
+        
+        // 次回の予定をロード（v4: 実際のFirestoreデータ構造に完全対応）
+        async function loadNextMeeting(userId) {
+            console.log('[Dashboard v7] 次回の予定を読み込み中... userId:', userId);
+            const container = document.getElementById('next-meeting-container');
+            
+            try {
+                // ===== meetingRequests コレクションから予約を取得 =====
+                const requestsRef = collection(db, 'meetingRequests');
+                const q = query(
+                    requestsRef,
+                    where('userId', '==', userId),
+                    orderBy('requestedAt', 'desc'),
+                    firestoreLimit(50)
+                );
+                
+                const snapshot = await getDocs(q);
+                console.log('[Dashboard v7] 取得した予約数:', snapshot.size);
+                
+                if (snapshot.empty) {
+                    console.log('[Dashboard v7] 予約データなし');
+                    container.innerHTML = `
+                        <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #999;">
+                            <i class="fas fa-calendar-xmark" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.3;"></i>
+                            <p style="font-size: 0.95rem; margin-bottom: 15px;">担当者が登録内容を確認中です</p>
+                                <i class="fas fa-calendar-plus"></i> メールでのご案内をお待ちください
+                            </a>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // ===== 予約データを配列に変換 =====
+                const requests = [];
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    requests.push({
+                        id: doc.id,
+                        ...data
+                    });
+                });
+                
+                console.log('[Dashboard v7] 全予約:', requests.length);
+                
+                // ===== meetingAssignments を取得（担当確定情報） =====
+                const assignmentsRef = collection(db, 'meetingAssignments');
+                const assignmentsQ = query(
+                    assignmentsRef,
+                    where('userId', '==', userId),
+                    firestoreLimit(100)
+                );
+                
+                const assignmentsSnap = await getDocs(assignmentsQ);
+                const assignmentsByRequestId = new Map();
+                assignmentsSnap.forEach(doc => {
+                    const data = doc.data();
+                    if (data.requestId) {
+                        assignmentsByRequestId.set(data.requestId, data);
+                    }
+                });
+                
+                console.log('[Dashboard v7] 担当確定情報:', assignmentsByRequestId.size);
+                
+                // ===== 未来の予約をフィルタ =====
+                const now = new Date();
+                const upcomingMeetings = [];
+                
+                for (const request of requests) {
+                    // キャンセル済みを除外
+                    if (request.status === 'cancelled') {
+                        console.log('[Dashboard v7] キャンセル済み予約をスキップ:', request.id);
+                        continue;
+                    }
+                    
+                    // 日付をパース
+                    let meetingDate = null;
+                    
+                    // date + startTime から日時を構築
+                    if (request.date && request.startTime) {
+                        try {
+                            const dateStr = `${request.date}T${request.startTime}:00+09:00`;
+                            meetingDate = new Date(dateStr);
+                            console.log('[Dashboard v7] date + startTime からパース:', dateStr, meetingDate);
+                        } catch (e) {
+                            console.error('[Dashboard v7] date + startTime パースエラー:', e);
+                        }
+                    }
+                    
+                    // datetime フィールドがある場合（フォールバック）
+                    if (!meetingDate && request.datetime) {
+                        try {
+                            if (typeof request.datetime.toDate === 'function') {
+                                meetingDate = request.datetime.toDate();
+                            }
+                        } catch (e) {
+                            console.error('[Dashboard v7] datetime パースエラー:', e);
+                        }
+                    }
+                    
+                    // requestedAt をフォールバック
+                    if (!meetingDate && request.requestedAt) {
+                        try {
+                            if (typeof request.requestedAt.toDate === 'function') {
+                                meetingDate = request.requestedAt.toDate();
+                            }
+                        } catch (e) {
+                            console.error('[Dashboard v7] requestedAt パースエラー:', e);
+                        }
+                    }
+                    
+                    if (!meetingDate) {
+                        console.log('[Dashboard v7] 日付不明のためスキップ:', request.id);
+                        continue;
+                    }
+                    
+                    // 未来の予定のみ
+                    if (meetingDate > now) {
+                        const assignment = assignmentsByRequestId.get(request.id);
+                        upcomingMeetings.push({
+                            ...request,
+                            meetingDate,
+                            assignment: assignment || null
+                        });
+                    }
+                }
+                
+                console.log('[Dashboard v7] 未来の予約:', upcomingMeetings.length);
+                
+                if (upcomingMeetings.length === 0) {
+                    console.log('[Dashboard v7] 未来の予約がありません');
+                    container.innerHTML = `
+                        <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #999;">
+                            <i class="fas fa-calendar-check" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.3;"></i>
+                            <p style="font-size: 0.95rem; margin-bottom: 15px;">今後の予定はありません</p>
+                                <i class="fas fa-plus"></i> 新しい面談を予約
+                            </a>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // ===== 日付順にソート（最も近い予定が先頭） =====
+                upcomingMeetings.sort((a, b) => a.meetingDate - b.meetingDate);
+                
+                // ===== 最も近い予定を表示 =====
+                const nextMeeting = upcomingMeetings[0];
+                console.log('[Dashboard v7] 次回の予定を表示:', nextMeeting.id);
+                
+                // タイトル
+                const title = nextMeeting.requestedType || nextMeeting.type || '面談';
+                
+                // 日付・時刻の表示
+                let dateLabel = '';
+                let timeLabel = '';
+                
+                if (nextMeeting.date) {
+                    const parts = nextMeeting.date.split('-');
+                    if (parts.length === 3) {
+                        const year = parts[0];
+                        const month = parseInt(parts[1], 10);
+                        const day = parseInt(parts[2], 10);
+                        dateLabel = `${year}/${month}/${day}`;
+                    } else {
+                        dateLabel = nextMeeting.date;
+                    }
+                }
+                
+                if (nextMeeting.startTime && nextMeeting.endTime) {
+                    timeLabel = `${nextMeeting.startTime} - ${nextMeeting.endTime}`;
+                }
+                
+                // 場所
+                const location = nextMeeting.location || '（場所未設定）';
+                
+                // ステータス
+                let statusLabel = '受付済（担当者調整中）';
+                let statusClass = 'status-requested';
+                let meetingLink = '';
+                
+                if (nextMeeting.assignment) {
+                    const hasLink = !!(nextMeeting.assignment.meetingLink);
+                    if (hasLink) {
+                        statusLabel = '担当確定（面談URLあり）';
+                        statusClass = 'status-confirmed';
+                        meetingLink = nextMeeting.assignment.meetingLink;
+                    } else {
+                        statusLabel = '担当確定（準備中）';
+                        statusClass = 'status-assigned';
+                    }
+                }
+                
+                // HTML を生成
+                let html = `
+                    <div class="meeting-card" style="border-left: 4px solid var(--main-color); padding: 15px; border-radius: 8px; background: #f9f9f9;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+                            <h3 style="margin: 0; color: #333; font-size: 18px;">${escapeHtml(title)}</h3>
+                            <span style="padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; background: #E8F5E9; color: #2e7d32;">${escapeHtml(statusLabel)}</span>
+                        </div>
+                        <div style="display: grid; gap: 10px; margin-bottom: 12px;">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #666;">
+                                <i class="fas fa-calendar-day" style="color: var(--main-color); width: 18px;"></i>
+                                <span>${escapeHtml(dateLabel)}</span>
+                            </div>
+                `;
+                
+                if (timeLabel) {
+                    html += `
+                            <div style="display: flex; align-items: center; gap: 8px; color: #666;">
+                                <i class="fas fa-clock" style="color: var(--main-color); width: 18px;"></i>
+                                <span>${escapeHtml(timeLabel)}</span>
+                            </div>
+                    `;
+                }
+                
+                html += `
+                            <div style="display: flex; align-items: center; gap: 8px; color: #666;">
+                                <i class="fas fa-map-marker-alt" style="color: var(--main-color); width: 18px;"></i>
+                                <span>${escapeHtml(location)}</span>
+                            </div>
+                        </div>
+                `;
+                
+                // 面談リンク
+                if (meetingLink) {
+                    html += `
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="${escapeHtml(meetingLink)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.9rem;">
+                                <i class="fas fa-video"></i> 面談に参加
+                            </a>
+                            <a href="my-meetings.html" class="btn btn-outline" style="font-size: 0.9rem;">
+                                <i class="fas fa-list"></i> すべての予約
+                            </a>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="my-meetings.html" class="btn btn-primary" style="font-size: 0.9rem;">
+                                <i class="fas fa-list"></i> すべての予約を見る
+                            </a>
+                        </div>
+                    `;
+                }
+                
+                html += `</div>`;
+                
+                // 他の予定がある場合は件数を表示
+                if (upcomingMeetings.length > 1) {
+                    html += `
+                        <p style="margin-top: 15px; color: #666; font-size: 14px;">
+                            <i class="fas fa-info-circle"></i> 
+                            他に ${upcomingMeetings.length - 1} 件の予定があります
+                        </p>
+                    `;
+                }
+                
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('[Dashboard v7] エラー:', error);
+                container.innerHTML = `
+                    <div class="error-state" style="padding: 30px 20px; text-align: center; color: #f44336;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+                        <p style="font-size: 0.95rem; margin-bottom: 10px;">予定の読み込みに失敗しました</p>
+                        <p style="font-size: 12px; color: #999;">${escapeHtml(error.message)}</p>
+                    </div>
+                `;
+            }
+        }
+
+        
+        // メッセージをロード
+        async function loadMessages(userId) {
+            try {
+                const q = query(
+                    collection(db, 'messages'),
+                    where('recipientId', '==', userId),
+                    where('read', '==', false),
+                    orderBy('createdAt', 'desc'),
+                    firestoreLimit(2)
+                );
+                
+                const snapshot = await getDocs(q);
+                const container = document.getElementById('messages-container');
+                const countBadge = document.querySelector('.card-icon.message')?.closest('.card')?.querySelector('.card-count');
+                
+                if (!container) return;
+                
+                if (snapshot.empty) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #999;">
+                            <i class="fas fa-envelope-open" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.3;"></i>
+                            <p style="font-size: 0.95rem;">新着メッセージはありません</p>
+                        </div>
+                    `;
+                    if (countBadge) countBadge.textContent = '0件';
+                    return;
+                }
+                
+                container.innerHTML = '';
+                snapshot.forEach((doc) => {
+                    const msg = doc.data();
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message-item message-unread';
+                    messageDiv.innerHTML = `
+                        <div class="message-header">
+                            <div class="message-sender">
+                                <span class="unread-badge"></span>
+                                ${escapeHtml(msg.senderName || '送信者')}
+                            </div>
+                            <div class="message-time">${formatRelativeTime(msg.createdAt)}</div>
+                        </div>
+                        <div class="message-preview">
+                            ${escapeHtml((msg.content || '').substring(0, 50))}${msg.content && msg.content.length > 50 ? '...' : ''}
+                        </div>
+                    `;
+                    container.appendChild(messageDiv);
+                });
+                
+                if (countBadge) countBadge.textContent = `${snapshot.size}件未読`;
+            } catch (error) {
+                console.error('メッセージ読み込みエラー:', error);
+                console.error('エラー詳細:', error.code, error.message);
+                const container = document.getElementById('messages-container');
+                if (container) {
+                    let errorMsg = '読み込みエラー';
+                    if (error.code === 'permission-denied') {
+                        errorMsg = 'アクセス権限がありません';
+                    } else if (error.code === 'failed-precondition') {
+                        errorMsg = 'インデックスが必要です';
+                    } else if (error.message) {
+                        errorMsg = error.message.substring(0, 100);
+                    }
+                    container.innerHTML = `
+                        <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #999;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; margin-bottom: 15px; color: #ff9800;"></i>
+                            <p style="font-size: 0.95rem; margin-bottom: 10px;">読み込みエラー</p>
+                            <p style="font-size: 0.85rem; color: #666;">${errorMsg}</p>
+                            <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">
+                                開発者ツールのコンソールで詳細を確認してください
+                            </p>
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        // 企業リストをロード
+        async function loadCompanies(userId) {
+            try {
+                const q = query(
+                    collection(db, 'applications'),
+                    where('userId', '==', userId),
+                    orderBy('appliedAt', 'desc'),
+                    firestoreLimit(3)
+                );
+                
+                const snapshot = await getDocs(q);
+                const container = document.getElementById('companies-container');
+                const countBadge = document.querySelector('.card-icon.company')?.closest('.card')?.querySelector('.card-count');
+                
+                if (!container) return;
+                
+                if (snapshot.empty) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #999;">
+                            <i class="fas fa-building" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.3;"></i>
+                            <p style="font-size: 0.95rem;">紹介企業はまだありません</p>
+                        </div>
+                    `;
+                    if (countBadge) countBadge.textContent = '0社';
+                    return;
+                }
+                
+                container.innerHTML = '';
+                snapshot.forEach((doc) => {
+                    const app = doc.data();
+                    const companyDiv = document.createElement('div');
+                    companyDiv.className = 'company-item';
+                    
+                    const statusClass = getCompanyStatusClass(app.status);
+                    const statusText = getCompanyStatusText(app.status, app.appliedAt);
+                    
+                    companyDiv.innerHTML = `
+                        <div class="company-status ${statusClass}"></div>
+                        <div class="company-info">
+                            <div class="company-name">${escapeHtml(app.companyName || '企業名')}</div>
+                            <div class="company-status-text">${statusText}</div>
+                        </div>
+                        <a href="job-applications.html" class="company-action">詳細</a>
+                    `;
+                    container.appendChild(companyDiv);
+                });
+                
+                if (countBadge) countBadge.textContent = `${snapshot.size}社`;
+            } catch (error) {
+                console.error('企業リスト読み込みエラー:', error);
+                const container = document.getElementById('companies-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="padding: 30px 20px; text-align: center; color: #999;">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.3;"></i>
+                            <p style="font-size: 0.95rem;">読み込みエラー</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        function getCompanyStatusClass(status) {
+            const map = {
+                'passed': 'status-passed',
+                'interview': 'status-passed',
+                'pending': 'status-pending',
+                'applied': 'status-pending',
+                'new': 'status-new'
+            };
+            return map[status] || 'status-new';
+        }
+        
+        function getCompanyStatusText(status, appliedAt) {
+            const map = {
+                'passed': '書類選考通過',
+                'interview': '面接予定',
+                'pending': '応募中',
+                'applied': '応募中',
+                'new': '紹介済み'
+            };
+            let text = map[status] || '応募前';
+            
+            if (appliedAt) {
+                try {
+                    const date = appliedAt.toDate ? appliedAt.toDate() : new Date(appliedAt);
+                    const month = date.getMonth() + 1;
+                    const day = date.getDate();
+                    text += ` （${month}/${day}応募）`;
+                } catch (e) {
+                    // ignore
+                }
+            }
+            
+            return text;
+        }
+        
+        // 活動統計をロード
+        async function loadActivityStats(userId) {
+            try {
+                // 面談実施回数
+                const meetingsQuery = query(
+                    collection(db, 'meetings'),
+                    where('userId', '==', userId),
+                    where('status', '==', 'completed')
+                );
+                const meetingsSnapshot = await getDocs(meetingsQuery);
+                const meetingsCount = meetingsSnapshot.size;
+                
+                // 応募企業数
+                const applicationsQuery = query(
+                    collection(db, 'applications'),
+                    where('userId', '==', userId)
+                );
+                const applicationsSnapshot = await getDocs(applicationsQuery);
+                const applicationsCount = applicationsSnapshot.size;
+                
+                // 書類通過率
+                let passedCount = 0;
+                applicationsSnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.status === 'passed' || data.status === 'interview') {
+                        passedCount++;
+                    }
+                });
+                const passRate = applicationsCount > 0 
+                    ? Math.round((passedCount / applicationsCount) * 100) 
+                    : 0;
+                
+                // 利用日数
+                const userDoc = await getDoc(doc(db, 'users', userId));
+                const userData = userDoc.data();
+                const createdAt = userData?.createdAt?.toDate ? userData.createdAt.toDate() : null;
+                const daysUsed = createdAt 
+                    ? Math.max(1, Math.floor((new Date() - createdAt) / (1000 * 60 * 60 * 24)))
+                    : 1;
+                
+                // 表示
+                const statsGrid = document.getElementById('stats-grid');
+                if (statsGrid) {
+                    statsGrid.innerHTML = `
+                        <div class="stat-item">
+                            <div class="stat-value">${meetingsCount}</div>
+                            <div class="stat-label">面談実施回数</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${applicationsCount}</div>
+                            <div class="stat-label">応募企業数</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${passRate}%</div>
+                            <div class="stat-label">書類通過率</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${daysUsed}</div>
+                            <div class="stat-label">利用日数</div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('統計読み込みエラー:', error);
+            }
+        }
+
+
+        // ================================
+        // role/ユーザードキュメント共通
+        // ================================
+        async function ensureUserDoc(user) {
+            if (!user) return null;
+
+            const uid = user.uid;
+            const email = user.email || '';
+            const userRef = doc(db, 'users', uid);
+
+            const snap = await getDoc(userRef);
+            if (snap.exists()) {
+                // role欠落を補正（破壊的変更は避け、読み出し側でデフォルト適用）
+                return snap.data();
+            }
+
+            const newDoc = {
+                uid,
+                email,
+                role: 'user',
+                createdAt: serverTimestamp()
+            };
+
+            await setDoc(userRef, newDoc, { merge: true });
+            return newDoc;
+        }
+
+        async function getUserRoleOrDefault(user) {
+            try {
+                const data = await ensureUserDoc(user);
+                return (data && data.role) ? data.role : 'user';
+            } catch (e) {
+                console.error('role取得/ユーザー自動作成エラー:', e);
+                return 'user';
+            }
+        }
+
+        // dashboard側ガード
+        async function handleDashboardAccessOrRedirect(user) {
+            if (!user) {
+                window.location.href = 'index.html' + window.location.search;
+                return false;
+            }
+
+            const role = await getUserRoleOrDefault(user);
+
+            // 管理者は管理画面へ
+            if (role === 'admin' || role === 'superadmin') {
+                window.location.href = 'admin-dashboard.html' + window.location.search;
+                return false;
+            }
+
+            // それ以外（user/欠落）は表示継続
+            return true;
+        }
+
+        // 認証状態監視（v5: 重複実行防止）
+        let isAuthProcessing = false;
+        let currentUserId = null;
+        
+        onAuthStateChanged(auth, async (user) => {
+            console.log('[Dashboard v7] onAuthStateChanged 発火:', {
+                user: user ? user.uid : 'null',
+                email: user ? user.email : 'null',
+                isAuthProcessing: isAuthProcessing,
+                currentUserId: currentUserId
+            });
+            
+            // 重複実行を防止
+            if (isAuthProcessing) {
+                console.warn('[Dashboard v7] 認証処理中のため、この呼び出しをスキップします');
+                return;
+            }
+            
+            // ユーザーIDの変化を検出
+            if (currentUserId && user && currentUserId !== user.uid) {
+                console.warn('[Dashboard v7] ⚠️ ユーザーIDが変化しました！', {
+                    old: currentUserId,
+                    new: user.uid
+                });
+            }
+            
+            isAuthProcessing = true;
+            
+            try {
+                const ok = await handleDashboardAccessOrRedirect(user);
+                if (!ok) {
+                    isAuthProcessing = false;
+                    return;
+                }
+
+                currentUserId = user.uid;
+                console.log('[Dashboard v7] 認証済みユーザー:', {
+                    uid: user.uid,
+                    email: user.email
+                });
+
+                // ユーザー情報を反映（users/{uid} 無ければ ensureUserDoc で作成済み）
+                const userData = await ensureUserDoc(user);
+                console.log('[Dashboard v7] Firestoreからユーザー情報取得:', {
+                    name: userData?.name,
+                    email: userData?.email,
+                    role: userData?.role
+                });
+
+                const userName = (userData && userData.name) ? userData.name : (user.email ? user.email.split('@')[0] : 'ユーザー');
+                console.log('[Dashboard v7] 表示名:', userName);
+
+                const welcomeTitle = document.querySelector('.welcome-card h1');
+                if (welcomeTitle) welcomeTitle.textContent = `こんにちは、${userName}様 👋`;
+
+                const userAvatar = document.querySelector('.user-avatar');
+                if (userAvatar && userName) userAvatar.textContent = userName.charAt(0);
+
+                const userInfoSpan = document.querySelector('.user-info span');
+                if (userInfoSpan) userInfoSpan.textContent = userName;
+
+                // await loadRecentDocuments(user.uid);
+                
+                // 最終ログイン時刻を更新
+                const lastLoginP = document.getElementById('last-login-time');
+                if (lastLoginP) {
+                    const now = new Date();
+                    const formatted = formatDateTime(now);
+                    lastLoginP.textContent = `最終ログイン: ${formatted}`;
+                    
+                    await setDoc(doc(db, 'users', user.uid), {
+                        lastLoginAt: serverTimestamp()
+                    }, { merge: true });
+                }
+
+                // 各セクションをロード
+                console.log('[Dashboard v7] データ読み込み開始:', user.uid);
+                await loadNextMeeting(user.uid);
+                await loadMessages(user.uid);
+                // await loadCompanies(user.uid);
+                //await loadActivityStats(user.uid);
+                console.log('[Dashboard v7] すべてのデータ読み込み完了');
+            } catch (error) {
+                console.error('[Dashboard v7] ユーザー情報取得エラー:', error);
+            } finally {
+                isAuthProcessing = false;
+            }
+        });
+
+        // ログアウト処理
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutBtn = document.querySelector('.logout-btn');
+            const logoutModal = document.getElementById('logoutModal');
+            const logoutCancelBtn = document.getElementById('logoutCancelBtn');
+            const logoutConfirmBtn = document.getElementById('logoutConfirmBtn');
+
+            if (!logoutBtn || !logoutModal || !logoutCancelBtn || !logoutConfirmBtn) return;
+
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                logoutModal.style.display = 'flex';
+            });
+
+            logoutCancelBtn.addEventListener('click', () => {
+                logoutModal.style.display = 'none';
+            });
+
+            logoutModal.addEventListener('click', (e) => {
+                if (e.target === logoutModal) {
+                    logoutModal.style.display = 'none';
+                }
+            });
+
+            logoutConfirmBtn.addEventListener('click', async () => {
+                try {
+                    logoutConfirmBtn.disabled = true;
+                    logoutConfirmBtn.textContent = 'ログアウト中...';
+
+                    await signOut(auth);
+                    window.location.href = 'index.html' + window.location.search;
+                } catch (error) {
+                    console.error('ログアウトエラー:', error);
+                    alert('ログアウトに失敗しました。もう一度お試しください。');
+                } finally {
+                    logoutConfirmBtn.disabled = false;
+                    logoutConfirmBtn.textContent = 'ログアウト';
+                }
+            });
+    });
+
+        // ============================================
+        // 書類管理（最新3件表示）
+        // ============================================
+        async function loadRecentDocuments(userId) {
+            try {
+                const q = query(
+                    collection(db, 'documents'),
+                    where('userId', '==', userId),
+                    orderBy('uploadedAt', 'desc'),
+                    firestoreLimit(3)
+                );
+
+                const querySnapshot = await getDocs(q);
+                const documents = [];
+                querySnapshot.forEach((docSnap) => {
+                    documents.push({ id: docSnap.id, ...docSnap.data() });
+                });
+
+                displayDocuments(documents);
+                updateDocumentCount(documents.length);
+
+            } catch (error) {
+                console.error('書類読み込みエラー:', error);
+                displayEmptyState('読み込みエラー');
+            }
+        }
+
+        function displayDocuments(documents) {
+            const card = document.querySelector('.card-icon.document')?.closest('.card');
+            if (!card) return;
+
+            // 既存 document-item / empty-state を除去
+            card.querySelectorAll('.document-item').forEach(el => el.remove());
+            card.querySelector('.empty-state')?.remove();
+
+            const viewAllDiv = card.querySelector('.view-all');
+
+            if (!documents || documents.length === 0) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'empty-state';
+                emptyDiv.style.padding = '30px 20px';
+                emptyDiv.innerHTML = `
+                    <i class="fas fa-file-alt"></i>
+                    <p>まだ書類がアップロードされていません</p>
+                    <a href="documents-upload.html" class="btn btn-outline" style="font-size:0.9rem; padding:8px 20px;">
+                        <i class="fas fa-upload"></i> 最初の書類をアップロード
+                    </a>
+                `;
+                card.insertBefore(emptyDiv, viewAllDiv);
+                return;
+            }
+
+            documents.forEach(docItem => {
+                const item = createDocumentItem(docItem);
+                card.insertBefore(item, viewAllDiv);
+            });
+        }
+
+        function createDocumentItem(docItem) {
+            const div = document.createElement('div');
+            div.className = 'document-item';
+
+            const fileIcon = getFileIcon(docItem.fileType || docItem.fileName);
+            const fileSize = formatFileSize(docItem.fileSize);
+            const uploadDate = formatDate(docItem.uploadedAt);
+
+            const safeFileName = escapeHtml(docItem.fileName || '');
+            const safeDownloadURL = escapeHtml(docItem.downloadURL || '');
+
+            div.innerHTML = `
+                <i class="${fileIcon} document-icon"></i>
+                <div class="document-info">
+                    <div class="document-name">${safeFileName}</div>
+                    <div class="document-meta">最終更新: ${uploadDate} | ${fileSize}</div>
+                </div>
+                <div class="document-actions">
+                    <button class="btn-icon" title="ダウンロード" data-action="download" data-url="${safeDownloadURL}">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="btn-icon" title="削除" data-action="delete" data-id="${escapeHtml(docItem.id)}" data-name="${safeFileName}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+
+            div.querySelector('[data-action="download"]')?.addEventListener('click', function() {
+                downloadDocument(this.getAttribute('data-url'));
+            });
+
+            div.querySelector('[data-action="delete"]')?.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                confirmDeleteDocument(id, name);
+            });
+
+            return div;
+        }
+
+        function updateDocumentCount(count) {
+            const badge = document.querySelector('.card-icon.document')?.closest('.card')?.querySelector('.card-count');
+            if (badge) badge.textContent = `${count}件`;
+        }
+
+        function displayEmptyState(message) {
+            const card = document.querySelector('.card-icon.document')?.closest('.card');
+            if (!card) return;
+
+            card.querySelectorAll('.document-item').forEach(el => el.remove());
+            card.querySelector('.empty-state')?.remove();
+
+            const viewAllDiv = card.querySelector('.view-all');
+
+            const emptyDiv = document.createElement('div');
+            emptyDiv.className = 'empty-state';
+            emptyDiv.style.padding = '30px 20px';
+            emptyDiv.innerHTML = `
+                <i class="fas fa-triangle-exclamation"></i>
+                <p>${escapeHtml(message || 'エラー')}</p>
+            `;
+            card.insertBefore(emptyDiv, viewAllDiv);
+        }
+
+        function downloadDocument(url) {
+            if (!url) {
+                alert('ダウンロードURLがありません');
+                return;
+            }
+            window.open(url, '_blank');
+        }
+
+        async function confirmDeleteDocument(docId, fileName) {
+            const ok = confirm(`書類を削除しますか？\n${fileName || ''}`);
+            if (!ok) return;
+
+            try {
+                // Firestore メタ削除
+                const docRef = doc(db, 'documents', docId);
+                const snap = await getDoc(docRef);
+                const data = snap.exists() ? snap.data() : null;
+
+                // Storage も削除（保存パスがある場合）
+                if (data && data.storagePath) {
+                    await deleteObject(storageRef(storage, data.storagePath));
+                }
+
+                await deleteDoc(docRef);
+
+                // 再読み込み
+                const user = auth.currentUser;
+                // if (user) await loadRecentDocuments(user.uid);
+                
+                // 最終ログイン時刻を更新
+                const lastLoginP = document.getElementById('last-login-time');
+                if (lastLoginP) {
+                    const now = new Date();
+                    const formatted = formatDateTime(now);
+                    lastLoginP.textContent = `最終ログイン: ${formatted}`;
+                    
+                    await setDoc(doc(db, 'users', user.uid), {
+                        lastLoginAt: serverTimestamp()
+                    }, { merge: true });
+                }
+
+                // 各セクションをロード
+                await loadNextMeeting(user.uid);
+                await loadMessages(user.uid);
+                await loadCompanies(user.uid);
+                await loadActivityStats(user.uid);
+
+                alert('削除しました');
+            } catch (error) {
+                console.error('削除エラー:', error);
+                alert('削除に失敗しました: ' + error.message);
+            }
+        }
+
+        // 補助関数
+        function getFileIcon(fileTypeOrName) {
+            if (!fileTypeOrName) return 'fas fa-file';
+            const type = String(fileTypeOrName).toLowerCase();
+            if (type.includes('pdf')) return 'fas fa-file-pdf';
+            if (type.includes('word') || type.includes('.doc')) return 'fas fa-file-word';
+            if (type.includes('image') || type.includes('.jpg') || type.includes('.png')) return 'fas fa-file-image';
+            return 'fas fa-file';
+        }
+
+        function formatFileSize(bytes) {
+            if (!bytes || bytes === 0) return '不明';
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return '不明';
+            try {
+                const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}/${month}/${day}`;
+            } catch (e) {
+                return '不明';
+            }
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#039;');
+        }
+
+        // 開発中の注意メッセージ（ログアウト関連ボタンは除外）
+        document.addEventListener('DOMContentLoaded', function() {
+            const interactiveElements = document.querySelectorAll('button:not(.logout-btn), a[href="#"], a[href^="#"]:not([href="#"])');
+
+            interactiveElements.forEach(element => {
+                element.addEventListener('click', function(e) {
+                    if (
+                        this.classList.contains('logout-btn') ||
+                        this.classList.contains('logout-cancel-btn') ||
+                        this.classList.contains('logout-confirm-btn') ||
+                        this.closest('#logoutModal') ||
+                        (this.href && this.href.includes('index.html'))
+                    ) {
+                        return;
+                    }
+
+                    e.preventDefault();
+                    const actionName = this.textContent.trim() || this.title || '機能';
+                    alert(`🚧 開発中の機能です\n\n「${actionName}」は現在開発準備中です。\n完成後、Firebase連携により実際のデータ管理機能が有効になります。`);
+                });
+            });
+        });
+
+        // デバッグ用公開
+        window.firebaseAuth = auth;
+        window.firebaseDb = db;
+    </script>
+
+    <!-- JSON-LD 構造化データ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "マイページ | 大学赴任者パートナー帯同プログラム",
+        "description": "大学赴任者家族帯同支援プログラムのマイページ。面談予約管理、企業紹介、応募書類管理などを一元管理できます。",
+        "url": "https://hiyusho.github.io/university-relocation-support/dashboard.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "大学赴任者パートナー帯同プログラム",
+            "url": "https://hiyusho.github.io/university-relocation-support/"
+        }
+    }
+    </script>
+    <script src="js/university-config.js"></script>
+    <script src="js/apply-university-theme.js"></script>
+    <script src="js/carry-params.js"></script>
+    <script>
+        (function () {
+  const params = new URLSearchParams(window.location.search);
+
+  const univKey =
+    params.get('univ') ||
+    localStorage.getItem('entry_univ') ||
+    'default';
+
+  const config =
+    (window.UNIVERSITY_CONFIG && window.UNIVERSITY_CONFIG[univKey]) ||
+    UNIVERSITY_CONFIG[univKey] ||
+    UNIVERSITY_CONFIG.default;
+
+  const siteTitle = document.getElementById('dashboardSiteTitle');
+
+  if (siteTitle && config && config.name) {
+    siteTitle.textContent = config.name + ' パートナー帯同マイページ';
+  }
+
+    if (config) {
+    document.documentElement.style.setProperty('--main-color', config.mainColor);
+    document.documentElement.style.setProperty('--main-dark', config.mainDark);
+    document.documentElement.style.setProperty('--main-light', config.mainLight);
+    document.documentElement.style.setProperty('--accent-color', config.accentColor);
+  }
+
+  // 問い合わせ送信後の完了メッセージ
+  if (params.get('sent') === 'true') {
+    alert('お問い合わせを送信しました。担当者が内容を確認し、必要に応じてメールでご連絡します。');
+
+    params.delete('sent');
+
+    const query = params.toString();
+    const cleanUrl = query
+      ? window.location.pathname + '?' + query
+      : window.location.pathname;
+
+    window.history.replaceState({}, '', cleanUrl);
+  }
+})();
+</script>
+<div class="logout-modal-overlay" id="logoutModal">
+  <div class="logout-modal">
+    <div class="logout-modal-icon">
+      <i class="fas fa-sign-out-alt"></i>
+    </div>
+    <h3>ログアウトしますか？</h3>
+    <p>マイページからログアウトしてトップページへ戻ります。</p>
+    <div class="logout-modal-actions">
+      <button type="button" class="logout-cancel-btn" id="logoutCancelBtn">キャンセル</button>
+      <button type="button" class="logout-confirm-btn" id="logoutConfirmBtn">ログアウト</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
