@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子どもの可能性が広がる街 - 子育て・教育環境ストーリー</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/story.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <img src="logo.png" alt="大学ロゴ" class="header-logo">
+                <h1 class="site-title">家族帯同ポータルサイト</h1>
+            </div>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">ホーム</a>
+                <a href="index.html#features" class="nav-link">サービス</a>
+                <a href="index.html#consultation" class="nav-link">無料相談</a>
+                <a href="registration.html" class="nav-link nav-link-primary">新規登録</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 名古屋市ページに戻るボタン -->
+    <div class="back-button-container">
+        <a href="nagoya-city.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> 名古屋市ページに戻る
+        </a>
+    </div>
+
+    <!-- 音声読み上げコントロール -->
+    <div id="speech-controls" class="speech-controls">
+        <button id="play-btn" class="control-btn" aria-label="読み上げ開始">
+            <i class="fas fa-play"></i>
+            <span>読み上げ開始</span>
+        </button>
+        <button id="pause-btn" class="control-btn" aria-label="一時停止" style="display: none;">
+            <i class="fas fa-pause"></i>
+            <span>一時停止</span>
+        </button>
+        <button id="resume-btn" class="control-btn" aria-label="再開" style="display: none;">
+            <i class="fas fa-play"></i>
+            <span>再開</span>
+        </button>
+        <button id="stop-btn" class="control-btn" aria-label="停止" style="display: none;">
+            <i class="fas fa-stop"></i>
+            <span>停止</span>
+        </button>
+        <div class="speed-control">
+            <label for="speech-rate">速度:</label>
+            <input type="range" id="speech-rate" min="0.5" max="2" step="0.1" value="1">
+            <span id="rate-value">1.0x</span>
+        </div>
+    </div>
+
+    <!-- ストーリーヒーロー -->
+    <section class="story-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-category">子育て・教育環境の充実</div>
+            <h1 class="hero-title">子どもの可能性が広がる街</h1>
+            <p class="hero-subtitle">待機児童ゼロ、充実した教育環境。名古屋で育つ、という選択</p>
+        </div>
+    </section>
+
+    <!-- メインコンテンツ -->
+    <main class="story-main">
+        <div class="story-container">
+            <article class="story-content">
+                <!-- プロローグ -->
+                <section class="story-section" data-speech-section>
+                    <h2 class="section-title">プロローグ</h2>
+                    <div class="story-text" data-speech-text>
+                        <p class="story-paragraph lead-paragraph">
+                            「保育園、すぐに入れますよ」
+                        </p>
+                        <p class="story-paragraph">
+                            名古屋市の子育て支援窓口で、担当者のその言葉を聞いた時、山田真理子さん（仮名・34歳）は耳を疑いました。東京では、保育園探しに何ヶ月も奔走し、結局「待機児童」として順番待ちをしていた経験があります。
+                        </p>
+                        <p class="story-paragraph">
+                            「え、本当ですか？東京では、4月入園でも抽選で落ちて…」真理子さんの声は震えていました。夫の名古屋大学への赴任が決まった時、一番の不安は「子どもの保育園が見つかるか」でした。
+                        </p>
+                        <p class="story-paragraph">
+                            しかし、名古屋での子育て環境は、真理子さんの予想をはるかに超えるものでした。
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 第一章 -->
+                <section class="story-section" data-speech-section>
+                    <h2 class="section-title">第一章：待機児童ゼロの衝撃</h2>
+                    <div class="story-text" data-speech-text>
+                        <h3 class="subsection-title">東京での保育園探し地獄</h3>
+                        <p class="story-paragraph">
+                            真理子さんは、東京・世田谷区で第一子の保育園探しに苦労しました。妊娠中から保育園のリサーチを始め、出産後すぐに見学に回り、認可保育園に申し込みました。
+                        </p>
+
+                        <div class="comparison-box tokyo">
+                            <h4>東京での保育園探し（世田谷区）</h4>
+                            <ul>
+                                <li><strong>申込時期：</strong>出産後すぐ（生後2ヶ月）</li>
+                                <li><strong>希望園数：</strong>第10希望まで記入</li>
+                                <li><strong>結果：</strong>全て不承諾（待機児童）</li>
+                                <li><strong>認可外保育園：</strong>月額8万円で契約</li>
+                                <li><strong>待機期間：</strong>約1年</li>
+                            </ul>
+                        </div>
+
+                        <p class="story-paragraph">
+                            「毎日、認可外保育園に8万円払いながら、認可保育園の空きを待つ日々でした。仕事と育児で精一杯なのに、保育園探しのストレスで心が折れそうでした」（真理子さん）
+                        </p>
+
+                        <h3 class="subsection-title">名古屋では、すぐに入園</h3>
+                        <p class="story-paragraph">
+                            名古屋に引っ越した真理子さんは、第二子の保育園を探し始めました。しかし、東京での経験から「また待機児童になるかも…」と不安でした。
+                        </p>
+
+                        <div class="comparison-box nagoya">
+                            <h4>名古屋での保育園探し（千種区）</h4>
+                            <ul>
+                                <li><strong>申込時期：</strong>引っ越し後すぐ</li>
+                                <li><strong>希望園数：</strong>第3希望まで</li>
+                                <li><strong>結果：</strong>第1希望の認可保育園に即内定</li>
+                                <li><strong>保育料：</strong>月額2.5万円（認可保育園）</li>
+                                <li><strong>待機期間：</strong>なし（即入園）</li>
+                            </ul>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>🎉 名古屋市の待機児童数</h4>
+                            <p class="data-highlight"><strong>0人（2023年4月時点）</strong></p>
+                            <p>名古屋市は、待機児童ゼロを継続しています</p>
+                        </div>
+
+                        <p class="story-paragraph quote-box">
+                            「第1希望の保育園にすぐ入れて、しかも保育料が東京の3分の1。信じられませんでした。名古屋に来て、本当に良かったです」（真理子さん）
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 第二章 -->
+                <section class="story-section" data-speech-section>
+                    <h2 class="section-title">第二章：充実した子育て支援</h2>
+                    <div class="story-text" data-speech-text>
+                        <h3 class="subsection-title">子ども医療費助成</h3>
+                        <p class="story-paragraph">
+                            名古屋市では、子どもの医療費が手厚く助成されます。真理子さんの子どもは、よく風邪をひくため、東京では毎月の医療費が家計を圧迫していました。
+                        </p>
+
+                        <div class="data-box">
+                            <h4>名古屋市の子ども医療費助成制度</h4>
+                            <ul>
+                                <li><strong>対象年齢：</strong>中学3年生まで</li>
+                                <li><strong>助成内容：</strong>通院・入院の医療費を助成</li>
+                                <li><strong>自己負担：</strong>1回500円（月2回まで）</li>
+                                <li><strong>所得制限：</strong>なし</li>
+                            </ul>
+                        </div>
+
+                        <p class="story-paragraph">
+                            「子どもが熱を出しても、気軽に病院に連れて行けるようになりました。東京では、医療費がもったいないと思って、様子を見すぎてしまうこともあった。名古屋では、そんな心配がありません」（真理子さん）
+                        </p>
+
+                        <h3 class="subsection-title">病児保育の充実</h3>
+                        <p class="story-paragraph">
+                            真理子さんが特に助かっているのは、病児保育の充実度です。子どもが急に熱を出した時でも、病児保育施設に預けることができます。
+                        </p>
+
+                        <div class="data-box">
+                            <h4>名古屋市の病児保育施設</h4>
+                            <ul>
+                                <li><strong>施設数：</strong>市内に30か所以上</li>
+                                <li><strong>対象：</strong>病気の回復期にある子ども</li>
+                                <li><strong>利用料：</strong>1日2,000円</li>
+                                <li><strong>予約：</strong>事前登録で利用可能</li>
+                            </ul>
+                        </div>
+
+                        <p class="story-paragraph quote-box">
+                            「東京では、病児保育の予約が取れず、仕事を休むことが多かったです。名古屋では、病児保育施設が充実しているので、急な発熱でも対応できます。仕事との両立が本当に楽になりました」（真理子さん）
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 第三章 -->
+                <section class="story-section" data-speech-section>
+                    <h2 class="section-title">第三章：教育環境の充実</h2>
+                    <div class="story-text" data-speech-text>
+                        <h3 class="subsection-title">公立小学校・中学校のレベルが高い</h3>
+                        <p class="story-paragraph">
+                            真理子さんの長男は、名古屋市立の小学校に通っています。東京では私立小学校の受験を検討していましたが、名古屋では公立小学校でも十分な教育が受けられます。
+                        </p>
+
+                        <div class="data-box">
+                            <h4>名古屋市の教育環境</h4>
+                            <ul>
+                                <li><strong>公立小学校：</strong>約260校</li>
+                                <li><strong>公立中学校：</strong>約110校</li>
+                                <li><strong>学力：</strong>全国学力テストで上位（愛知県全体）</li>
+                                <li><strong>進学実績：</strong>旭丘高校・明和高校など、名門公立高校が多数</li>
+                            </ul>
+                        </div>
+
+                        <p class="story-paragraph">
+                            「東京では、中学受験が当たり前で、小学校から塾通いが必須でした。でも、名古屋では公立中学→公立高校→国立大学という進路が一般的。私立受験の費用やストレスがなくなって、子どもものびのび育っています」（真理子さん）
+                        </p>
+
+                        <h3 class="subsection-title">名古屋大学附属学校の存在</h3>
+                        <p class="story-paragraph">
+                            名古屋大学には附属小学校・中学校・高校があり、研究者の子どもは優先的に入学できる枠があります。
+                        </p>
+
+                        <div class="data-box">
+                            <h4>名古屋大学教育学部附属学校</h4>
+                            <ul>
+                                <li><strong>附属小学校：</strong>1学年約70名</li>
+                                <li><strong>附属中学校：</strong>1学年約120名</li>
+                                <li><strong>附属高校：</strong>1学年約80名</li>
+                                <li><strong>特徴：</strong>研究的な教育実践、名古屋大学との連携</li>
+                            </ul>
+                        </div>
+
+                        <p class="story-paragraph">
+                            「名古屋大学の附属学校は、教育研究の最前線を体験できる環境です。研究者の子どもにとって、理想的な教育環境だと思います」（真理子さん）
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 第四章 -->
+                <section class="story-section" data-speech-section>
+                    <h2 class="section-title">第四章：子どもの遊び場が豊富</h2>
+                    <div class="story-text" data-speech-text>
+                        <h3 class="subsection-title">東山動植物園</h3>
+                        <p class="story-paragraph">
+                            真理子さんの子どもたちが一番好きな場所は、東山動植物園です。約60ヘクタールの広大な敷地に、500種以上の動物と7,000種の植物がいます。
+                        </p>
+
+                        <div class="data-box">
+                            <h4>東山動植物園</h4>
+                            <ul>
+                                <li><strong>入園料：</strong>大人500円、中学生以下無料</li>
+                                <li><strong>年間パスポート：</strong>大人2,000円（4回以上で元が取れる）</li>
+                                <li><strong>アクセス：</strong>地下鉄東山線「東山公園駅」下車すぐ</li>
+                                <li><strong>規模：</strong>上野動物園と同規模、入園者数は日本第3位</li>
+                            </ul>
+                        </div>
+
+                        <p class="story-paragraph quote-box">
+                            「週末は必ず東山動植物園に行きます。入園料が安いから、気軽に行けるんです。子どもたちは毎回新しい発見があって、飽きることがありません」（真理子さん）
+                        </p>
+
+                        <h3 class="subsection-title">名古屋市科学館</h3>
+                        <p class="story-paragraph">
+                            長男が特に好きなのは、名古屋市科学館です。世界最大級のプラネタリウムがあり、科学の不思議を体験できます。
+                        </p>
+
+                        <div class="data-box">
+                            <h4>名古屋市科学館</h4>
+                            <ul>
+                                <li><strong>入館料：</strong>大人400円、中学生以下無料</li>
+                                <li><strong>プラネタリウム：</strong>世界最大級（ギネス認定）</li>
+                                <li><strong>展示：</strong>約230種類の科学展示</li>
+                                <li><strong>人気：</strong>年間来館者数約170万人</li>
+                            </ul>
+                        </div>
+
+                        <p class="story-paragraph">
+                            「長男は将来、科学者になりたいと言っています。名古屋市科学館で、本物の実験や展示を見て、科学への興味がどんどん深まっています」（真理子さん）
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 第五章 -->
+                <section class="story-section" data-speech-section>
+                    <h2 class="section-title">第五章：名古屋で育つ、という選択</h2>
+                    <div class="story-text" data-speech-text>
+                        <h3 class="subsection-title">東京と名古屋、子育て環境の比較</h3>
+                        <p class="story-paragraph">
+                            真理子さんは、東京と名古屋での子育て環境を振り返り、名古屋での生活を選んで本当に良かったと感じています。
+                        </p>
+
+                        <div class="comparison-table">
+                            <h4>子育て環境の比較</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>項目</th>
+                                        <th>東京（世田谷区）</th>
+                                        <th>名古屋（千種区）</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>保育園</td>
+                                        <td>待機児童多数、認可外で月8万円</td>
+                                        <td class="highlight">待機児童ゼロ、認可で月2.5万円</td>
+                                    </tr>
+                                    <tr>
+                                        <td>医療費</td>
+                                        <td>自己負担あり（年間約5万円）</td>
+                                        <td class="highlight">ほぼ無料（年間約1万円）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>教育環境</td>
+                                        <td>私立志向強い、受験費用高い</td>
+                                        <td class="highlight">公立充実、進学実績良好</td>
+                                    </tr>
+                                    <tr>
+                                        <td>遊び場</td>
+                                        <td>混雑、入場料高め</td>
+                                        <td class="highlight">広々、入場料安い</td>
+                                    </tr>
+                                    <tr>
+                                        <td>生活費</td>
+                                        <td>高い（家賃24万円）</td>
+                                        <td class="highlight">安い（家賃12万円）</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3 class="subsection-title">子どもの笑顔が増えた</h3>
+                        <p class="story-paragraph">
+                            真理子さんが一番嬉しいのは、子どもたちの笑顔が増えたことです。
+                        </p>
+
+                        <p class="story-paragraph quote-box">
+                            「東京では、私自身が保育園探しや仕事と育児の両立でストレスを抱えていました。そのストレスが子どもにも伝わっていたと思います。でも、名古屋では生活に余裕ができて、心から子どもと向き合える時間が増えました。子どもたちも、のびのびと育っています」（真理子さん）
+                        </p>
+                    </div>
+                </section>
+
+                <!-- エピローグ -->
+                <section class="story-section" data-speech-section>
+                    <h2 class="section-title">エピローグ</h2>
+                    <div class="story-text" data-speech-text>
+                        <p class="story-paragraph">
+                            名古屋に来て3年。真理子さん一家は、この街での子育てを心から楽しんでいます。
+                        </p>
+                        <p class="story-paragraph">
+                            「名古屋は、子どもの可能性が広がる街です。待機児童ゼロ、充実した教育環境、豊富な遊び場、そして何より、親が心に余裕を持って子育てできる環境。東京では実現できなかった理想の子育てが、名古屋では当たり前にできています」（真理子さん）
+                        </p>
+                        <p class="story-paragraph">
+                            長男は、将来は名古屋大学で科学を学びたいと言っています。次男は、東山動植物園の飼育員になりたいと夢を語っています。
+                        </p>
+                        <p class="story-paragraph quote-box">
+                            「子どもたちが、名古屋で夢を持って育っている。それが、私にとって一番の幸せです。名古屋に来て、本当に良かった」（真理子さん）
+                        </p>
+                        <p class="story-paragraph lead-paragraph">
+                            名古屋で育つ。それは、子どもにとっても、親にとっても、最良の選択かもしれません。
+                        </p>
+                    </div>
+                </section>
+
+                <!-- データ補足 -->
+                <section class="story-section data-supplement">
+                    <h2 class="section-title">データで見る名古屋の子育て環境</h2>
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <h4>待機児童数（2023年4月）</h4>
+                            <p class="data-value">0人</p>
+                            <p class="data-note">5年連続ゼロ継続中</p>
+                            <p class="data-source">出典: 名古屋市子ども青少年局</p>
+                        </div>
+                        <div class="data-item">
+                            <h4>子ども医療費助成</h4>
+                            <p class="data-value">中学3年生まで</p>
+                            <p class="data-note">1回500円（月2回まで）</p>
+                            <p class="data-source">出典: 名古屋市</p>
+                        </div>
+                        <div class="data-item">
+                            <h4>病児保育施設</h4>
+                            <p class="data-value">30か所以上</p>
+                            <p class="data-note">市内全域に配置</p>
+                            <p class="data-source">出典: 名古屋市</p>
+                        </div>
+                        <div class="data-item">
+                            <h4>公立小・中学校</h4>
+                            <p class="data-value">約370校</p>
+                            <p class="data-note">小学校260校、中学校110校</p>
+                            <p class="data-source">出典: 名古屋市教育委員会</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 関連ストーリー -->
+                <section class="related-stories">
+                    <h2 class="section-title">関連するストーリー</h2>
+                    <div class="story-cards">
+                        <a href="urban-nature-story.html" class="story-card">
+                            <div class="card-icon">🌳</div>
+                            <h3>都市機能とのどかさの両立</h3>
+                            <p>15分で変わる、二つの顔</p>
+                        </a>
+                        <a href="cost-living-story.html" class="story-card">
+                            <div class="card-icon">💰</div>
+                            <h3>生活コストの安さ</h3>
+                            <p>東京と比べて月17万円の差</p>
+                        </a>
+                        <a href="transport-access-story.html" class="story-card">
+                            <div class="card-icon">🚄</div>
+                            <h3>交通アクセスの良さ</h3>
+                            <p>新幹線で東京・大阪へ約1.5時間</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="story-cta">
+                    <h2>名古屋での新生活をサポートします</h2>
+                    <p>住居探しから生活立ち上げまで、専門スタッフが無料でサポート</p>
+                    <div class="cta-buttons">
+                        <a href="nagoya-city.html" class="btn btn-primary">名古屋市の詳細を見る</a>
+                        <a href="index.html#consultation" class="btn btn-secondary">無料相談を申し込む</a>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 大学赴任者家族帯同支援プログラム All Rights Reserved.</p>
+            <nav class="footer-nav">
+                <a href="privacy-policy.html">プライバシーポリシー</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/speech-reader.js"></script>
+</body>
+</html>
