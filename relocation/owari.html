@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>尾張地区で暮らす - 大学赴任者家族帯同支援プログラム</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/shared-site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body data-region="owari" data-region-json="data/owari-basic-data.json" data-default-univ="nagoya_u">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="site-header-left">
+        <img src="logo.png" alt="大学ロゴ" class="university-logo header-logo">
+        <h1 class="site-title">家族帯同ポータルサイト</h1>
+      </div>
+      <nav class="site-actions">
+        <a href="index.html" class="back-button">
+          <i class="fas fa-arrow-left"></i> トップに戻る
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="region-hero">
+    <div class="hero-content">
+      <h1 class="hero-title" id="regionHeroTitle">尾張地区で暮らす</h1>
+      <p class="hero-subtitle" id="regionHeroSubtitle">名古屋近郊の利便性と落ち着いた住環境を確認します。</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" id="regionIntroTitle">尾張地区の特徴</h2>
+        <p class="section-description" id="regionIntroDescription">情報を読み込んでいます。</p>
+
+        <div class="data-policy-box">
+          <h3 id="regionPolicyTitle">情報の確認について</h3>
+          <p id="regionPolicyBody">情報を読み込んでいます。</p>
+          <p class="last-updated" id="regionLastUpdated">情報更新日：確認中</p>
+        </div>
+
+        <div class="region-stats" id="regionStatsGrid">
+          <div class="stat-card">
+            <div class="icon"><i class="fas fa-spinner fa-spin"></i></div>
+            <div class="number">読み込み中</div>
+            <div class="label">データを読み込んでいます</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-compact">
+      <div class="container">
+        <h2 class="section-title"><i class="fas fa-database"></i> データで見る尾張地区</h2>
+        <p class="city-data-note" id="regionDataNote">数値情報は取得時点の参考情報です。最新情報は各公式サイトをご確認ください。</p>
+        <div class="data-managed-grid" id="regionManagedDataGrid"></div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">市町村別詳細</h2>
+        <p class="section-description">
+          尾張地区の主要自治体について、交通・家賃・子育て環境などの参考情報を整理しています。
+        </p>
+        <div class="municipality-grid" id="municipalityDetailsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">住まい・生活の確認ポイント</h2>
+        <div class="card-grid" id="regionCheckPointsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section-compact">
+      <div class="container">
+        <h2 class="section-title">関連リンク</h2>
+        <div class="links-grid card-grid" id="regionRelatedLinks"></div>
+      </div>
+    </section>
+
+    <section class="section-compact">
+      <div class="container">
+        <div class="cta-box">
+          <h2><i class="fas fa-envelope"></i> 住まいに関する相談</h2>
+          <p style="font-size: 1.1rem; font-weight: 600; margin: 20px 0;">現在はメールベースで個別サポートを行っています</p>
+          <p>住む場所の考え方や確認すべきポイントについて、必要に応じて事務局へご相談ください。</p>
+          <p style="margin-top: 24px;">
+            <a href="contact-support.html" class="btn btn-secondary">事務局へ質問する</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer section-compact">
+    <div class="container">
+      <p>&copy; 2025 大学赴任者家族帯同支援プログラム All Rights Reserved.</p>
+      <p>※ 本ページは地域情報の確認補助を目的とした参考情報です。</p>
+    </div>
+  </footer>
+
+  <script src="js/university-config.js"></script>
+  <script src="js/university-theme.js"></script>
+  <script src="js/carry-params.js"></script>
+  <script src="js/region-data-loader.js"></script>
+</body>
+</html>
