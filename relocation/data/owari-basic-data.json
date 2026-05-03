@@ -1,0 +1,435 @@
+{
+  "stats": {
+    "regionName": "愛知県 尾張地域",
+    "officialOwariMunicipalityCount": {
+      "value": 18,
+      "unit": "municipalities",
+      "breakdown": {
+        "cities": 14,
+        "towns": 4
+      },
+      "sourceType": "愛知県 尾張県民事務所 公式ページ",
+      "sourceDate": "2026-05-02 accessed",
+      "sourceUrl": "https://www.pref.aichi.jp/soshiki/owari/0000012353.html"
+    },
+    "targetCitiesTownsCount": {
+      "value": 9,
+      "unit": "municipalities",
+      "coveredMunicipalities": [
+        "一宮市",
+        "春日井市",
+        "小牧市",
+        "犬山市",
+        "江南市",
+        "稲沢市",
+        "岩倉市",
+        "北名古屋市",
+        "清須市"
+      ],
+      "note": "ユーザーが例示した尾張地域の主要自治体を対象に整理"
+    },
+    "owariRegionPopulation": {
+      "value": 1875473,
+      "unit": "persons",
+      "asOf": "2024-02-01",
+      "sourceType": "愛知県 尾張県民事務所 公式ページ（推計人口）",
+      "sourceUrl": "https://www.pref.aichi.jp/soshiki/owari/0000012353.html"
+    },
+    "methodology": {
+      "travelTime": "名古屋駅までの代表的な鉄道所要時間。市内中心駅ベース、または主要駅ベースの代表値。複数駅がある市は代表値またはレンジを採用。",
+      "rent": "1LDK/2LDKの代表相場。SUUMOを主、必要に応じてHOME'S・at homeで補完。サイトごとに集計条件差があるため、一部は estimate。",
+      "childRearingEducation": "自治体公式の子育て・教育ページ、移住・暮らし案内、支援ポータルの記載を要約。"
+    }
+  },
+  "managedDataItems": [
+    {
+      "municipality": "一宮市",
+      "travelTimeToNagoyaStation": {
+        "representativeMinutes": 10,
+        "rangeMinutes": "10-30",
+        "estimate": false,
+        "note": "JR尾張一宮駅から名古屋駅まで約10分。市内の多くの駅は30分以内。",
+        "sourceType": "一宮市公式アクセス案内",
+        "sourceDate": "2025-03 timetable basis / 2026-05-02 accessed",
+        "sourceUrl": "https://www.city.ichinomiya.aichi.jp/sougouseisaku/seisaku/1044355/1010163/1026513/1065059.html"
+      },
+      "averageRentRange1LDKor2LDK": {
+        "display": "4.9万〜5.9万円/月",
+        "minJPY": 49000,
+        "maxJPY": 59000,
+        "estimate": false,
+        "sourceType": "SUUMO 家賃相場",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://suumo.jp/chintai/soba/aichi/sc_ichinomiya/"
+      },
+      "childRearingEducationEnvironment": {
+        "summary": "子育て支援センター6か所、子育てひろば2か所、児童館25か所など地域拠点が多い。相談窓口や一時預かりもあり、生活圏内で支援にアクセスしやすい。",
+        "estimate": false,
+        "sourceType": "一宮市公式 子育て・教育ページ / 一宮市で子育て",
+        "sourceDate": "2025-02-17 / 2026-05-02 accessed",
+        "sourceUrl": "https://www.city.ichinomiya.aichi.jp/kosodate/index.html"
+      },
+      "optional": {
+        "population": {
+          "value": null,
+          "unit": "persons",
+          "asOf": null,
+          "estimate": true,
+          "note": "今回の調査では市単位の最新公式人口を未取得"
+        },
+        "mainRailwayLines": [
+          "JR東海道本線",
+          "名鉄名古屋本線",
+          "名鉄尾西線"
+        ],
+        "commercialAmenityAvailability": "名古屋方面への鉄道・道路アクセスが強く、広域生活利便性は高い。",
+        "naturalEnvironment": null
+      }
+    },
+    {
+      "municipality": "春日井市",
+      "travelTimeToNagoyaStation": {
+        "representativeMinutes": 17,
+        "rangeMinutes": "17-25",
+        "estimate": true,
+        "note": "勝川駅から名古屋駅へ約17分。春日井駅ベースでは概ね23-25分。",
+        "sourceType": "春日井市観光・暮らし案内 / NAVITIME・駅探",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://kasugai-kanko.jp/about.html"
+      },
+      "averageRentRange1LDKor2LDK": {
+        "display": "約5.4万〜8.2万円/月",
+        "minJPY": 54000,
+        "maxJPY": 81900,
+        "estimate": true,
+        "note": "SUUMO・HOME'Sで集計条件差が大きいため幅を広めに採用。",
+        "sourceType": "SUUMO 家賃相場 / HOME'S 家賃相場",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://suumo.jp/chintai/soba/aichi/sc_kasugai/"
+      },
+      "childRearingEducationEnvironment": {
+        "summary": "妊娠期から高校生・大学生までを意識した支援情報が整理されている。保育園の待機児童ゼロ継続が特徴で、子育て応援ガイドブックなど情報整備も進む。",
+        "estimate": false,
+        "sourceType": "春日井市公式 子育て・教育 / 春日井市シティプロモーション",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.city.kasugai.lg.jp/kosodate/index.html"
+      },
+      "optional": {
+        "population": {
+          "value": 300000,
+          "unit": "persons",
+          "asOf": "2026-05-02 accessed",
+          "estimate": true,
+          "note": "観光・暮らし案内の『人口30万人超』表現による代表値"
+        },
+        "mainRailwayLines": [
+          "JR中央本線"
+        ],
+        "commercialAmenityAvailability": "生活利便施設が充実した住宅都市。",
+        "naturalEnvironment": "身近に自然があり、都市利便と自然のバランスがよい。"
+      }
+    },
+    {
+      "municipality": "小牧市",
+      "travelTimeToNagoyaStation": {
+        "representativeMinutes": 40,
+        "rangeMinutes": "35-50",
+        "estimate": true,
+        "note": "小牧駅から名古屋駅は乗換ありで概ね40分前後。",
+        "sourceType": "NAVITIME・駅探 乗換案内",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.navitime.co.jp/transfer/searchlist?orvStationCode=00003760&dnvStationCode=00008576&defaultCondition=0"
+      },
+      "averageRentRange1LDKor2LDK": {
+        "display": "約5.4万〜6.8万円/月",
+        "minJPY": 54000,
+        "maxJPY": 68000,
+        "estimate": true,
+        "note": "SUUMOの1LDK相場とat home等の2LDK相場を組み合わせた代表レンジ。",
+        "sourceType": "SUUMO 家賃相場 / at home・HOME'S 補完",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://suumo.jp/chintai/soba/aichi/sc_komaki/"
+      },
+      "childRearingEducationEnvironment": {
+        "summary": "妊娠・出産から学齢期まで年齢別に情報が整理され、子育て世代包括支援センター、こまきこども未来館、一時預かり、ファミリー・サポート・センターなど実拠点が充実。",
+        "estimate": false,
+        "sourceType": "小牧市子育てサイト 公式",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "http://www.city.komaki.aichi.jp/kosodate/index.html"
+      },
+      "optional": {
+        "population": {
+          "value": null,
+          "unit": "persons",
+          "asOf": null,
+          "estimate": true,
+          "note": "今回の調査では市単位の最新公式人口を未取得"
+        },
+        "mainRailwayLines": [
+          "名鉄小牧線"
+        ],
+        "commercialAmenityAvailability": "ラピオ周辺など子育て支援機能が集約された拠点がある。",
+        "naturalEnvironment": null
+      }
+    },
+    {
+      "municipality": "犬山市",
+      "travelTimeToNagoyaStation": {
+        "representativeMinutes": 32,
+        "rangeMinutes": "26-41",
+        "estimate": true,
+        "note": "犬山駅から名古屋駅は特急等で約26-32分、便により40分前後。",
+        "sourceType": "NAVITIME・駅探・ジョルダン",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.navitime.co.jp/transfer/searchlist?orvStationCode=00002086&dnvStationCode=00008576&defaultCondition=0"
+      },
+      "averageRentRange1LDKor2LDK": {
+        "display": "5.3万〜5.8万円/月",
+        "minJPY": 53000,
+        "maxJPY": 58000,
+        "estimate": false,
+        "sourceType": "SUUMO 家賃相場",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://suumo.jp/chintai/soba/aichi/sc_inuyama/"
+      },
+      "childRearingEducationEnvironment": {
+        "summary": "市の子育て・教育ページがまとまっており、ひとり親支援や各種子育て応援メニューが確認しやすい。子育て情報サイトや相談案内も用意され、ファミリー向け導線は比較的明快。",
+        "estimate": false,
+        "sourceType": "犬山市公式 子育て・教育 / 子育て情報",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.city.inuyama.aichi.jp/lifescene/1007546/index.html"
+      },
+      "optional": {
+        "population": {
+          "value": 70779,
+          "unit": "persons",
+          "asOf": "2026-04-01",
+          "estimate": false,
+          "sourceType": "犬山市公式サイト",
+          "sourceUrl": "https://www.city.inuyama.aichi.jp/lifescene/1007546/index.html"
+        },
+        "mainRailwayLines": [
+          "名鉄犬山線",
+          "名鉄小牧線"
+        ],
+        "commercialAmenityAvailability": null,
+        "naturalEnvironment": null
+      }
+    },
+    {
+      "municipality": "江南市",
+      "travelTimeToNagoyaStation": {
+        "representativeMinutes": 28,
+        "rangeMinutes": "23-29",
+        "estimate": true,
+        "note": "江南駅から名古屋方面は急行等で概ね23-29分。",
+        "sourceType": "NAVITIME・Yahoo!路線情報・ジョルダン",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.navitime.co.jp/transfer/searchlist?orvStationCode=00002441&dnvStationCode=00008576&defaultCondition=0"
+      },
+      "averageRentRange1LDKor2LDK": {
+        "display": "約5.8万〜6.1万円/月",
+        "minJPY": 57800,
+        "maxJPY": 61000,
+        "estimate": true,
+        "note": "1LDKはHOME'S/at home補完、2LDKはat home補完。SUUMOは1LDK掲載が薄い。",
+        "sourceType": "HOME'S / at home / SUUMO 補完",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.homes.co.jp/chintai/aichi/konan-city/price/"
+      },
+      "childRearingEducationEnvironment": {
+        "summary": "専用の子育て情報サイトがあり、子育て・教育相談、こども家庭センター、発達相談など相談導線が明確。交通児童遊園や放課後子ども教室など、地域活動と学習支援もある。",
+        "estimate": false,
+        "sourceType": "江南市公式 子育て情報サイト / 公式トップ",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.city.konan.lg.jp/kurashi/1009685/index.html"
+      },
+      "optional": {
+        "population": {
+          "value": null,
+          "unit": "persons",
+          "asOf": null,
+          "estimate": true,
+          "note": "今回の調査では市単位の最新公式人口を未取得"
+        },
+        "mainRailwayLines": [
+          "名鉄犬山線"
+        ],
+        "commercialAmenityAvailability": "地域イベント・市民向け催しが比較的見つけやすい。",
+        "naturalEnvironment": null
+      }
+    },
+    {
+      "municipality": "稲沢市",
+      "travelTimeToNagoyaStation": {
+        "representativeMinutes": 12,
+        "rangeMinutes": "11-13",
+        "estimate": true,
+        "note": "JR稲沢駅から名古屋駅へ概ね11-13分。",
+        "sourceType": "NAVITIME・駅探・Yahoo!路線情報",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.navitime.co.jp/transfer/searchlist?orvStationCode=00000485&dnvStationCode=00008576&defaultCondition=0"
+      },
+      "averageRentRange1LDKor2LDK": {
+        "display": "5.4万〜6.1万円/月",
+        "minJPY": 54000,
+        "maxJPY": 61000,
+        "estimate": false,
+        "sourceType": "SUUMO 家賃相場",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://suumo.jp/chintai/soba/aichi/sc_inazawa/"
+      },
+      "childRearingEducationEnvironment": {
+        "summary": "『子育て・教育は稲沢で！』を掲げ、子育て応援サイト、支援ガイドブック、保育・教育情報を整理。経済的支援、相談支援、教育環境整備を前面に出している。",
+        "estimate": false,
+        "sourceType": "稲沢市公式 子育て・教育 / 子育てなら、わざわざいなざわ！",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.city.inazawa.aichi.jp/kosodate/index.html"
+      },
+      "optional": {
+        "population": {
+          "value": null,
+          "unit": "persons",
+          "asOf": null,
+          "estimate": true,
+          "note": "今回の調査では市単位の最新公式人口を未取得"
+        },
+        "mainRailwayLines": [
+          "JR東海道本線",
+          "名鉄名古屋本線"
+        ],
+        "commercialAmenityAvailability": null,
+        "naturalEnvironment": null
+      }
+    },
+    {
+      "municipality": "岩倉市",
+      "travelTimeToNagoyaStation": {
+        "representativeMinutes": 21,
+        "rangeMinutes": "12-27",
+        "estimate": true,
+        "note": "岩倉駅から名鉄名古屋までは12-21分程度、名古屋駅換算では概ね20分台前半。",
+        "sourceType": "NAVITIME・駅探・Yahoo!路線情報",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.navitime.co.jp/transfer/searchlist?orvStationCode=00001424&dnvStationCode=00008576&defaultCondition=0"
+      },
+      "averageRentRange1LDKor2LDK": {
+        "display": "5.0万〜5.9万円/月",
+        "minJPY": 50000,
+        "maxJPY": 59000,
+        "estimate": false,
+        "sourceType": "SUUMO 家賃相場",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://suumo.jp/chintai/soba/aichi/sc_iwakura/"
+      },
+      "childRearingEducationEnvironment": {
+        "summary": "子育て向けサイトがあり、子育て応援ブック、休日夜間診療案内、関連イベント、利用施設情報が整理されている。子育て支援ではリフレッシュ保育、短期支援、相談支援の案内がある。",
+        "estimate": false,
+        "sourceType": "岩倉市公式 子育て向けサイト / 子育て支援",
+        "sourceDate": "2026-04-01 / 2026-05-02 accessed",
+        "sourceUrl": "https://www.city.iwakura.aichi.jp/category/6-0-0-0-0.html"
+      },
+      "optional": {
+        "population": {
+          "value": 47946,
+          "unit": "persons",
+          "asOf": "2026-05-01",
+          "estimate": false,
+          "sourceType": "岩倉市公式サイト",
+          "sourceUrl": "https://www.city.iwakura.aichi.jp/"
+        },
+        "mainRailwayLines": [
+          "名鉄犬山線"
+        ],
+        "commercialAmenityAvailability": null,
+        "naturalEnvironment": null
+      }
+    },
+    {
+      "municipality": "北名古屋市",
+      "travelTimeToNagoyaStation": {
+        "representativeMinutes": 19,
+        "rangeMinutes": "17-21",
+        "estimate": true,
+        "note": "代表駅の西春駅から名古屋方面へ概ね17-21分。",
+        "sourceType": "Yahoo!路線情報・NAVITIME / 参考として移住情報メディア",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://transit.yahoo.co.jp/search/result/%E8%A5%BF%E6%98%A5-%E5%90%8D%E5%8F%A4%E5%B1%8B"
+      },
+      "averageRentRange1LDKor2LDK": {
+        "display": "5.6万〜6.4万円/月",
+        "minJPY": 56000,
+        "maxJPY": 64000,
+        "estimate": false,
+        "sourceType": "SUUMO 家賃相場",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://suumo.jp/chintai/soba/aichi/sc_kitanagoya/"
+      },
+      "childRearingEducationEnvironment": {
+        "summary": "子育て・教育ページに子育て支援センター、児童館、育児相談、都市公園、保育園開放などがまとまり、子どもの日常支援と外遊び環境の情報が探しやすい。",
+        "estimate": false,
+        "sourceType": "北名古屋市公式 子育て・教育",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.city.kitanagoya.lg.jp/kosodate/index.html"
+      },
+      "optional": {
+        "population": {
+          "value": null,
+          "unit": "persons",
+          "asOf": null,
+          "estimate": true,
+          "note": "今回の調査では市単位の最新公式人口を未取得"
+        },
+        "mainRailwayLines": [
+          "名鉄犬山線"
+        ],
+        "commercialAmenityAvailability": "名古屋近接のベッドタウン性が強く、都市利便にアクセスしやすい。",
+        "naturalEnvironment": null
+      }
+    },
+    {
+      "municipality": "清須市",
+      "travelTimeToNagoyaStation": {
+        "representativeMinutes": 9,
+        "rangeMinutes": "8-10",
+        "estimate": true,
+        "note": "清洲駅から名古屋駅へ概ね8-9分。須ケ口・新川橋・枇杷島など複数駅利用も可能。",
+        "sourceType": "NAVITIME・Yahoo!路線情報 / 清須市公式アクセス案内",
+        "sourceDate": "2017-01-10 page update / 2026-05-02 accessed",
+        "sourceUrl": "https://www.city.kiyosu.aichi.jp/shisei_joho/shi_shokai/kiyosu_access.html"
+      },
+      "averageRentRange1LDKor2LDK": {
+        "display": "約6.1万〜6.4万円/月",
+        "minJPY": 61000,
+        "maxJPY": 64000,
+        "estimate": true,
+        "note": "1LDKはat home・HOME'S補完、2LDKはSUUMO補完。媒体差あり。",
+        "sourceType": "SUUMO / HOME'S / at home 補完",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://suumo.jp/chintai/soba/aichi/sc_kiyosu/"
+      },
+      "childRearingEducationEnvironment": {
+        "summary": "幼児教育・保育無償化、放課後児童クラブ、放課後子ども教室、子育て支援センター、こども家庭センター、教育支援教室など、行政メニューが比較的そろっている。",
+        "estimate": false,
+        "sourceType": "清須市公式 子育て・教育",
+        "sourceDate": "2026-05-02 accessed",
+        "sourceUrl": "https://www.city.kiyosu.aichi.jp/kosodate/index.html"
+      },
+      "optional": {
+        "population": {
+          "value": null,
+          "unit": "persons",
+          "asOf": null,
+          "estimate": true,
+          "note": "今回の調査では市単位の最新公式人口を未取得"
+        },
+        "mainRailwayLines": [
+          "JR東海道本線",
+          "名鉄名古屋本線"
+        ],
+        "commercialAmenityAvailability": "名古屋近接で通勤利便が高い。",
+        "naturalEnvironment": null
+      }
+    }
+  ]
+}
