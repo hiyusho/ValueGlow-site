@@ -588,6 +588,31 @@
                 const userRef = doc(db, 'users', user.uid);
                 const snap = await getDoc(userRef);
 
+                const readTracking = (key) => {
+                    return (
+                        localStorage.getItem('vg_relocation_' + key) ||
+                        localStorage.getItem('entry_' + key) ||
+                        ''
+                    );
+                };
+
+                const trackingData = {
+                    univ: readTracking('univ'),
+                    utm_source: readTracking('utm_source'),
+                    utm_medium: readTracking('utm_medium'),
+                    utm_campaign: readTracking('utm_campaign'),
+                    utm_content: readTracking('utm_content'),
+                    latest_page: localStorage.getItem('vg_relocation_latest_page') || '',
+                    latest_timestamp: localStorage.getItem('vg_relocation_latest_timestamp') || '',
+                    first_page: localStorage.getItem('vg_relocation_first_page') || '',
+                    first_timestamp: localStorage.getItem('vg_relocation_first_timestamp') || ''
+                };
+
+                await setDoc(userRef, {
+                    ...trackingData,
+                    updatedAt: serverTimestamp()
+                }, { merge: true });
+
                 let role = 'user';
 
                 if (!snap.exists()) {
